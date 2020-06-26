@@ -11,8 +11,13 @@ public class CMD_Gamemode implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         if(sender instanceof Player) {
+            Player p = (Player) sender;
+            if(p.hasPermission("system.gamemode")) {
+                if(cmd.getName().equalsIgnoreCase("gamemode") || cmd.getName().equalsIgnoreCase("gm")) {
 
-        }else sender.sendMessage(Main.pre +  "§cDiesen Befehl dürfen nur Spieler benutzen!");
+                }else p.sendMessage(Main.pre + "§cBitte benutze: §7/gm [0, 1, 2, 3]");
+            }else p.sendMessage(Main.pre + Main.noperm);
+        }else sender.sendMessage(Main.pre +  Main.cmdp);
 
         return false;
     }
