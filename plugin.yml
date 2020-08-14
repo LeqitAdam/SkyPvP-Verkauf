@@ -3,3 +3,5 @@ version: 0.1
 main: eu.playcen.skypvp.main.Main
 
 commands:
+   gamemode:
+      aliases: gm
