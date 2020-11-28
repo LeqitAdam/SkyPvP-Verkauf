@@ -1,8 +1,6 @@
 package eu.playcen.skypvp.main;
 
-import eu.playcen.skypvp.commands.CMD_Gamemode;
-import eu.playcen.skypvp.commands.CMD_Heal;
-import eu.playcen.skypvp.commands.CMD_Vanish;
+import eu.playcen.skypvp.commands.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -25,6 +23,9 @@ public class Main extends JavaPlugin {
         getCommand("gamemode").setExecutor(new CMD_Gamemode());
         getCommand("heal").setExecutor(new CMD_Heal());
         getCommand("vanish").setExecutor(new CMD_Vanish(this));
+        getCommand("tp").setExecutor(new CMD_Tp(this));
+        getCommand("tphere").setExecutor(new CMD_Tphere(this));
+        getCommand("tppos").setExecutor(new CMD_Tppos());
 
         /*
          /fly
