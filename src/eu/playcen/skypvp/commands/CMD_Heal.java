@@ -31,7 +31,7 @@ public class CMD_Heal implements CommandExecutor {
                 }
             }
             if(args.length > 1){
-                p.sendMessage("Falsche Eingabe");
+                p.sendMessage(Main.pre + "§cBitte benutze: §7/heal [Spieler]");
             }
         }
         return false;
