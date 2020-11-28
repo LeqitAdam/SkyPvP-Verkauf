@@ -1,5 +1,6 @@
 package eu.playcen.skypvp.commands;
 
+import eu.playcen.skypvp.main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,6 +15,7 @@ public class CMD_Heal implements CommandExecutor {
             if(args.length == 0){
                 if(p.hasPermission("skypvp.heal")){
                     p.setHealth(p.getMaxHealth());
+                    p.sendMessage(Main.pre + "§aDu wurdest geheilt!");
                     return true;
                 }
             }
@@ -22,6 +24,8 @@ public class CMD_Heal implements CommandExecutor {
                     if(Bukkit.getServer().getPlayer(args[0]) != null){
                         Player target = Bukkit.getServer().getPlayer(args[0]);
                         target.setHealth(target.getMaxHealth());
+                        target.sendMessage(Main.pre + "§aDu wurdest von §e" + p.getName() + " §ageheilt!");
+                        p.sendMessage(Main.pre + "§aDu hast §e" + target.getName() + " §ageheilt!");
                         return true;
                     }
                 }
