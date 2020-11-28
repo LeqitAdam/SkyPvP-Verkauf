@@ -26,7 +26,6 @@ public class Main extends JavaPlugin {
         getCommand("tp").setExecutor(new CMD_Tp(this));
         getCommand("tphere").setExecutor(new CMD_Tphere(this));
         getCommand("tppos").setExecutor(new CMD_Tppos());
-        getCommand("fly").setExecutor(new CMD_Fly());
 
         /*
          /fly
