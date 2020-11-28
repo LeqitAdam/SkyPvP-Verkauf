@@ -36,7 +36,7 @@ public class Main extends JavaPlugin {
          /tppos
          /heal
          /vanish
-         /
+         /chatclear
          */
 
 
