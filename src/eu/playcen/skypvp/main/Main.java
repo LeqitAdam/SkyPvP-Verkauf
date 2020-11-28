@@ -1,6 +1,7 @@
 package eu.playcen.skypvp.main;
 
 import eu.playcen.skypvp.commands.CMD_Gamemode;
+import eu.playcen.skypvp.commands.CMD_Heal;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
@@ -15,6 +16,7 @@ public class Main extends JavaPlugin {
 
         //Commands
         getCommand("gamemode").setExecutor(new CMD_Gamemode());
+        getCommand("heal").setExecutor(new CMD_Heal());
 
 
         //Listener & Events
