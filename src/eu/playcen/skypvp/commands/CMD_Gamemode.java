@@ -33,15 +33,19 @@ public class CMD_Gamemode implements CommandExecutor {
                                 case 3:
                                     p.setGameMode(GameMode.SPECTATOR);
                                     p.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSPECTATOR§7]");
+                                    return false;
                                 case 2:
                                     p.setGameMode(GameMode.ADVENTURE);
                                     p.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aADVENTURE§7]");
+                                    return false;
                                 case 1:
                                     p.setGameMode(GameMode.CREATIVE);
                                     p.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aCREATIVE§7]");
+                                    return false;
                                 case 0:
                                     p.setGameMode(GameMode.SURVIVAL);
                                     p.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSURVIVAL§7]");
+                                    return false;
                             }
                         }else sender.sendMessage(prefix + " " + Main.cmdp);
                     }else if(args.length == 2) {
@@ -56,18 +60,22 @@ public class CMD_Gamemode implements CommandExecutor {
                                                 target.setGameMode(GameMode.SPECTATOR);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSPECTATOR§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cSpectator §7Modus!");
+                                                return false;
                                             case 2:
                                                 target.setGameMode(GameMode.ADVENTURE);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aADVENTURE§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cAbenteuer §7Modus!");
+                                                return false;
                                             case 1:
                                                 target.setGameMode(GameMode.CREATIVE);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aCREATIVE§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cKreativ §7Modus!");
+                                                return false;
                                             case 0:
                                                 target.setGameMode(GameMode.SURVIVAL);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSURVIVAL§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cSurvival §7Modus!");
+                                                return false;
                                         }
                                     }else p.sendMessage(prefix + Main.noperm);
                             }else if(!target.hasPermission("system.gamemode.others.bypass.ignore")) {
@@ -79,18 +87,22 @@ public class CMD_Gamemode implements CommandExecutor {
                                                 target.setGameMode(GameMode.SPECTATOR);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSPECTATOR§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cSpectator §7Modus!");
+                                                return false;
                                             case 2:
                                                 target.setGameMode(GameMode.ADVENTURE);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aADVENTURE§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cAbenteuer §7Modus!");
+                                                return false;
                                             case 1:
                                                 target.setGameMode(GameMode.CREATIVE);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aCREATIVE§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cKreativ §7Modus!");
+                                                return false;
                                             case 0:
                                                 target.setGameMode(GameMode.SURVIVAL);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSURVIVAL§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cSurvival §7Modus!");
+                                                return false;
                                         }
                                     }else p.sendMessage(prefix + Main.noperm);
                                 }else if(!(target.getName().equals("LeqitSweden") || target.getName().equals("NeraxHD"))) {
@@ -102,18 +114,22 @@ public class CMD_Gamemode implements CommandExecutor {
                                                 target.setGameMode(GameMode.SPECTATOR);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSPECTATOR§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cSpectator §7Modus!");
+                                                return false;
                                             case 2:
                                                 target.setGameMode(GameMode.ADVENTURE);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aADVENTURE§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cAbenteuer §7Modus!");
+                                                return false;
                                             case 1:
                                                 target.setGameMode(GameMode.CREATIVE);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aCREATIVE§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cKreativ §7Modus!");
+                                                return false;
                                             case 0:
                                                 target.setGameMode(GameMode.SURVIVAL);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSURVIVAL§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cSurvival §7Modus!");
+                                                return false;
                                         }
                                     }else p.sendMessage(prefix + Main.noperm);
                                 }else if(sender.getName().equals("LeqitSweden")) {
@@ -124,18 +140,22 @@ public class CMD_Gamemode implements CommandExecutor {
                                                 target.setGameMode(GameMode.SPECTATOR);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSPECTATOR§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cSpectator §7Modus!");
+                                                return false;
                                             case 2:
                                                 target.setGameMode(GameMode.ADVENTURE);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aADVENTURE§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cAbenteuer §7Modus!");
+                                                return false;
                                             case 1:
                                                 target.setGameMode(GameMode.CREATIVE);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aCREATIVE§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cKreativ §7Modus!");
+                                                return false;
                                             case 0:
                                                 target.setGameMode(GameMode.SURVIVAL);
                                                 target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSURVIVAL§7]");
                                                 sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cSurvival §7Modus!");
+                                                return false;
                                         }
                                 }else sender.sendMessage(prefix + " §7Du darfst den Spielmodus von §a" + args[1] + " §cnicht verändern!");
                         }else p.sendMessage(prefix + " §7Der Spieler §a" + args[1] + " §7ist §cnicht online!");

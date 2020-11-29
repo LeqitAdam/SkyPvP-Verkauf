@@ -1,4 +1,4 @@
-name: Playcen - SkyPvP
+name: Playcen-SkyPvP
 version: 0.1
 main: eu.playcen.skypvp.main.Main
 
@@ -7,6 +7,7 @@ commands:
       aliases: gm
    fly:
    vanish:
+      aliases: v
    heal:
    tp:
    tphere:
@@ -16,3 +17,7 @@ commands:
       aliases: cc
    kit:
       aliases: kits
+   sun:
+   craft:
+   globalmute:
+      aliases: gmute

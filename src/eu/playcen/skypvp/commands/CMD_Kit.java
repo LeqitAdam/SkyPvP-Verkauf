@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.io.File;
+import java.io.IOException;
 
 public class CMD_Kit implements CommandExecutor {
     @Override
@@ -33,8 +34,20 @@ public class CMD_Kit implements CommandExecutor {
                 if(cmd.getName().equalsIgnoreCase("kit") || cmd.getName().equalsIgnoreCase("kits")) {
                     if (args.length == 0) {
                         kitinventory(p);
-                    } else
-                        p.sendMessage(prefix + " §cBitte benutze: §7/kit");
+                    }else if(args.length == 2 && args[0].equalsIgnoreCase("setup")) {
+                        File kit = new File("plugins/SkyPvP/Kits", args[1] + ".yml");
+                        YamlConfiguration kitconf = YamlConfiguration.loadConfiguration(kit);
+                        ItemStack[] content = p.getInventory().getContents();
+                        kitconf.set("Items", content);
+                        try {
+                            kitconf.save(kit);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        p.getInventory().clear();
+                        p.sendMessage(prefix + " §7Das §eKit §7wurde §agespeichert!");
+                    }else
+                        p.sendMessage(prefix + " §cBitte benutze: §7/kit setup [Spieler, Premium, Ultra, God]");
                 }else
                     p.sendMessage(prefix + " §cBitte benutze: §7/kit");
             }else
@@ -58,19 +71,24 @@ public class CMD_Kit implements CommandExecutor {
         spielerkit.setItemMeta(kit1);
 
         ItemStack premiumrkit = new ItemStack(Material.STONE_SWORD, 1);
-        ItemMeta kit2 = spielerkit.getItemMeta();
+        ItemMeta kit2 = premiumrkit.getItemMeta();
         kit2.setDisplayName("§6Premium §8- §eKit");
         premiumrkit.setItemMeta(kit2);
 
         ItemStack ultrakit = new ItemStack(Material.IRON_SWORD, 1);
-        ItemMeta kit3 = spielerkit.getItemMeta();
-        kit3.setDisplayName("§1Ultra §8- §eKit");
+        ItemMeta kit3 = ultrakit.getItemMeta();
+        kit3.setDisplayName("§bUltra §8- §eKit");
         ultrakit.setItemMeta(kit3);
 
         ItemStack godkit = new ItemStack(Material.DIAMOND_SWORD, 1);
-        ItemMeta kit4 = spielerkit.getItemMeta();
-        kit4.setDisplayName("§0God §8- §eKit");
+        ItemMeta kit4 = godkit.getItemMeta();
+        kit4.setDisplayName("§4God §8- §eKit");
         godkit.setItemMeta(kit4);
+
+        inventory.setItem(11, new ItemStack(spielerkit));
+        inventory.setItem(15, new ItemStack(premiumrkit));
+        inventory.setItem(38, new ItemStack(ultrakit));
+        inventory.setItem(42, new ItemStack(godkit));
 
 
         InventoryClickListener.getNoClick().add(p.getUniqueId());

@@ -26,6 +26,7 @@ public class CMD_Heal implements CommandExecutor {
             if(args.length == 0){
                 if(p.hasPermission("skypvp.heal")){
                     p.setHealth(p.getMaxHealth());
+                    p.setFoodLevel(20);
                     p.sendMessage(prefix + " §aDu wurdest geheilt!");
                     return true;
                 }
@@ -35,6 +36,7 @@ public class CMD_Heal implements CommandExecutor {
                     if(Bukkit.getServer().getPlayer(args[0]) != null){
                         Player target = Bukkit.getServer().getPlayer(args[0]);
                         target.setHealth(target.getMaxHealth());
+                        target.setFoodLevel(20);
                         target.sendMessage(prefix + " §aDu wurdest von §e" + p.getName() + " §ageheilt!");
                         p.sendMessage(prefix + " §aDu hast §e" + target.getName() + " §ageheilt!");
                         return true;

@@ -1,15 +1,28 @@
 package eu.playcen.skypvp.methods;
 
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
+import eu.playcen.skypvp.main.Main;
+import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
-public class KitInventoryMethod implements Listener {
+import java.io.File;
+
+public class KitInventoryMethod {
+
+    public static void getSpielerKit(Player p) {
+        File config = new File("plugins/SkyPvP", "config.yml");
+        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
+        String prefix = conf.getString("Prefix");
+        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
 
+        File kit = new File("plugins/SkyPvP/Kits", "Spieler.yml");
+        YamlConfiguration kitconf = YamlConfiguration.loadConfiguration(config);
 
-    @EventHandler
-    public void kitinventoryclick(InventoryClickEvent event) {
+        ItemStack item = kitconf.getItemStack("Items");
+
+        p.sendMessage(prefix + " §7Du hast das §7Spieler §8- §eKit §aerhalten!");
 
     }
 

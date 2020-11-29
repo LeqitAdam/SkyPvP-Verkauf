@@ -3,15 +3,17 @@ package eu.playcen.skypvp.main;
 import eu.playcen.skypvp.commands.*;
 import eu.playcen.skypvp.listeners.InventoryClickListener;
 import eu.playcen.skypvp.listeners.JoinListener;
+import eu.playcen.skypvp.listeners.KitInventoryListener;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Main extends JavaPlugin {
 
@@ -20,16 +22,14 @@ public class Main extends JavaPlugin {
     cmdnotfound = " §cDieser Befehl wurde nicht gefunden!",
     cmdp = " §Diesen Befehl dürfen nur Spieler benutzen!";
 
-    private static Main plugin;
 
-    public ArrayList<String> vanish = new ArrayList<String>();
+    public static Main plugin;
+
+    public ArrayList<String> vanish = new ArrayList<>();
 
     @Override
     public void onEnable() {
-
         createConfig();
-        plugin = this;
-
         //Commands
         getCommand("gamemode").setExecutor(new CMD_Gamemode());
         getCommand("heal").setExecutor(new CMD_Heal());
@@ -40,30 +40,22 @@ public class Main extends JavaPlugin {
         getCommand("giveall").setExecutor(new CMD_Giveall());
         getCommand("fly").setExecutor(new CMD_Fly());
         getCommand("chatclear").setExecutor(new CMD_Chatclear());
+        getCommand("craft").setExecutor(new CMD_Craft());
+        getCommand("sun").setExecutor(new CMD_Sun());
+        getCommand("globalmute").setExecutor(new CMD_Globalmute());
 
         //Kit - Menu
         getCommand("kit").setExecutor(new CMD_Kit());
-
-        /*
-         /fly
-         /kit
-            /kits
-         /tp
-         /tphere
-         /tppos
-         /heal
-         /vanish
-         /chatclear
-         /
-         */
-
 
         //Listener & Events
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new JoinListener(), this);
         pm.registerEvents(new InventoryClickListener(), this);
+        pm.registerEvents(new KitInventoryListener(), this);
 
+        plugin = this;
     }
+
 
     private void createConfig() {
 
