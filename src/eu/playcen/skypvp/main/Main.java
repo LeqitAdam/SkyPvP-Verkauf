@@ -1,6 +1,7 @@
 package eu.playcen.skypvp.main;
 
 import eu.playcen.skypvp.commands.*;
+import eu.playcen.skypvp.listeners.ChatListener;
 import eu.playcen.skypvp.listeners.InventoryClickListener;
 import eu.playcen.skypvp.listeners.JoinListener;
 import eu.playcen.skypvp.listeners.KitInventoryListener;
@@ -52,6 +53,8 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new JoinListener(), this);
         pm.registerEvents(new InventoryClickListener(), this);
         pm.registerEvents(new KitInventoryListener(), this);
+        pm.registerEvents(new ChatListener(), this);
+
 
         plugin = this;
     }
