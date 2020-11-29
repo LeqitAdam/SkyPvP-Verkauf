@@ -1,15 +1,11 @@
 package eu.playcen.skypvp.main;
 
 import eu.playcen.skypvp.commands.*;
-import eu.playcen.skypvp.listeners.ChatListener;
-import eu.playcen.skypvp.listeners.InventoryClickListener;
-import eu.playcen.skypvp.listeners.JoinListener;
-import eu.playcen.skypvp.listeners.KitInventoryListener;
-import net.milkbowl.vault.economy.Economy;
+import eu.playcen.skypvp.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -44,6 +40,7 @@ public class Main extends JavaPlugin {
         getCommand("craft").setExecutor(new CMD_Craft());
         getCommand("sun").setExecutor(new CMD_Sun());
         getCommand("globalmute").setExecutor(new CMD_Globalmute());
+        getCommand("setspawn").setExecutor(new CMD_SetSpawn());
 
         //Kit - Menu
         getCommand("kit").setExecutor(new CMD_Kit());
@@ -54,9 +51,12 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new InventoryClickListener(), this);
         pm.registerEvents(new KitInventoryListener(), this);
         pm.registerEvents(new ChatListener(), this);
+        pm.registerEvents(new RespawnListener(), this);
 
 
         plugin = this;
+
+        Bukkit.getConsoleSender().sendMessage("§cSkypvp §7>> §aPlugin wurde aktiviert");
     }
 
 
@@ -69,7 +69,7 @@ public class Main extends JavaPlugin {
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 
         cfg.set("Prefix", "&9SkyPvP &7»");
-        cfg.set("menutitle", "&9SkyPvP §8- §eKits");
+        cfg.set("menutitle", "&9SkyPvP &8- &eKits");
 
         try {
             cfg.save(file);

@@ -1,4 +1,4 @@
-name: Playcen-SkyPvP
+name: SkyPvP
 version: 0.1
 main: eu.playcen.skypvp.main.Main
 
@@ -21,3 +21,4 @@ commands:
    craft:
    globalmute:
       aliases: gmute
+   setspawn:
