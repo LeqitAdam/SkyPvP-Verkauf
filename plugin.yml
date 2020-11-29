@@ -5,3 +5,14 @@ main: eu.playcen.skypvp.main.Main
 commands:
    gamemode:
       aliases: gm
+   fly:
+   vanish:
+   heal:
+   tp:
+   tphere:
+   tppos:
+   giveall:
+   chatclear:
+      aliases: cc
+   kit:
+      aliases: kits

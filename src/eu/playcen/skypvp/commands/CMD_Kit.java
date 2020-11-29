@@ -19,23 +19,33 @@ import java.io.File;
 public class CMD_Kit implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+
+        File config = new File("plugins/SkyPvP", "config.yml");
+        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
+
+        String prefix = conf.getString("Prefix");
+        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
+
         Player p = (Player) sender;
 
         if(sender instanceof Player) {
             if(p.hasPermission("skypvp.kit")) {
-                if(args.length == 0) {
-
+                if(cmd.getName().equalsIgnoreCase("kit") || cmd.getName().equalsIgnoreCase("kits")) {
+                    if (args.length == 0) {
+                        kitinventory(p);
+                    } else
+                        p.sendMessage(prefix + " §cBitte benutze: §7/kit");
                 }else
-                    p.sendMessage(Main.pre + "§cBitte benutze: §7/kit");
+                    p.sendMessage(prefix + " §cBitte benutze: §7/kit");
             }else
-                p.sendMessage(Main.pre + Main.noperm);
+                p.sendMessage(prefix + Main.noperm);
         }
 
         return false;
     }
 
     public static void kitinventory(Player p) {
-        File config = new File("plugins/SkyPvP/kits", "kits.yml");
+        File config = new File("plugins/SkyPvP", "config.yml");
         YamlConfiguration kits = YamlConfiguration.loadConfiguration(config);
         String menutitle = kits.getString("menutitle");
         menutitle = ChatColor.translateAlternateColorCodes('&', menutitle);

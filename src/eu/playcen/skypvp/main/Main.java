@@ -1,16 +1,41 @@
 package eu.playcen.skypvp.main;
 
+import com.avaje.ebean.SqlRow;
 import eu.playcen.skypvp.commands.*;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main extends JavaPlugin {
 
-    public static String pre = "§9SkyPvP §8» §7",
-    noperm = "§cDiesen Berfehl darfst du nicht benutzen!",
-    cmdnotfound = "§cDieser Befehl wurde nicht gefunden!",
-    cmdp = "§Diesen Befehl dürfen nur Spieler benutzen!";
+    private void createConfig() {
+
+        File file = new File("plugins/SkyPvP", "config.yml");
+
+        if(file.exists()) return;
+
+        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+
+        cfg.set("Prefix", "&9SkyPvP &7»");
+        cfg.set("menutitle", "&9SkyPvP §8- §eKits");
+
+        try {
+            cfg.save(file);
+            System.out.println("[SkyPvP] Config wurde erstellt!");
+        } catch (IOException e) {
+            System.out.println("[SkyPvP] Config wurde nicht erstellt");
+            e.printStackTrace();
+        }
+
+    }
+
+    public static String
+    noperm = " §cDiesen Berfehl darfst du nicht benutzen!",
+    cmdnotfound = " §cDieser Befehl wurde nicht gefunden!",
+    cmdp = " §Diesen Befehl dürfen nur Spieler benutzen!";
 
     private static Main plugin;
 
@@ -30,6 +55,9 @@ public class Main extends JavaPlugin {
         getCommand("fly").setExecutor(new CMD_Fly());
         getCommand("chatclear").setExecutor(new CMD_Chatclear());
 
+        //Kit - Menu
+        getCommand("kit").setExecutor(new CMD_Kit());
+
         /*
          /fly
          /kit
@@ -47,6 +75,8 @@ public class Main extends JavaPlugin {
         //Listener & Events
 
     }
+
+
 
     public static Main getPlugin() {
         return plugin;
