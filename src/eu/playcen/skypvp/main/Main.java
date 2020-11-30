@@ -51,6 +51,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new KitInventoryListener(), this);
         pm.registerEvents(new ChatListener(), this);
         pm.registerEvents(new RespawnListener(), this);
+        pm.registerEvents(new SignClick(), this);
 
 
         plugin = this;
