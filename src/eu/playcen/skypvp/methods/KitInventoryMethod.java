@@ -20,6 +20,8 @@ public class KitInventoryMethod {
         File kit = new File("plugins/SkyPvP/Kits", "Spieler.yml");
         YamlConfiguration kitconf = YamlConfiguration.loadConfiguration(config);
 
+
+
         ItemStack item = kitconf.getItemStack("Items");
 
         p.sendMessage(prefix + " §7Du hast das §7Spieler §8- §eKit §aerhalten!");

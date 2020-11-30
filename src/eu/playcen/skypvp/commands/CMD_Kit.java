@@ -38,7 +38,9 @@ public class CMD_Kit implements CommandExecutor {
                         File kit = new File("plugins/SkyPvP/Kits", args[1] + ".yml");
                         YamlConfiguration kitconf = YamlConfiguration.loadConfiguration(kit);
                         ItemStack[] content = p.getInventory().getContents();
-                        kitconf.set("Items", content);
+                        if(content != null) {
+                            kitconf.set("Items", content);
+                        }
                         try {
                             kitconf.save(kit);
                         } catch (IOException e) {
