@@ -23,7 +23,7 @@ public class ChatListener implements Listener {
             if (event.getPlayer().hasPermission("skypvp.globalmute.bypass")) {
                 return;
             }
-            event.getPlayer().sendMessage(prefix + "§7Der §c§lGlobalmute §7ist derzeit §aaktiviert!");
+            event.getPlayer().sendMessage(prefix + " §7Der §c§lGlobalmute §7ist derzeit §aaktiviert!");
             event.setCancelled(true);
         }
     }
