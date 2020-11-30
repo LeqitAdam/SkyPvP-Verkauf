@@ -24,3 +24,4 @@ commands:
    globalmute:
       aliases: gmute
    setspawn:
+   itemlist:
