@@ -56,6 +56,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new ChatListener(), this);
         pm.registerEvents(new RespawnListener(), this);
         pm.registerEvents(new SignClick(), this);
+        pm.registerEvents(new ColorSigns(), this);
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Events wurden aktiviert");
 
         plugin = this;
