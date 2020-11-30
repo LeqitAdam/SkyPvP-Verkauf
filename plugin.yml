@@ -10,7 +10,7 @@ commands:
    vanish:
       aliases: v
    heal:
-      description: Heilt dich komplett
+      description: Heilt dich oder andere Spieler komplett
    tp:
    tphere:
    tppos:
@@ -25,3 +25,7 @@ commands:
       aliases: gmute
    setspawn:
    itemlist:
+   teamspeak:
+      aliases: ts
+   discord:
+      aliases: dc

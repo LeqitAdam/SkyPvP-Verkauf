@@ -42,6 +42,8 @@ public class Main extends JavaPlugin {
         getCommand("globalmute").setExecutor(new CMD_Globalmute());
         getCommand("setspawn").setExecutor(new CMD_SetSpawn());
         getCommand("Itemlist").setExecutor(new CMD_ItemList());
+        getCommand("teamspeak").setExecutor(new CMD_Teamspeak());
+        getCommand("discord").setExecutor(new CMD_Discord());
 
         //Kit - Menu
         getCommand("kit").setExecutor(new CMD_Kit());
@@ -67,14 +69,16 @@ public class Main extends JavaPlugin {
         File file = new File("plugins/SkyPvP", "config.yml");
 
         if(file.exists()) {
-            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config ist bereits erstellt!");
+            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config ist bereits erstellt");
             return;
         }
-
+        Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config existiert noch nicht");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 
         cfg.set("Prefix", "&9SkyPvP &7»");
         cfg.set("menutitle", "&9SkyPvP &8- &eKits");
+        cfg.set("Teamspeak", "deinserver.net");
+        cfg.set("Discord", "discord.gg/deinserver");
 
         try {
             cfg.save(file);
