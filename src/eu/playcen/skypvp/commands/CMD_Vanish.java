@@ -31,7 +31,7 @@ public class CMD_Vanish implements CommandExecutor {
         prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
         Player p = (Player) sender;
-        if (p.hasPermission("system.vanish")) {
+        if (p.hasPermission("skypvp.vanish") || p.hasPermission("skypvp.*")) {
             if(cmd.getName().equalsIgnoreCase("vanish") || cmd.getName().equalsIgnoreCase("v")) {
                 if (args.length == 0) {
                     if (plugin.vanish.contains(p.getName())) {
@@ -43,7 +43,7 @@ public class CMD_Vanish implements CommandExecutor {
                         }
                     } else {
                         for (Player all : Bukkit.getOnlinePlayers()) {
-                            if (!all.hasPermission("system.vanish.see")) {
+                            if (!all.hasPermission("skypvp.vanish.see")) {
                                 all.hidePlayer(p);
                             }
                         }
@@ -56,8 +56,8 @@ public class CMD_Vanish implements CommandExecutor {
                 } else if (args.length == 1) {
                     Player target = Bukkit.getPlayer(args[0]);
                     if (target != null) {
-                        if (p.hasPermission("system.vanish.others")) {
-                            if (!(target.hasPermission("system.vanish.others.ignore"))) {
+                        if (p.hasPermission("skypvp.vanish.others") || p.hasPermission("skypvp.*")) {
+                            if (!(target.hasPermission("skypvp.vanish.others.ignore") || target.hasPermission("skypvp.*"))) {
                                 if (plugin.vanish.contains(target.getName())) {
                                     plugin.vanish.remove(target.getName());
                                     target.sendMessage(prefix + " §7Du bist nun für §aalle §7Spieler §asichtbar!");
@@ -70,7 +70,7 @@ public class CMD_Vanish implements CommandExecutor {
 
                                 } else {
                                     for (Player all : Bukkit.getOnlinePlayers()) {
-                                        if (!all.hasPermission("system.vanish.see")) {
+                                        if (!all.hasPermission("skypvp.vanish.see")) {
                                             all.hidePlayer(target);
                                         }
 
@@ -82,7 +82,7 @@ public class CMD_Vanish implements CommandExecutor {
                                             + " §7in den §cVanish §7gesetzt");
                                     target.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 999999, 1));
                                 }
-                            } else if (p.hasPermission("prefix.owner")) {
+                            } else if (p.hasPermission("prefix.owner") || p.hasPermission("skypvp.*")) {
                                 if (plugin.vanish.contains(target.getName())) {
                                     plugin.vanish.remove(target.getName());
                                     target.sendMessage(prefix + "§7Du bist nun für §aalle §7Spieler §asichtbar!");
@@ -95,7 +95,7 @@ public class CMD_Vanish implements CommandExecutor {
 
                                 } else {
                                     for (Player all : Bukkit.getOnlinePlayers()) {
-                                        if (!all.hasPermission("system.vanish.see")) {
+                                        if (!(all.hasPermission("skypvp.vanish.see") || all.hasPermission("skypvp.*"))) {
                                             all.hidePlayer(target);
                                         }
 

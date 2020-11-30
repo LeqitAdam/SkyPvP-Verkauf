@@ -20,7 +20,7 @@ public class ChatListener implements Listener {
         prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
         if (CMD_Globalmute.globalmute) {
-            if (event.getPlayer().hasPermission("skypvp.globalmute.bypass")) {
+            if (event.getPlayer().hasPermission("skypvp.globalmute.bypass")  || event.getPlayer().hasPermission("skypvp.*")) {
                 return;
             }
             event.getPlayer().sendMessage(prefix + " §7Der §c§lGlobalmute §7ist derzeit §aaktiviert!");

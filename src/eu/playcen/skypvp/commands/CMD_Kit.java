@@ -30,7 +30,7 @@ public class CMD_Kit implements CommandExecutor {
         Player p = (Player) sender;
 
         if(sender instanceof Player) {
-            if(p.hasPermission("skypvp.kit")) {
+            if(p.hasPermission("skypvp.kit") || p.hasPermission("skypvp.*")) {
                 if(cmd.getName().equalsIgnoreCase("kit") || cmd.getName().equalsIgnoreCase("kits")) {
                     if (args.length == 0) {
                         kitinventory(p);

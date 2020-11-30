@@ -24,7 +24,7 @@ public class CMD_Tppos implements CommandExecutor {
 
         Player p = (Player) sender;
 
-        if(p.hasPermission("system.tppos") || p.hasPermission("system.*")) {
+        if(p.hasPermission("skypvp.tppos") || p.hasPermission("skypvp.*")) {
             if(args.length == 3) {
                 double x = Integer.valueOf(args[0]);
                 double y = Integer.valueOf(args[1]);

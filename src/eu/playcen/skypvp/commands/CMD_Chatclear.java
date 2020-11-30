@@ -25,14 +25,14 @@ public class CMD_Chatclear implements CommandExecutor {
         if (sender instanceof Player) {
             Player p = (Player) sender;
 
-            if (p.hasPermission("system.chatclear")) {
+            if (p.hasPermission("system.chatclear") || p.hasPermission("skypvp.*")) {
                 if(cmd.getName().equalsIgnoreCase("chatclear") || cmd.getName().equalsIgnoreCase("cc") || cmd.getName().equalsIgnoreCase("clearchat")) {
                     for (int i = 0; i < 200; i++) {
                         for (Player t : Bukkit.getOnlinePlayers()) {
 
                             // ab hier sind die Bypass - Rechte
 
-                            if (t.hasPermission("system.chatclear.bypass")) {
+                            if (t.hasPermission("system.chatclear.bypass") || t.hasPermission("skypvp.*")) {
                                 continue;
                             }
                             t.sendMessage("");

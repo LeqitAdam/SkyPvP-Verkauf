@@ -24,7 +24,7 @@ public class CMD_ItemList implements CommandExecutor {
 
 
 
-            if(p.hasPermission("skypvp.itemlist")){
+            if(p.hasPermission("skypvp.itemlist") || p.hasPermission("skypvp.*")){
                 if(args.length == 0){
                     p.sendMessage(prefix + " §7Eine Liste aller Items findest du unter https://primax4k.github.io/ItemList/");
                     return true;

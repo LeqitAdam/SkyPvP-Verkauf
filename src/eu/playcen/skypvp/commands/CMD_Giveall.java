@@ -28,7 +28,7 @@ public class CMD_Giveall implements CommandExecutor {
             sender.sendMessage(prefix + " §7Du musst ein Spieler sein, um den Befehl zu nutzen!");
         }
         Player p = (Player) sender;
-        if (!p.hasPermission("system.giveall")) {
+        if (!p.hasPermission("system.giveall") || p.hasPermission("skypvp.*")) {
             p.sendMessage(prefix + " §7Diesen §cBefehl §7gibt es nicht!");
             return true;
         }

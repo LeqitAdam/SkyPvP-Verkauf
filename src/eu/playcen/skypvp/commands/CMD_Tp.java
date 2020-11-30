@@ -29,7 +29,7 @@ public class CMD_Tp implements CommandExecutor {
         prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
         Player p = (Player) sender;
-        if (p.hasPermission("system.tp")) {
+        if (p.hasPermission("skypvp.tp") || p.hasPermission("skypvp.*")) {
             if (args.length == 1) {
                 Player target = Bukkit.getPlayer(args[0]);
                 if (target != null) {
@@ -53,15 +53,15 @@ public class CMD_Tp implements CommandExecutor {
                 Player target = Bukkit.getPlayer(args[0]);
                 Player player = Bukkit.getPlayer(args[1]);
                 if (player != null && target != null) {
-                    if(!(target.hasPermission("system.tp.owner"))) {
+                    if(!(target.hasPermission("skypvp.tp.owner") || p.hasPermission("skypvp.*"))) {
                         target.teleport(player);
                         p.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7wurde zu §a" + player.getName()
                                 + " §7teleportiert!");
                         return true;
-                    } else if(target.hasPermission("system.tp.owner") && !(p.hasPermission("system.tp.owner.bypass"))) {
+                    } else if(target.hasPermission("skypvp.tp.owner") && !(p.hasPermission("system.tp.owner.bypass"))) {
                         p.sendMessage(prefix + " §7Den Spieler §a" + args[0] + " §7darfst du §cnicht §7teleportieren!");
                         return true;
-                    } else if(p.hasPermission("system.tp.owner.bypass")) {
+                    } else if(p.hasPermission("skypvp.tp.owner.bypass") || p.hasPermission("skypvp.*")) {
                         target.teleport(player);
                         p.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7wurde zu §a" + player.getName()
                                 + " §7teleportiert!");
@@ -71,12 +71,12 @@ public class CMD_Tp implements CommandExecutor {
                         p.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7wurde zu §a" + player.getName()
                                 + " §7teleportiert!");
                         return true;
-                    } else if ((p.isOp() || p.hasPermission("system.tp.bypass"))) {
+                    } else if ((p.isOp() || p.hasPermission("skypvp.tp.bypass") || p.hasPermission("skypvp.*"))) {
                         target.teleport(p);
                         p.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7wurde zu §a" + player.getName()
                                 + " §7Teleportiert!");
                         return true;
-                    } else if (!p.hasPermission("system.tp.offline")){
+                    } else if (!(p.hasPermission("skypvp.tp.offline") || p.hasPermission("skypvp.*"))){
                         p.sendMessage(prefix + " §7Der Spieler §a" + args[0] + " §7ist §cnicht online!");
                         return true;
                     }else {

@@ -22,7 +22,7 @@ public class CMD_SetSpawn implements CommandExecutor {
             prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
             Player p = (Player) sender;
-            if(p.hasPermission("skypvp.setspawn")){
+            if(p.hasPermission("skypvp.setspawn") || p.hasPermission("skypvp.*")){
                 if(args.length == 0){
                     conf.set("Spawn.world", p.getLocation().getWorld().getName());
                     conf.set("Spawn.x", p.getLocation().getX());

@@ -30,7 +30,7 @@ public class SignClick implements Listener {
 
         Player p = e.getPlayer();
         if(e.getClickedBlock() != null){
-            if(e.getClickedBlock().getType() == Material.SIGN ||e.getClickedBlock().getType() == Material.SIGN_POST ||e.getClickedBlock().getType() == Material.WALL_SIGN){
+            if(e.getClickedBlock().getType() == Material.SIGN || e.getClickedBlock().getType() == Material.SIGN_POST || e.getClickedBlock().getType() == Material.WALL_SIGN){
                 if(e.getAction() == Action.RIGHT_CLICK_BLOCK){
                     Sign sign = (Sign) e.getClickedBlock().getState();
                     if(sign.getLine(3).equalsIgnoreCase("[FREE]")){

@@ -23,7 +23,7 @@ public class CMD_Gamemode implements CommandExecutor {
         prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
             Player p = (Player) sender;
-            if(p.hasPermission("system.gamemode")) {
+            if(p.hasPermission("skypvp.gamemode") || p.hasPermission("skypvp.*")) {
                 if(cmd.getName().equalsIgnoreCase("gamemode") || cmd.getName().equalsIgnoreCase("gm")) {
                     if(args.length == 1) {
                         if(sender instanceof Player) {
@@ -51,8 +51,8 @@ public class CMD_Gamemode implements CommandExecutor {
                     }else if(args.length == 2) {
                         Player target = Bukkit.getPlayer(args[1]);
                             if(target != null) {
-                                if(!target.hasPermission("system.gamemode.others.bypass")) {
-                                    if(sender.hasPermission("system.gamemode.others")) {
+                                if(!target.hasPermission("skypvp.gamemode.others.bypass")) {
+                                    if(sender.hasPermission("skypvp.gamemode.others") || sender.hasPermission("skypvp.*")) {
                                         String arg = args[0];
                                         int i = Integer.parseInt(arg);
                                         switch (i) {
@@ -78,8 +78,8 @@ public class CMD_Gamemode implements CommandExecutor {
                                                 return false;
                                         }
                                     }else p.sendMessage(prefix + Main.noperm);
-                            }else if(!target.hasPermission("system.gamemode.others.bypass.ignore")) {
-                                    if(sender.hasPermission("system.gamemode.others")) {
+                            }else if(!target.hasPermission("skypvp.gamemode.others.bypass.ignore")) {
+                                    if(sender.hasPermission("skypvp.gamemode.others") || sender.hasPermission("skypvp.*")) {
                                         String arg = args[0];
                                         int i = Integer.parseInt(arg);
                                         switch (i) {
@@ -106,7 +106,7 @@ public class CMD_Gamemode implements CommandExecutor {
                                         }
                                     }else p.sendMessage(prefix + Main.noperm);
                                 }else if(!(target.getName().equals("LeqitSweden") || target.getName().equals("NeraxHD"))) {
-                                    if(sender.hasPermission("system.gamemode.others")) {
+                                    if(sender.hasPermission("skypvp.gamemode.others") || sender.hasPermission("skypvp.*")) {
                                         String arg = args[0];
                                         int i = Integer.parseInt(arg);
                                         switch (i) {

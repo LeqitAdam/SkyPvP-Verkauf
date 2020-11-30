@@ -11,7 +11,7 @@ public class ColorSigns implements Listener {
     @EventHandler
     public void onChange(SignChangeEvent e){
         Player p = e.getPlayer();
-        if(p.hasPermission("skypvp.coloredsigns")){
+        if(p.hasPermission("skypvp.coloredsigns") || p.hasPermission("skypvp.*")){
             for(int i = 0; i <= 3; i++){
                 String line = e.getLine(i);
                 line = ChatColor.translateAlternateColorCodes('&', line);
