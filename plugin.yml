@@ -29,3 +29,4 @@ commands:
       aliases: ts
    discord:
       aliases: dc
+   setvillager:

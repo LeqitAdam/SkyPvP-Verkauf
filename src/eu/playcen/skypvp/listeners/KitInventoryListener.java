@@ -27,16 +27,19 @@ public class KitInventoryListener implements Listener {
         }
         if(event.getClickedInventory().getTitle().equals(menutitle)) {
             event.setCancelled(true);
-            if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§7Spieler §8- §eKit")) {
-                p.sendMessage("test");
-                KitInventoryMethod.getSpielerKit(p);
-            }else if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§6Premium §8- §eKit")) {
+            if(event.getCurrentItem().getItemMeta() != null){
+                if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§7Spieler §8- §eKit")) {
+                    p.sendMessage("test");
+                    KitInventoryMethod.getSpielerKit(p);
+                }else if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§6Premium §8- §eKit")) {
 
-            }else if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§bUltra §8- §eKit")) {
+                }else if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§bUltra §8- §eKit")) {
 
-            }else if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§4God §8- §eKit")) {
+                }else if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§4God §8- §eKit")) {
 
+                }
             }
+
         }
     }
 }

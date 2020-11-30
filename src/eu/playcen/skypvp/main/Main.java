@@ -44,6 +44,7 @@ public class Main extends JavaPlugin {
         getCommand("Itemlist").setExecutor(new CMD_ItemList());
         getCommand("teamspeak").setExecutor(new CMD_Teamspeak());
         getCommand("discord").setExecutor(new CMD_Discord());
+        getCommand("setvillager").setExecutor(new CMD_SetVillagerKit());
 
         //Kit - Menu
         getCommand("kit").setExecutor(new CMD_Kit());
@@ -57,6 +58,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new RespawnListener(), this);
         pm.registerEvents(new SignClick(), this);
         pm.registerEvents(new ColorSigns(), this);
+        pm.registerEvents(new HandleVillager(), this);
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Events wurden aktiviert");
 
         plugin = this;
