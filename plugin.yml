@@ -1,14 +1,16 @@
 name: SkyPvP
-version: 0.1
+version: 0.5
 main: eu.playcen.skypvp.main.Main
 
 commands:
    gamemode:
       aliases: gm
    fly:
+      description: Setze dich oder Andere in den Flugmodus
    vanish:
       aliases: v
    heal:
+      description: Heilt dich komplett
    tp:
    tphere:
    tppos:

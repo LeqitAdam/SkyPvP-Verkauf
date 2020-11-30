@@ -4,7 +4,6 @@ import eu.playcen.skypvp.commands.*;
 import eu.playcen.skypvp.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
