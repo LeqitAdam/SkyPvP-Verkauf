@@ -26,6 +26,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         createConfig();
+        Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config wurde geladen");
         //Commands
         getCommand("gamemode").setExecutor(new CMD_Gamemode());
         getCommand("heal").setExecutor(new CMD_Heal());
@@ -43,7 +44,7 @@ public class Main extends JavaPlugin {
 
         //Kit - Menu
         getCommand("kit").setExecutor(new CMD_Kit());
-
+        Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Commands wurden aktiviert");
         //Listener & Events
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new JoinListener(), this);
@@ -52,11 +53,11 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new ChatListener(), this);
         pm.registerEvents(new RespawnListener(), this);
         pm.registerEvents(new SignClick(), this);
-
+        Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Events wurden aktiviert");
 
         plugin = this;
 
-        Bukkit.getConsoleSender().sendMessage("§cSkypvp §7>> §aPlugin wurde aktiviert");
+        Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Plugin wurde aktiviert");
     }
 
 
@@ -64,7 +65,10 @@ public class Main extends JavaPlugin {
 
         File file = new File("plugins/SkyPvP", "config.yml");
 
-        if(file.exists()) return;
+        if(file.exists()) {
+            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config ist bereits erstellt!");
+            return;
+        }
 
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 
@@ -73,9 +77,9 @@ public class Main extends JavaPlugin {
 
         try {
             cfg.save(file);
-            System.out.println("[SkyPvP] Config wurde erstellt!");
+            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config wurde ohne Fehler erstellt");
         } catch (IOException e) {
-            System.out.println("[SkyPvP] Config wurde nicht erstellt");
+            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §4Config konnte nicht erstellt werden");
             e.printStackTrace();
         }
 
