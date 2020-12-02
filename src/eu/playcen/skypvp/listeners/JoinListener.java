@@ -51,5 +51,28 @@ public class JoinListener implements Listener {
             System.out.println("[Player-Head] Kopf konnte nicht geladen werden.");
         }
 
+        File perks = new File("plugins/SkyPvP/Perks", p.getUniqueId() + ".yml");
+
+        if(perks.exists()) {
+            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config ist bereits erstellt");
+            return;
+        }
+        Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config existiert noch nicht");
+        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(perks);
+
+        cfg.set("Fly", false);
+        cfg.set("JumpBoost", false);
+        cfg.set("Speed", false);
+        cfg.set("KeinHunger", false);
+        cfg.set("KeinFallschaden", false);
+
+        try {
+            cfg.save(perks);
+            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config wurde ohne Fehler erstellt");
+        } catch (IOException e) {
+            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §4Config konnte nicht erstellt werden");
+            e.printStackTrace();
+        }
+
     }
 }

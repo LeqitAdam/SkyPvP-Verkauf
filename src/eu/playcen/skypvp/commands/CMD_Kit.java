@@ -37,9 +37,11 @@ public class CMD_Kit implements CommandExecutor {
                     }else if(args.length == 2 && args[0].equalsIgnoreCase("setup")) {
                         File kit = new File("plugins/SkyPvP/Kits", args[1] + ".yml");
                         YamlConfiguration kitconf = YamlConfiguration.loadConfiguration(kit);
-                        ItemStack[] content = p.getInventory().getContents();
-                        if(content != null) {
-                            kitconf.set("Items", content);
+                    //    ItemStack content = p.getInventory().getContents();
+                        ItemStack test = p.getInventory().getItem(3);
+
+                        if(test != null) {
+                            kitconf.set("Items", test);
                         }
                         try {
                             kitconf.save(kit);
@@ -55,6 +57,7 @@ public class CMD_Kit implements CommandExecutor {
             }else
                 p.sendMessage(prefix + Main.noperm);
         }
+
 
         return false;
     }

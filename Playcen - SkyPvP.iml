@@ -19,5 +19,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="spigot-1.8.8" level="project" />
+    <orderEntry type="library" name="spigot-1.8.8-R0.1-SNAPSHOT-latest" level="project" />
   </component>
 </module>

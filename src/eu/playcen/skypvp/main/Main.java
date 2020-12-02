@@ -2,6 +2,7 @@ package eu.playcen.skypvp.main;
 
 import eu.playcen.skypvp.commands.*;
 import eu.playcen.skypvp.listeners.*;
+import eu.playcen.skypvp.methods.PerksMethod;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
@@ -45,6 +46,7 @@ public class Main extends JavaPlugin {
         getCommand("teamspeak").setExecutor(new CMD_Teamspeak());
         getCommand("discord").setExecutor(new CMD_Discord());
         getCommand("setvillager").setExecutor(new CMD_SetVillagerKit());
+        getCommand("perks").setExecutor(new CMD_Perks());
 
         //Kit - Menu
         getCommand("kit").setExecutor(new CMD_Kit());
@@ -59,6 +61,9 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new SignClick(), this);
         pm.registerEvents(new ColorSigns(), this);
         pm.registerEvents(new HandleVillager(), this);
+        pm.registerEvents(new PerksInvListener(), this);
+        pm.registerEvents(new PerksMethod(), this);
+        pm.registerEvents(new PerksOnJoin(), this);
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Events wurden aktiviert");
 
         plugin = this;
@@ -95,6 +100,13 @@ public class Main extends JavaPlugin {
 
     public static Main getPlugin() {
         return plugin;
+    }
+
+    public static boolean FlyPerkPS;
+    public static int use;
+    static {
+        Main.FlyPerkPS = false;
+        Main.use = 0;
     }
 
 }

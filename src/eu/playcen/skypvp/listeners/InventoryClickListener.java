@@ -20,8 +20,10 @@ public class InventoryClickListener implements Listener {
     @EventHandler
     public void onclick(final InventoryClickEvent e) {
 
-        if (getNoClick().contains(e.getWhoClicked().getUniqueId())) {
-            e.setCancelled(true);
+        if(e.getCurrentItem() != null) {
+            if (getNoClick().contains(e.getWhoClicked().getUniqueId())) {
+                e.setCancelled(true);
+            }
         }
     }
 

@@ -29,4 +29,5 @@ commands:
       aliases: ts
    discord:
       aliases: dc
+   perks:
    setvillager:
