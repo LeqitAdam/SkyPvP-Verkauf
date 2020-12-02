@@ -32,26 +32,29 @@ public class CMD_Giveall implements CommandExecutor {
             p.sendMessage(prefix + " §7Diesen §cBefehl §7gibt es nicht!");
             return true;
         }
-        ItemStack hand = p.getItemInHand();
-        if ((hand == null) || (hand.getType() == Material.AIR)) {
-            p.sendMessage(prefix + " §7Du musst ein §c§lItem §7in der Hand haben!");
-            return true;
-        }
-        int amount = hand.getAmount();
-        String name = hand.getItemMeta() == null ? hand.getType().name()
-                : hand.getItemMeta().getDisplayName() == null ? hand.getType().name()
-                : hand.getItemMeta().getDisplayName();
-        for (Player all : Bukkit.getOnlinePlayers()) {
-            all.sendMessage(
-                    prefix + " §7Jeder Spieler hat §e" + amount + "x §7mal das Item §e" + name + " §7erhalten!");
-            if (all != p) {
-                if (all.getInventory().firstEmpty() == -1) {
-                    all.getWorld().dropItemNaturally(all.getLocation(), hand);
-                } else {
-                    all.getInventory().addItem(new ItemStack[] { hand });
+        if(command.getName().equalsIgnoreCase("giveall")) {
+            ItemStack hand = p.getItemInHand();
+            if ((hand == null) || (hand.getType() == Material.AIR)) {
+                p.sendMessage(prefix + " §7Du musst ein §c§lItem §7in der Hand haben!");
+                return true;
+            }
+            int amount = hand.getAmount();
+            String name = hand.getItemMeta() == null ? hand.getType().name()
+                    : hand.getItemMeta().getDisplayName() == null ? hand.getType().name()
+                    : hand.getItemMeta().getDisplayName();
+            for (Player all : Bukkit.getOnlinePlayers()) {
+                all.sendMessage(
+                        prefix + " §7Jeder Spieler hat §e" + amount + "x §7mal das Item §e" + name + " §7erhalten!");
+                if (all != p) {
+                    if (all.getInventory().firstEmpty() == -1) {
+                        all.getWorld().dropItemNaturally(all.getLocation(), hand);
+                    } else {
+                        all.getInventory().addItem(new ItemStack[] { hand });
+                    }
                 }
             }
-        }
+        }else
+            p.sendMessage(prefix + " §cBitte benutze: §7/giveall");
         return true;
     }
 }
