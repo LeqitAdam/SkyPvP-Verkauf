@@ -41,7 +41,6 @@ public class Main extends JavaPlugin {
         getCommand("craft").setExecutor(new CMD_Craft());
         getCommand("sun").setExecutor(new CMD_Sun());
         getCommand("globalmute").setExecutor(new CMD_Globalmute());
-        getCommand("giveall").setExecutor(new CMD_Giveall());
         getCommand("setspawn").setExecutor(new CMD_SetSpawn());
         getCommand("Itemlist").setExecutor(new CMD_ItemList());
         getCommand("teamspeak").setExecutor(new CMD_Teamspeak());
