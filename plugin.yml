@@ -30,4 +30,4 @@ commands:
    discord:
       aliases: dc
    perks:
-   setvillager:
+   cvillager:

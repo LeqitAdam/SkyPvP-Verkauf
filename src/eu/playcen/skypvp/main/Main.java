@@ -45,7 +45,7 @@ public class Main extends JavaPlugin {
         getCommand("Itemlist").setExecutor(new CMD_ItemList());
         getCommand("teamspeak").setExecutor(new CMD_Teamspeak());
         getCommand("discord").setExecutor(new CMD_Discord());
-        getCommand("setvillager").setExecutor(new CMD_SetVillagerKit());
+        getCommand("cvillager").setExecutor(new CMD_SetVillagerKit());
         getCommand("perks").setExecutor(new CMD_Perks());
 
         //Kit - Menu
