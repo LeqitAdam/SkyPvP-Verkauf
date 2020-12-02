@@ -47,6 +47,7 @@ public class Main extends JavaPlugin {
         getCommand("discord").setExecutor(new CMD_Discord());
         getCommand("cvillager").setExecutor(new CMD_SetVillagerKit());
         getCommand("perks").setExecutor(new CMD_Perks());
+        getCommand("clear").setExecutor(new CMD_Clear());
 
         //Kit - Menu
         getCommand("kit").setExecutor(new CMD_Kit());
