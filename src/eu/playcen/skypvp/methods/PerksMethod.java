@@ -245,15 +245,16 @@ public class PerksMethod implements Listener {
 
     @EventHandler
     public static void noFallDamage(EntityDamageEvent event) {
-        Player p = (Player) event.getEntity();
-        if(event.getEntity().getType() == EntityType.PLAYER && event.getCause() == EntityDamageEvent.DamageCause.FALL){
-            File perks = new File("plugins/SkyPvP/Perks", p.getUniqueId() + ".yml");
-            YamlConfiguration cfg = YamlConfiguration.loadConfiguration(perks);
-            if(cfg.getBoolean("KeinFallschaden") == true) {
-                event.setCancelled(true);
-            }else if(cfg.getBoolean("KeinFallschaden") == false)
-                event.setCancelled(false);
+        if(event.getEntity() instanceof Player){
+            Player p = (Player) event.getEntity();
+            if(event.getEntity().getType() == EntityType.PLAYER && event.getCause() == EntityDamageEvent.DamageCause.FALL){
+                File perks = new File("plugins/SkyPvP/Perks", p.getUniqueId() + ".yml");
+                YamlConfiguration cfg = YamlConfiguration.loadConfiguration(perks);
+                if(cfg.getBoolean("KeinFallschaden") == true) {
+                    event.setCancelled(true);
+                }else if(cfg.getBoolean("KeinFallschaden") == false)
+                    event.setCancelled(false);
+            }
         }
-
     }
 }
