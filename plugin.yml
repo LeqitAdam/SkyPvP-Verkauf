@@ -34,3 +34,4 @@ commands:
    clear:
    ec:
       aliases: enderchest
+   invsee:

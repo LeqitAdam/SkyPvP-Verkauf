@@ -49,6 +49,7 @@ public class Main extends JavaPlugin {
         getCommand("perks").setExecutor(new CMD_Perks());
         getCommand("clear").setExecutor(new CMD_Clear());
         getCommand("ec").setExecutor(new CMD_Ec());
+        getCommand("invsee").setExecutor(new CMD_Invsee());
 
         //Kit - Menu
         getCommand("kit").setExecutor(new CMD_Kit());
