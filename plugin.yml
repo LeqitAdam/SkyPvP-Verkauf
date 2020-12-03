@@ -32,3 +32,5 @@ commands:
    perks:
    cvillager:
    clear:
+   ec:
+      aliases: enderchest

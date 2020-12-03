@@ -1,12 +1,10 @@
 package eu.playcen.skypvp.methods;
 
-import eu.playcen.skypvp.main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 
@@ -24,9 +22,9 @@ public class KitInventoryMethod {
 
 
 
-        ItemStack item = kitconf.getItemStack("Items.type");
+        //ItemStack item = kitconf.getItemStack("Items.type");
         Inventory inv = Bukkit.createInventory(null, 9, "TestInventory");
-        inv.addItem((ItemStack)item);
+        //inv.addItem((ItemStack)item);
         p.openInventory(inv);
 
 

@@ -48,10 +48,12 @@ public class Main extends JavaPlugin {
         getCommand("cvillager").setExecutor(new CMD_SetVillagerKit());
         getCommand("perks").setExecutor(new CMD_Perks());
         getCommand("clear").setExecutor(new CMD_Clear());
+        getCommand("ec").setExecutor(new CMD_Ec());
 
         //Kit - Menu
         getCommand("kit").setExecutor(new CMD_Kit());
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Commands wurden aktiviert");
+
         //Listener & Events
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new JoinListener(), this);
