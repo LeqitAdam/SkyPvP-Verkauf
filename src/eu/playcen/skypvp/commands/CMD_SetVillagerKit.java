@@ -26,9 +26,11 @@ public class CMD_SetVillagerKit implements CommandExecutor {
                 if (args.length == 1) {
                     if (args[0].equalsIgnoreCase("kits") || args[0].equalsIgnoreCase("kit")) {
                         CreateVillager cv = new CreateVillager();
-                        cv.setVillager(p, 27, "test", "test");
+                        cv.setVillager(p,"§eKits");
+                        p.sendMessage(prefix + " §aKit-Villager §7wurde erstellt.");
                     }
-                }
+                } else
+                    p.sendMessage(prefix + " §7Bitte benutze /cvillager [kits]");
             } else
                 p.sendMessage(prefix + Main.noperm);
         }

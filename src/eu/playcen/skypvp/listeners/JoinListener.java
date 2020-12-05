@@ -20,6 +20,8 @@ public class JoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
 
+        event.setJoinMessage(null);
+
         File config = new File("plugins/SkyPvP", "config.yml");
         YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
 
