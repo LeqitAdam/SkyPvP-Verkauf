@@ -35,3 +35,4 @@ commands:
    ec:
       aliases: enderchest
    invsee:
+   clearlag:
