@@ -35,4 +35,5 @@ public class InventoryClickListener implements Listener {
             getNoClick().remove(e.getPlayer().getUniqueId());
         }
     }
+
 }
