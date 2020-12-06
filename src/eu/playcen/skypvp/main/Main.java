@@ -51,6 +51,7 @@ public class Main extends JavaPlugin {
         getCommand("ec").setExecutor(new CMD_Ec());
         getCommand("invsee").setExecutor(new CMD_Invsee());
         getCommand("clearlag").setExecutor(new CMD_Clearlag());
+        getCommand("ping").setExecutor(new CMD_Ping());
 
         //Kit - Menu
         getCommand("kit").setExecutor(new CMD_Kit());
