@@ -27,29 +27,39 @@ public class CMD_Kit implements CommandExecutor {
         String prefix = conf.getString("Prefix");
         prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
-        Player p = (Player) sender;
-
         if(sender instanceof Player) {
+            Player p = (Player) sender;
             if(p.hasPermission("skypvp.kit") || p.hasPermission("skypvp.*")) {
                 if(cmd.getName().equalsIgnoreCase("kit") || cmd.getName().equalsIgnoreCase("kits")) {
                     if (args.length == 0) {
                         kitinventory(p);
                     }else if(args.length == 2 && args[0].equalsIgnoreCase("setup")) {
-                        File kit = new File("plugins/SkyPvP/Kits", args[1] + ".yml");
-                        YamlConfiguration kitconf = YamlConfiguration.loadConfiguration(kit);
-                    //    ItemStack content = p.getInventory().getContents();
-                        ItemStack test = p.getInventory().getItem(3);
+                        if(args[1].equalsIgnoreCase("spieler") || args[1].equalsIgnoreCase("premium") ||
+                                args[1].equalsIgnoreCase("Ultra") || args[1].equalsIgnoreCase("god")){
+                            File kit = new File("plugins/SkyPvP/Kits", args[1].toLowerCase() + ".yml");
+                            YamlConfiguration kitconf = YamlConfiguration.loadConfiguration(kit);
 
-                        if(test != null) {
-                            kitconf.set("Items", test);
-                        }
-                        try {
-                            kitconf.save(kit);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        p.getInventory().clear();
-                        p.sendMessage(prefix + " §7Das §eKit §7wurde §agespeichert!");
+                            kitconf.set("kit", null);
+                            for(int i = 0; i < p.getInventory().getSize(); i++){
+                                ItemStack itemStack = p.getInventory().getItem(i);
+                                if(itemStack != null){
+                                    kitconf.set("kit." + i + ".type", itemStack.getType().toString());
+                                    kitconf.set("kit." + i + ".amount", itemStack.getAmount());
+                                    kitconf.set("kit." + i + ".meta", itemStack.getDurability());
+                                }
+
+                            }
+
+                            try {
+                                kitconf.save(kit);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            p.getInventory().clear();
+                            p.sendMessage(prefix + " §7Das §eKit §7wurde §agespeichert!");
+                        } else
+                            p.sendMessage(prefix + " §cBitte benutze: §7/kit setup [Spieler, Premium, Ultra, God]");
+
                     }else
                         p.sendMessage(prefix + " §cBitte benutze: §7/kit setup [Spieler, Premium, Ultra, God]");
                 }else

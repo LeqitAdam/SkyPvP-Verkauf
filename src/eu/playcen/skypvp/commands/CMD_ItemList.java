@@ -21,9 +21,6 @@ public class CMD_ItemList implements CommandExecutor {
 
         if(sender instanceof Player){
             Player p = (Player) sender;
-
-
-
             if(p.hasPermission("skypvp.itemlist") || p.hasPermission("skypvp.*")){
                 if(args.length == 0){
                     p.sendMessage(prefix + " §7Eine Liste aller Items findest du unter https://primax4k.github.io/ItemList/");
