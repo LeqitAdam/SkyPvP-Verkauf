@@ -24,16 +24,21 @@ public class CMD_Rename implements CommandExecutor {
             prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
             if(p.hasPermission("skypvp.rename") || p.hasPermission("skypvp.*")){
-                if(args.length == 1){
-                    String name = args[0];
-                    name = ChatColor.translateAlternateColorCodes('&', name);
+                if(args.length >= 1){
+                    //
                     if(p.getItemInHand().getAmount() != 0){
+                        final StringBuilder stringBuilder = new StringBuilder();
+                        for (final String arg : args) {
+                            stringBuilder.append(arg).append(" ");
+                        }
                         ItemStack itemStack = p.getItemInHand();
                         ItemMeta itemMeta = itemStack.getItemMeta();
+                        String name = stringBuilder.toString();
+                        name = ChatColor.translateAlternateColorCodes('&', name);
                         itemMeta.setDisplayName(name);
                         itemStack.setItemMeta(itemMeta);
                         p.setItemInHand(itemStack);
-                        p.sendMessage(prefix + " §7Dein Item heißt jetzt " + name);
+                        p.sendMessage(prefix + " §7Dein Item heißt jetzt: " + name);
                     } else
                         p.sendMessage(prefix + " §cBitte halte ein Item in deiner Hand!");
 
