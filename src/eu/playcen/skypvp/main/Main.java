@@ -54,6 +54,7 @@ public class Main extends JavaPlugin {
         getCommand("ping").setExecutor(new CMD_Ping());
         getCommand("rename").setExecutor(new CMD_Rename());
         getCommand("anvil").setExecutor(new CMD_Anvil());
+        getCommand("sign").setExecutor(new CMD_Sign());
         //getCommand("enchanter").setExecutor(new CMD_Enchanter());
 
         //Kit - Menu

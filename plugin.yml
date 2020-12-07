@@ -41,3 +41,4 @@ commands:
    anvil:
       aliases: amboss
    enchanter:
+   sign:
