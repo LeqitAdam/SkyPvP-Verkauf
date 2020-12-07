@@ -53,6 +53,8 @@ public class Main extends JavaPlugin {
         getCommand("clearlag").setExecutor(new CMD_Clearlag());
         getCommand("ping").setExecutor(new CMD_Ping());
         getCommand("rename").setExecutor(new CMD_Rename());
+        getCommand("anvil").setExecutor(new CMD_Anvil());
+        //getCommand("enchanter").setExecutor(new CMD_Enchanter());
 
         //Kit - Menu
         getCommand("kit").setExecutor(new CMD_Kit());

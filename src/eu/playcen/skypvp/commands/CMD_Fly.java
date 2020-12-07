@@ -54,7 +54,7 @@ public class CMD_Fly implements CommandExecutor {
                 }else
                     p.sendMessage(prefix + Main.noperm);
             } else
-                p.sendMessage(prefix + " §cBitte benutze: §7/fly [Spieler]");
+                p.sendMessage(prefix + " §cBitte benutze: §7/fly <Spieler>");
         }
         return false;
     }

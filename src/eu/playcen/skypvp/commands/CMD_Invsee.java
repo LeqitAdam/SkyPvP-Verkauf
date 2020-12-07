@@ -24,8 +24,8 @@ public class CMD_Invsee implements CommandExecutor {
             prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
             if(args.length == 1){
-                if(p.hasPermission("skypvp.invsee.other")) {
-                    if (!p.hasPermission("skypvp.invsee.other.edit")) {
+                if(p.hasPermission("skypvp.invsee") || p.hasPermission("skypvp.*")) {
+                    if (!(p.hasPermission("skypvp.invsee.edit") || p.hasPermission("skypvp.*"))) {
                         Player target = Bukkit.getServer().getPlayer(args[0]);
 
                         if (target != null) {
@@ -35,7 +35,7 @@ public class CMD_Invsee implements CommandExecutor {
                         }
                     }
 
-                    if (p.hasPermission("skypvp.invsee.other.edit")) {
+                    if (p.hasPermission("skypvp.invsee.edit") ||p.hasPermission("skypvp.*")) {
                         Player target = Bukkit.getServer().getPlayer(args[0]);
 
                         if (target != null) {
@@ -47,13 +47,13 @@ public class CMD_Invsee implements CommandExecutor {
                     p.sendMessage(prefix + Main.noperm);
 
             } else if(args.length == 0){
-                if(p.hasPermission("skypvp.invsee")){
+                if(p.hasPermission("skypvp.invsee") || p.hasPermission("skypvp.*")){
                     p.openInventory(p.getInventory());
                     return true;
                 } else
                     p.sendMessage(prefix + Main.noperm);
             } else
-                p.sendMessage(prefix + " §7Bitte benutze /invsee [Spieler]");
+                p.sendMessage(prefix + " §7Bitte benutze /invsee <Spieler>");
         }
         return false;
     }

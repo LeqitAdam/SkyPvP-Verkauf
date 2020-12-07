@@ -43,7 +43,7 @@ public class CMD_Heal implements CommandExecutor {
                 }
             }
             if(args.length > 1){
-                p.sendMessage(prefix + "§cBitte benutze: §7/heal [Spieler]");
+                p.sendMessage(prefix + "§cBitte benutze: §7/heal <Spieler>");
             }
         }
         return false;

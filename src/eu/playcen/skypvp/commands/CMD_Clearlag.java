@@ -26,11 +26,11 @@ public class CMD_Clearlag implements CommandExecutor {
 
         if(sender instanceof Player){
             Player p = (Player) sender;
-            if(p.hasPermission("skypvp.clearlag")){
+            if(p.hasPermission("skypvp.clearlag") || p.hasPermission("skypvp.*")){
                 if(args.length == 0){
                     clearlag();
                 } else
-                    p.sendMessage(prefix + " §7Bitte benutze §c/clearlag");
+                    p.sendMessage(prefix + " §cBitte benutze: §7/clearlag");
             } else
                 p.sendMessage(prefix + Main.noperm);
         } else

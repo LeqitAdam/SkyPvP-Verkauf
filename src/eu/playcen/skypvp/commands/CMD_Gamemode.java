@@ -159,8 +159,8 @@ public class CMD_Gamemode implements CommandExecutor {
                                         }
                                 }else sender.sendMessage(prefix + " §7Du darfst den Spielmodus von §a" + args[1] + " §cnicht verändern!");
                         }else p.sendMessage(prefix + " §7Der Spieler §a" + args[1] + " §7ist §cnicht online!");
-                    }else p.sendMessage(prefix + " §cBitte benutze: §7/gm [0, 1, 2, 3]");
-                }else p.sendMessage(prefix + " §cBitte benutze: §7/gm [0, 1, 2, 3]");
+                    }else p.sendMessage(prefix + " §cBitte benutze: §7/gm <0, 1, 2, 3>");
+                }else p.sendMessage(prefix + " §cBitte benutze: §7/gm <0, 1, 2, 3>");
             }else p.sendMessage(prefix + Main.noperm);
         return false;
     }

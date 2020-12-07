@@ -24,8 +24,8 @@ public class CMD_Ec implements CommandExecutor {
             prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
             if(args.length == 1){
-                if(p.hasPermission("skypvp.ec.other")) {
-                    if (!p.hasPermission("skypvp.ec.other.edit")) {
+                if(p.hasPermission("skypvp.ec") || p.hasPermission("skypvp.*")) {
+                    if (!(p.hasPermission("skypvp.ec.edit") ||p.hasPermission("skypvp.*"))) {
                         Player target = Bukkit.getServer().getPlayer(args[0]);
 
                         if (target != null) {
@@ -35,7 +35,7 @@ public class CMD_Ec implements CommandExecutor {
                         }
                     }
 
-                    if (p.hasPermission("skypvp.ec.other.edit")) {
+                    if (p.hasPermission("skypvp.ec.edit") || p.hasPermission("skypvp.*")) {
                         Player target = Bukkit.getServer().getPlayer(args[0]);
 
                         if (target != null) {
@@ -47,13 +47,13 @@ public class CMD_Ec implements CommandExecutor {
                     p.sendMessage(prefix + Main.noperm);
 
             } else if(args.length == 0){
-                if(p.hasPermission("skypvp.ec")){
+                if(p.hasPermission("skypvp.ec") || p.hasPermission("skypvp.*")){
                     p.openInventory(p.getEnderChest());
                     return true;
                 } else
                     p.sendMessage(prefix + Main.noperm);
             } else
-                p.sendMessage(prefix + " §7Bitte benutze /ec [Spieler]");
+                p.sendMessage(prefix + " §cBitte benutze: §7/ec <Spieler>");
         }
         return false;
     }

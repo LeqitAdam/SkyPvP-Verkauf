@@ -38,3 +38,6 @@ commands:
    clearlag:
    ping:
    rename:
+   anvil:
+      aliases: amboss
+   enchanter:

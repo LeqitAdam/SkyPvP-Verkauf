@@ -24,7 +24,7 @@ public class CMD_Ping implements CommandExecutor {
             String prefix = conf.getString("Prefix");
             prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
-            if(p.hasPermission("skypvp.ping")){
+            if(p.hasPermission("skypvp.ping") || p.hasPermission("skypvp.*")){
                 if(args.length == 0){
                     p.sendMessage(prefix + " §7Dein Ping beträgt §a" + getPing(p) + " §7ms");
                     return true;
@@ -40,7 +40,7 @@ public class CMD_Ping implements CommandExecutor {
                     }
 
                 } else{
-                    p.sendMessage(prefix + " §7Bitte benutze §c/ping <Player>");
+                    p.sendMessage(prefix + " §cBitte benutze: §7/ping <Player>");
                 }
             } else
                 p.sendMessage(prefix + Main.noperm);

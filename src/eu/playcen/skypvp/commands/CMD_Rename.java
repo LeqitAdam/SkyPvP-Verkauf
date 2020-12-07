@@ -23,7 +23,7 @@ public class CMD_Rename implements CommandExecutor {
             String prefix = conf.getString("Prefix");
             prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
-            if(p.hasPermission("skypvp.rename")){
+            if(p.hasPermission("skypvp.rename") || p.hasPermission("skypvp.*")){
                 if(args.length == 1){
                     String name = args[0];
                     name = ChatColor.translateAlternateColorCodes('&', name);
@@ -35,7 +35,7 @@ public class CMD_Rename implements CommandExecutor {
                         p.setItemInHand(itemStack);
                         p.sendMessage(prefix + " §7Dein Item heißt jetzt " + name);
                     } else
-                        p.sendMessage(prefix + " §cBitte halte ein Item in deiner Hand");
+                        p.sendMessage(prefix + " §cBitte halte ein Item in deiner Hand!");
 
                     return true;
                 } else

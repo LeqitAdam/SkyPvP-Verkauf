@@ -22,7 +22,7 @@ public class CMD_SetVillagerKit implements CommandExecutor {
             prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
             Player p = (Player) sender;
-            if(p.hasPermission("skypvp.setvillager")) {
+            if(p.hasPermission("skypvp.setvillager") || p.hasPermission("skypvp.*")) {
                 if (args.length == 1) {
                     if (args[0].equalsIgnoreCase("kits") || args[0].equalsIgnoreCase("kit")) {
                         CreateVillager cv = new CreateVillager();
@@ -30,7 +30,7 @@ public class CMD_SetVillagerKit implements CommandExecutor {
                         p.sendMessage(prefix + " §aKit-Villager §7wurde erstellt.");
                     }
                 } else
-                    p.sendMessage(prefix + " §7Bitte benutze /cvillager [kits]");
+                    p.sendMessage(prefix + " §cBitte benutze: §7/cvillager <kits>");
             } else
                 p.sendMessage(prefix + Main.noperm);
         }
