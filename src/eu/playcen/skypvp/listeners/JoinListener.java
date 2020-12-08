@@ -3,6 +3,7 @@ package eu.playcen.skypvp.listeners;
 import eu.playcen.skypvp.main.Main;
 import eu.playcen.skypvp.methods.ImageChar;
 import eu.playcen.skypvp.methods.ImageMessage;
+import eu.playcen.skypvp.methods.ScoreboardMethod;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -30,7 +31,7 @@ public class JoinListener implements Listener {
         prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
         Player p = event.getPlayer(); //Den Spieler vom Event Deklariert
-
+        ScoreboardMethod.setScoreBoard(p);
         //Join Message
         //event.setJoinMessage(prefix + " §aWillkommen " + event.getPlayer().getName());
         try{
