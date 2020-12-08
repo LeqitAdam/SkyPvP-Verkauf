@@ -2,6 +2,7 @@ package eu.playcen.skypvp.methods;
 
 import com.google.common.collect.Lists;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -17,7 +18,9 @@ public class Manager_Sign {
         this.itemStack = itemStack;
     }
 
-    public ItemStack sign(final String name, final String message) {
+    public ItemStack sign(final String name, String message) {
+
+        message = ChatColor.translateAlternateColorCodes('&', message);
         if (!this.isSigned()) {
             this.setSigned(true);
         }
@@ -29,7 +32,7 @@ public class Manager_Sign {
             lore = (List<String>) itemMeta.getLore();
         }
         lore.add("§7§m-----------------------------------");
-        lore.add("§7" + message.replace('&', '§'));
+        lore.add("§7" + message);
         lore.add("§7Signiert von §c" + name + " §7am §c" + this.fortmatTime(System.currentTimeMillis()));
         itemMeta.setLore(lore);
         this.itemStack.setItemMeta(itemMeta);
