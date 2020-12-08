@@ -121,6 +121,4 @@ public class Main extends JavaPlugin {
         Main.FlyPerkPS = false;
         Main.use = 0;
     }
-
-
 }
