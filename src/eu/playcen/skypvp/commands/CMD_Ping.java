@@ -32,7 +32,7 @@ public class CMD_Ping implements CommandExecutor {
                 if(args.length == 1){
                     Player target = Bukkit.getServer().getPlayer(args[0]);
                     if(target != null){
-                        p.sendMessage(prefix + " §7Der Ping von " + target.getPlayer().getDisplayName() + " §rbeträgt §a" + getPing(target) + " §7ms");
+                        p.sendMessage(prefix + " §7Der Ping von " + target.getPlayer().getDisplayName() + " §r§7beträgt §a" + getPing(target) + " §7ms");
                         return true;
                     } else{
                         p.sendMessage(prefix + " §cDieser Spieler ist nicht online");
