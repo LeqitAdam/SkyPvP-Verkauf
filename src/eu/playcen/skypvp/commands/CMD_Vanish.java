@@ -8,8 +8,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.io.File;
 
@@ -34,10 +32,9 @@ public class CMD_Vanish implements CommandExecutor {
         if (p.hasPermission("skypvp.vanish") || p.hasPermission("skypvp.*")) {
             if(cmd.getName().equalsIgnoreCase("vanish") || cmd.getName().equalsIgnoreCase("v")) {
                 if (args.length == 0) {
-                    if (plugin.vanish.contains(p.getName())) {
-                        plugin.vanish.remove(p.getName());
+                    if (Main.vanish.contains(p.getName())) {
+                        Main.vanish.remove(p.getName());
                         p.sendMessage(prefix + " §7Du bist nun für §aalle §7Spieler §asichtbar!");
-                        p.removePotionEffect(PotionEffectType.INVISIBILITY);
                         for (Player all : Bukkit.getOnlinePlayers()) {
                             all.showPlayer(p);
                         }
@@ -48,9 +45,8 @@ public class CMD_Vanish implements CommandExecutor {
                             }
                         }
 
-                        plugin.vanish.add(p.getName());
+                        Main.vanish.add(p.getName());
                         p.sendMessage(prefix + " §7Du bist nun für §aalle normalen §7Spieler §cunsichtbar!");
-                        p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 999999, 1));
 
                     }
                 } else if (args.length == 1) {
@@ -58,10 +54,9 @@ public class CMD_Vanish implements CommandExecutor {
                     if (target != null) {
                         if (p.hasPermission("skypvp.vanish.others") || p.hasPermission("skypvp.*")) {
                             if (!(target.hasPermission("skypvp.vanish.others.ignore") || target.hasPermission("skypvp.*"))) {
-                                if (plugin.vanish.contains(target.getName())) {
-                                    plugin.vanish.remove(target.getName());
+                                if (Main.vanish.contains(target.getName())) {
+                                    Main.vanish.remove(target.getName());
                                     target.sendMessage(prefix + " §7Du bist nun für §aalle §7Spieler §asichtbar!");
-                                    target.removePotionEffect(PotionEffectType.INVISIBILITY);
                                     p.sendMessage(prefix + " §7Du hast den Spieler §a" + target.getName()
                                             + " §7aus dem §cVanish §7entfernt");
                                     for (Player all : Bukkit.getOnlinePlayers()) {
@@ -75,18 +70,16 @@ public class CMD_Vanish implements CommandExecutor {
                                         }
 
                                     }
-                                    plugin.vanish.add(target.getName());
+                                    Main.vanish.add(target.getName());
                                     target.sendMessage(
                                             prefix + " §7Du bist nun für §aalle normalen §7Spieler §cunsichtbar!");
                                     p.sendMessage(prefix + " §7Du hast den Spieler §a" + target.getName()
                                             + " §7in den §cVanish §7gesetzt");
-                                    target.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 999999, 1));
                                 }
                             } else if (p.hasPermission("prefix.owner") || p.hasPermission("skypvp.*")) {
-                                if (plugin.vanish.contains(target.getName())) {
-                                    plugin.vanish.remove(target.getName());
+                                if (Main.vanish.contains(target.getName())) {
+                                    Main.vanish.remove(target.getName());
                                     target.sendMessage(prefix + "§7Du bist nun für §aalle §7Spieler §asichtbar!");
-                                    target.removePotionEffect(PotionEffectType.INVISIBILITY);
                                     p.sendMessage(prefix + " §7Du hast den Spieler §a" + target.getName()
                                             + " §7aus dem §cVanish §7entfernt");
                                     for (Player all : Bukkit.getOnlinePlayers()) {
@@ -100,12 +93,11 @@ public class CMD_Vanish implements CommandExecutor {
                                         }
 
                                     }
-                                    plugin.vanish.add(target.getName());
+                                    Main.vanish.add(target.getName());
                                     target.sendMessage(
                                             prefix + " §7Du bist nun für §aalle normalen §7Spieler §cunsichtbar!");
                                     p.sendMessage(
                                             prefix + " §7Du hast §a" + target.getName() + " §7in den §cVanish §7gesetzt");
-                                    target.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 999999, 1));
                                 }
                             } else
                                 p.sendMessage(prefix + " §7Diesen Spieler darfst du §cnicht vanishen!");

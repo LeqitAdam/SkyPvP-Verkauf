@@ -3,6 +3,7 @@ package eu.playcen.skypvp.main;
 import eu.playcen.skypvp.commands.*;
 import eu.playcen.skypvp.listeners.*;
 import eu.playcen.skypvp.methods.PerksMethod;
+import eu.playcen.skypvp.skinchanger.CMD_Skin;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
@@ -22,7 +23,7 @@ public class Main extends JavaPlugin {
 
     public static Main plugin;
 
-    public ArrayList<String> vanish = new ArrayList<>();
+    public static ArrayList<String> vanish = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -55,6 +56,7 @@ public class Main extends JavaPlugin {
         getCommand("rename").setExecutor(new CMD_Rename());
         getCommand("anvil").setExecutor(new CMD_Anvil());
         getCommand("sign").setExecutor(new CMD_Sign());
+        getCommand("skin").setExecutor(new CMD_Skin());
         //getCommand("enchanter").setExecutor(new CMD_Enchanter());
 
         //Kit - Menu
@@ -74,6 +76,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new PerksInvListener(), this);
         pm.registerEvents(new PerksMethod(), this);
         pm.registerEvents(new PerksOnJoin(), this);
+        pm.registerEvents(new CreatureSpawn(), this);
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Events wurden aktiviert");
 
         plugin = this;

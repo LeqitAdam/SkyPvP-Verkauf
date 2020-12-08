@@ -1,6 +1,7 @@
 package eu.playcen.skypvp.listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -21,12 +22,20 @@ public class RespawnListener implements Listener {
         Player p = e.getEntity().getPlayer();
 
         p.spigot().respawn();
-        World w = Bukkit.getWorld(conf.getString("Spawn.world"));
-        Location loc = new Location(w, conf.getDouble("Spawn.x"), conf.getDouble("Spawn.y"), conf.getDouble("Spawn.z"));
-        loc.setYaw((float) conf.getDouble("Spawn.yaw"));
-        loc.setPitch((float) conf.getDouble("Spawn.pitch"));
+        try{
+            World w = Bukkit.getWorld(conf.getString("Spawn.world"));
+            Location loc = new Location(w, conf.getDouble("Spawn.x"), conf.getDouble("Spawn.y"), conf.getDouble("Spawn.z"));
+            loc.setYaw((float) conf.getDouble("Spawn.yaw"));
+            loc.setPitch((float) conf.getDouble("Spawn.pitch"));
 
-        p.teleport(loc);
+            p.teleport(loc);
+        } catch (Exception ex){
+            String prefix = conf.getString("Prefix");
+            prefix = ChatColor.translateAlternateColorCodes('&', prefix);
+            p.sendMessage(prefix + " §cDer Spawn wurde noch nicht gesetzt!");
+            p.sendMessage(prefix + " §c/setspawn");
+        }
+
     }
 
     @EventHandler
@@ -35,12 +44,19 @@ public class RespawnListener implements Listener {
         final YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
 
         Player p = e.getPlayer();
+        try{
+            World w = Bukkit.getWorld(conf.getString("Spawn.world"));
+            Location loc = new Location(w, conf.getDouble("Spawn.x"), conf.getDouble("Spawn.y"), conf.getDouble("Spawn.z"));
+            loc.setYaw((float) conf.getDouble("Spawn.yaw"));
+            loc.setPitch((float) conf.getDouble("Spawn.pitch"));
 
-        World w = Bukkit.getWorld(conf.getString("Spawn.world"));
-        Location loc = new Location(w, conf.getDouble("Spawn.x"), conf.getDouble("Spawn.y"), conf.getDouble("Spawn.z"));
-        loc.setYaw((float) conf.getDouble("Spawn.yaw"));
-        loc.setPitch((float) conf.getDouble("Spawn.pitch"));
+            p.teleport(loc);
+        } catch (Exception ex){
+            String prefix = conf.getString("Prefix");
+            prefix = ChatColor.translateAlternateColorCodes('&', prefix);
+            p.sendMessage(prefix + " §cDer Spawn wurde noch nicht gesetzt!");
+            p.sendMessage(prefix + " §c/setspawn");
+        }
 
-        p.teleport(loc);
     }
 }

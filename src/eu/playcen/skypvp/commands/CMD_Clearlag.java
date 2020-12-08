@@ -39,12 +39,23 @@ public class CMD_Clearlag implements CommandExecutor {
     }
 
     private void clearlag(){
-        int count = 0;
+        int itemcount = 0;
         for(World w : Bukkit.getWorlds()){
             for(Entity e : w.getEntities()){
                 if(e.getType() == EntityType.DROPPED_ITEM){
-                    count += ((Item) e).getItemStack().getAmount();
+                    itemcount += ((Item) e).getItemStack().getAmount();
                     e.remove();
+                }
+            }
+        }
+
+        int mobcount = 0;
+
+        for(World world : Bukkit.getWorlds()){
+            for(Entity entity : world.getEntities()){
+                if(!(entity.getType() == EntityType.VILLAGER) && !(entity.getCustomName().equals("§eKits")) && entity.getType() != EntityType.PLAYER){
+                    entity.remove();
+                    mobcount++;
                 }
             }
         }
@@ -56,10 +67,18 @@ public class CMD_Clearlag implements CommandExecutor {
         prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
         for(Player all : Bukkit.getOnlinePlayers()){
-            if(count == 1)
-                all.sendMessage(prefix + " §7Es wurde §c" + count + " §7Item entfernt");
-            else
-                all.sendMessage(prefix + " §7Es wurden §c" + count + " §7Items entfernt");
+            if(itemcount == 1 && mobcount == 1){
+                all.sendMessage(prefix + " §7Es wurden §c" + itemcount + " §7Item und §c" + mobcount + "§7 Mob entfernt");
+            }
+            if(itemcount == 1 && mobcount != 1) {
+                all.sendMessage(prefix + " §7Es wurden §c" + itemcount + " §7Item und §c" + mobcount + "§7 Mobs entfernt");
+            }
+            if(itemcount != 1 && mobcount == 1) {
+                all.sendMessage(prefix + " §7Es wurden §c" + itemcount + " §7Items und §c" + mobcount + "§7 Mob entfernt");
+            }
+            if(itemcount != 1 && mobcount != 1) {
+                all.sendMessage(prefix + " §7Es wurden §c" + itemcount + " §7Items und §c" + mobcount + "§7 Mobs entfernt");
+            }
         }
     }
 }
