@@ -53,9 +53,11 @@ public class CMD_Clearlag implements CommandExecutor {
 
         for(World world : Bukkit.getWorlds()){
             for(Entity entity : world.getEntities()){
-                if(!(entity.getType() == EntityType.VILLAGER) && !(entity.getCustomName().equals("§eKits")) && entity.getType() != EntityType.PLAYER){
-                    entity.remove();
-                    mobcount++;
+                if(entity.getType() != EntityType.PLAYER){
+                    if(entity.getCustomName() == null){
+                        entity.remove();
+                        mobcount++;
+                    }
                 }
             }
         }

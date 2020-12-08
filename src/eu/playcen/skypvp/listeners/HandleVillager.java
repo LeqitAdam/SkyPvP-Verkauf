@@ -20,10 +20,12 @@ public class HandleVillager implements Listener {
     public void handleShopInteract(PlayerInteractEntityEvent e){
         if(!(e.getRightClicked() instanceof Villager)) return;
         Villager v = (Villager) e.getRightClicked();
-        if(v.getCustomName().equals("§eKits")){
-            e.setCancelled(true);
-            if(!e.getPlayer().getInventory().getItemInHand().equals(new ItemStack(Material.LAVA_BUCKET))){
-                CMD_Kit.kitinventory(e.getPlayer());
+        if(e.getRightClicked().getCustomName() != null) {
+            if (e.getRightClicked().getCustomName().equals("§eKits")) {
+                e.setCancelled(true);
+                if (!e.getPlayer().getInventory().getItemInHand().equals(new ItemStack(Material.LAVA_BUCKET))) {
+                    CMD_Kit.kitinventory(e.getPlayer());
+                }
             }
         }
     }
@@ -33,8 +35,10 @@ public class HandleVillager implements Listener {
         if(!(e.getEntity() instanceof Villager)) return;
 
         Villager v = (Villager) e.getEntity();
-        if(v.getCustomName().equals("§eKits"))
-            e.setCancelled(true);
+
+        if(e.getEntity().getCustomName() != null)
+            if(e.getEntity().getCustomName().equals("§eKits"))
+                e.setCancelled(true);
 
     }
 
@@ -42,20 +46,20 @@ public class HandleVillager implements Listener {
     public void handleShopRemove(PlayerInteractEntityEvent e){
         if(!(e.getRightClicked() instanceof Villager)) return;
         Villager v = (Villager) e.getRightClicked();
-        if(v.getCustomName().equals("§eKits")){
-            Player p = e.getPlayer();
-            if(e.getPlayer().getInventory().getItemInHand().equals(new ItemStack(Material.LAVA_BUCKET))){
-                if(p.hasPermission("skypvp.villager.remove")) {
-                    v.remove();
+        if(e.getRightClicked().getCustomName() != null) {
+            if (e.getRightClicked().getCustomName().equals("§eKits")) {
+                Player p = e.getPlayer();
+                if (e.getPlayer().getInventory().getItemInHand().equals(new ItemStack(Material.LAVA_BUCKET))) {
+                    if (p.hasPermission("skypvp.villager.remove")) {
+                        v.remove();
+                        File config = new File("plugins/SkyPvP", "config.yml");
+                        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
+                        String prefix = conf.getString("Prefix");
+                        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
-                    File config = new File("plugins/SkyPvP", "config.yml");
-                    YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
 
-                    String prefix = conf.getString("Prefix");
-                    prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
-
-                    p.sendMessage(prefix + " §cVillager wurde entfernt");
+                        p.sendMessage(prefix + " §cVillager wurde entfernt");
+                    }
                 }
             }
         }

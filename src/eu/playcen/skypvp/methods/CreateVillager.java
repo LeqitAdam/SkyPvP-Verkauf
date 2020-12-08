@@ -28,6 +28,7 @@ public class CreateVillager {
         shop.teleport(loc);
         shop.setCustomName(displayName);
         shop.setCanPickupItems(false);
+        shop.setRemoveWhenFarAway(false);
         shop.setProfession(Villager.Profession.FARMER);
         removeAI(shop);
         shop.setAdult();

@@ -28,6 +28,9 @@ public class CMD_Tphere implements CommandExecutor {
         String prefix = conf.getString("Prefix");
         prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
+        if(!(sender instanceof Player))
+            return true;
+
         Player p = (Player) sender;
         if (p.hasPermission("skypvp.tphere") || p.hasPermission("skypvp.*")) {
             if (args.length == 1) {
