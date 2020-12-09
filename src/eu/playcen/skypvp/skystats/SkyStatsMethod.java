@@ -24,6 +24,7 @@ public class SkyStatsMethod {
 
     public  static void updateKills(UUID uuid, int amount, boolean remove, String playername) {
         int kills = getKills(uuid);
+        int deaths = getDeaths(uuid);
 
         if(remove) {
             amount-=kills;
@@ -42,10 +43,11 @@ public class SkyStatsMethod {
             }
         }else {
             try {
-                PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO SkyStats (UUID,playername,Kills) VALUES (?,?,?)");
+                PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO SkyStats (UUID,playername,Kills,Deaths) VALUES (?,?,?)");
                 ps.setString(1, uuid.toString());
                 ps.setString(2, playername);
                 ps.setInt(3, kills);
+                ps.setInt(4, deaths);
 
                 ps.executeUpdate();
             } catch (SQLException e) {
@@ -56,7 +58,7 @@ public class SkyStatsMethod {
 
     public static void updateDeats(UUID uuid, int amount, boolean remove, String playername) {
         int deaths = getDeaths(uuid);
-        //int kills = getKills(uuid);
+        int kills = getKills(uuid);
 
         if(remove) {
             amount-=deaths;
@@ -75,10 +77,10 @@ public class SkyStatsMethod {
             }
         }else {
             try {
-                PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO SkyStats (UUID,playername,Deaths) VALUES (?,?,?,?)");
+                PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO SkyStats (UUID,playername,Kills,Deaths) VALUES (?,?,?,?)");
                 ps.setString(1, uuid.toString());
                 ps.setString(2, playername);
-                //ps.setInt(3, kills);
+                ps.setInt(3, kills);
                 ps.setInt(4, deaths);
 
                 ps.executeUpdate();
