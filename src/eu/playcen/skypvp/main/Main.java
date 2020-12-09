@@ -31,6 +31,18 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        //MySQL
+        MySQLFile file = new MySQLFile();
+        file.setStandard();
+        file.readData();
+
+        MySQL.connect();
+        try {
+            PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS SkyStats (UUID VARCHAR(100),playername VARCHAR(100),Kills INT(100),Deaths INT(100))");
+            ps.executeLargeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         createConfig();
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config wurde geladen");
         //Commands
@@ -85,18 +97,6 @@ public class Main extends JavaPlugin {
 
         plugin = this;
 
-        //MySQL
-        MySQLFile file = new MySQLFile();
-        file.setStandard();
-        file.readData();
-
-        MySQL.connect();
-        try {
-            PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS SkyStats (UUID VARCHAR(100),playername VARCHAR(100),Kills INT(100),Deaths INT(100))");
-            ps.executeLargeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
 
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Plugin wurde aktiviert");
