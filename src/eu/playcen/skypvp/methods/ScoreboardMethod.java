@@ -22,9 +22,8 @@ public class ScoreboardMethod {
         File config = new File("plugins/SkyPvP", "config.yml");
         YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
 
-        String prefix = conf.getString("Prefix");
+        String name = conf.getString("ScoreBoard");
         String ts = conf.getString("Teamspeak");
-        prefix = org.bukkit.ChatColor.translateAlternateColorCodes('&', prefix);
 
         Integer kills = SkyStatsMethod.getKills(p.getUniqueId());
         Integer tode = SkyStatsMethod.getDeaths(p.getUniqueId());
@@ -33,7 +32,7 @@ public class ScoreboardMethod {
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
         Objective objective = board.registerNewObjective("aaa", "bbb");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        objective.setDisplayName(prefix);
+        objective.setDisplayName(String.valueOf(name));
         objective.getScore("  ").setScore(12);
         objective.getScore("§fKills:").setScore(11);
 
@@ -66,7 +65,7 @@ public class ScoreboardMethod {
 
         objective.getScore("   ").setScore(3);
         objective.getScore("§fTeamspeak:").setScore(2);
-        objective.getScore(ts).setScore(1);
+        objective.getScore(String.valueOf(ts)).setScore(1);
         objective.getScore("     ").setScore(0);
 
         boards.put(board, p);

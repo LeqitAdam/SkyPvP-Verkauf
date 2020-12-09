@@ -126,6 +126,7 @@ public class Main extends JavaPlugin {
         cfg.set("menutitle", "&9SkyPvP &8- &eKits");
         cfg.set("Teamspeak", "deinserver.net");
         cfg.set("Discord", "discord.gg/deinserver");
+        cfg.set("ScoreBoard", "§9SkyPvP");
 
         try {
             cfg.save(file);
