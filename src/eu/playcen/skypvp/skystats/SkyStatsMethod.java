@@ -43,7 +43,7 @@ public class SkyStatsMethod {
             }
         }else {
             try {
-                PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO SkyStats (UUID,playername,Kills,Deaths) VALUES (?,?,?)");
+                PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO SkyStats (UUID,playername,Kills,Deaths) VALUES (?,?,?,?)");
                 ps.setString(1, uuid.toString());
                 ps.setString(2, playername);
                 ps.setInt(3, kills);
