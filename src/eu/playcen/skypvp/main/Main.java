@@ -39,7 +39,7 @@ public class Main extends JavaPlugin {
         MySQL.connect();
         try {
             PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS SkyStats (UUID VARCHAR(100),playername VARCHAR(100),Kills INT(100),Deaths INT(100))");
-            ps.executeLargeUpdate();
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
