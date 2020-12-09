@@ -32,6 +32,8 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        plugin = this;
+
         //MySQL
         MySQLFile file = new MySQLFile();
         if(!file.getFile().exists())
@@ -46,64 +48,13 @@ public class Main extends JavaPlugin {
         } catch (Exception e) {
             Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §cMySQL konnte keine Verbindung herstellen");
         }
+
+        //Config
         createConfig();
-        Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config wurde geladen");
         //Commands
-        getCommand("gamemode").setExecutor(new CMD_Gamemode());
-        getCommand("heal").setExecutor(new CMD_Heal());
-        getCommand("vanish").setExecutor(new CMD_Vanish(this));
-        getCommand("tp").setExecutor(new CMD_Tp(this));
-        getCommand("tphere").setExecutor(new CMD_Tphere(this));
-        getCommand("tppos").setExecutor(new CMD_Tppos());
-        getCommand("giveall").setExecutor(new CMD_Giveall());
-        getCommand("fly").setExecutor(new CMD_Fly());
-        getCommand("chatclear").setExecutor(new CMD_Chatclear());
-        getCommand("craft").setExecutor(new CMD_Craft());
-        getCommand("sun").setExecutor(new CMD_Sun());
-        getCommand("globalmute").setExecutor(new CMD_Globalmute());
-        getCommand("setspawn").setExecutor(new CMD_SetSpawn());
-        getCommand("Itemlist").setExecutor(new CMD_ItemList());
-        getCommand("teamspeak").setExecutor(new CMD_Teamspeak());
-        getCommand("discord").setExecutor(new CMD_Discord());
-        getCommand("cvillager").setExecutor(new CMD_SetVillagerKit());
-        getCommand("perks").setExecutor(new CMD_Perks());
-        getCommand("clear").setExecutor(new CMD_Clear());
-        getCommand("ec").setExecutor(new CMD_Ec());
-        getCommand("invsee").setExecutor(new CMD_Invsee());
-        getCommand("clearlag").setExecutor(new CMD_Clearlag());
-        getCommand("ping").setExecutor(new CMD_Ping());
-        getCommand("rename").setExecutor(new CMD_Rename());
-        getCommand("anvil").setExecutor(new CMD_Anvil());
-        getCommand("sign").setExecutor(new CMD_Sign());
-        getCommand("skin").setExecutor(new CMD_Skin());
-        getCommand("stats").setExecutor(new CMD_Stats());
-        getCommand("statsreset").setExecutor(new CMD_StatsReset());
-        //getCommand("enchanter").setExecutor(new CMD_Enchanter());
-
-        //Kit - Menu
-        getCommand("kit").setExecutor(new CMD_Kit());
-        Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Commands wurden aktiviert");
-
+        registerCommands();
         //Listener & Events
-        PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new JoinListener(), this);
-        pm.registerEvents(new InventoryClickListener(), this);
-        pm.registerEvents(new KitInventoryListener(), this);
-        pm.registerEvents(new ChatListener(), this);
-        pm.registerEvents(new RespawnListener(), this);
-        pm.registerEvents(new SignClick(), this);
-        pm.registerEvents(new ColorSigns(), this);
-        pm.registerEvents(new HandleVillager(), this);
-        pm.registerEvents(new PerksInvListener(), this);
-        pm.registerEvents(new PerksMethod(), this);
-        pm.registerEvents(new PerksOnJoin(), this);
-        pm.registerEvents(new CreatureSpawn(), this);
-        pm.registerEvents(new AddDefaultValuesMySQL(), this);
-        pm.registerEvents(new AddKillDeathMySQL(), this);
-        pm.registerEvents(new CommandBlockListener(), this);
-        Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Events wurden aktiviert");
-
-        plugin = this;
+        registerEvents();
 
 
 
@@ -135,7 +86,64 @@ public class Main extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §4Config konnte nicht erstellt werden");
             e.printStackTrace();
         }
+        Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config wurde geladen");
 
+    }
+
+    public void registerCommands() {
+        getCommand("kit").setExecutor(new CMD_Kit());
+        getCommand("gamemode").setExecutor(new CMD_Gamemode());
+        getCommand("heal").setExecutor(new CMD_Heal());
+        getCommand("vanish").setExecutor(new CMD_Vanish(this));
+        getCommand("tp").setExecutor(new CMD_Tp(this));
+        getCommand("tphere").setExecutor(new CMD_Tphere(this));
+        getCommand("tppos").setExecutor(new CMD_Tppos());
+        getCommand("giveall").setExecutor(new CMD_Giveall());
+        getCommand("fly").setExecutor(new CMD_Fly());
+        getCommand("chatclear").setExecutor(new CMD_Chatclear());
+        getCommand("craft").setExecutor(new CMD_Craft());
+        getCommand("sun").setExecutor(new CMD_Sun());
+        getCommand("globalmute").setExecutor(new CMD_Globalmute());
+        getCommand("setspawn").setExecutor(new CMD_SetSpawn());
+        getCommand("Itemlist").setExecutor(new CMD_ItemList());
+        getCommand("teamspeak").setExecutor(new CMD_Teamspeak());
+        getCommand("discord").setExecutor(new CMD_Discord());
+        getCommand("cvillager").setExecutor(new CMD_SetVillagerKit());
+        getCommand("perks").setExecutor(new CMD_Perks());
+        getCommand("clear").setExecutor(new CMD_Clear());
+        getCommand("ec").setExecutor(new CMD_Ec());
+        getCommand("invsee").setExecutor(new CMD_Invsee());
+        getCommand("clearlag").setExecutor(new CMD_Clearlag());
+        getCommand("ping").setExecutor(new CMD_Ping());
+        getCommand("rename").setExecutor(new CMD_Rename());
+        getCommand("anvil").setExecutor(new CMD_Anvil());
+        getCommand("sign").setExecutor(new CMD_Sign());
+        getCommand("skin").setExecutor(new CMD_Skin());
+        getCommand("stats").setExecutor(new CMD_Stats());
+        getCommand("statsreset").setExecutor(new CMD_StatsReset());
+        //getCommand("enchanter").setExecutor(new CMD_Enchanter());
+        Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Commands wurden aktiviert");
+    }
+
+    public void registerEvents() {
+        PluginManager pm = Bukkit.getPluginManager();
+        pm.registerEvents(new JoinListener(), this);
+        pm.registerEvents(new InventoryClickListener(), this);
+        pm.registerEvents(new KitInventoryListener(), this);
+        pm.registerEvents(new ChatListener(), this);
+        pm.registerEvents(new RespawnListener(), this);
+        pm.registerEvents(new SignClick(), this);
+        pm.registerEvents(new ColorSigns(), this);
+        pm.registerEvents(new HandleVillager(), this);
+        pm.registerEvents(new PerksInvListener(), this);
+        pm.registerEvents(new PerksMethod(), this);
+        pm.registerEvents(new PerksOnJoin(), this);
+        pm.registerEvents(new CreatureSpawn(), this);
+        pm.registerEvents(new AddDefaultValuesMySQL(), this);
+        pm.registerEvents(new AddKillDeathMySQL(), this);
+        pm.registerEvents(new CommandBlockListener(), this);
+        pm.registerEvents(new SkyPvPListener(), this);
+        Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Events wurden aktiviert");
     }
 
     public static Main getPlugin() {

@@ -65,7 +65,7 @@ public class ScoreboardMethod {
 
         objective.getScore("   ").setScore(3);
         objective.getScore("§fTeamspeak:").setScore(2);
-        objective.getScore(String.valueOf(ts)).setScore(1);
+        objective.getScore("§7» §r" + ts).setScore(1);
         objective.getScore("     ").setScore(0);
 
         boards.put(board, p);
