@@ -10,8 +10,6 @@ public class MySQLFile {
 
     public void setStandard() {
 
-        if(getFile().exists())
-            return;
         FileConfiguration cfg = getFileConfiguration();
 
         cfg.options().copyDefaults(true);
@@ -28,7 +26,7 @@ public class MySQLFile {
         }
     }
 
-    private File getFile() {
+    public File getFile() {
         return new File("plugins/SkyPvP", "mysql.yml");
     }
 

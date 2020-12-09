@@ -33,7 +33,8 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         //MySQL
         MySQLFile file = new MySQLFile();
-        file.setStandard();
+        if(!file.getFile().exists())
+            file.setStandard();
         file.readData();
 
         MySQL.connect();
