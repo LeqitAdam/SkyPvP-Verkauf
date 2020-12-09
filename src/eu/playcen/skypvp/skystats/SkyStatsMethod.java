@@ -24,7 +24,6 @@ public class SkyStatsMethod {
 
     public  static void updateKills(UUID uuid, int amount, boolean remove, String playername) {
         int kills = getKills(uuid);
-        int deaths = getDeaths(uuid);
 
         if(remove) {
             amount-=kills;
@@ -56,9 +55,8 @@ public class SkyStatsMethod {
         }
     }
 
-    public static void updateDeats(UUID uuid, int amount, boolean remove, String playername) {
+    public static void updateDeaths(UUID uuid, int amount, boolean remove, String playername) {
         int deaths = getDeaths(uuid);
-        int kills = getKills(uuid);
 
         if(remove) {
             amount-=deaths;
