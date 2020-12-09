@@ -43,3 +43,5 @@ commands:
    enchanter:
    sign:
    skin:
+   stats:
+   statsreset:

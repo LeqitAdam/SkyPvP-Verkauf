@@ -76,6 +76,8 @@ public class Main extends JavaPlugin {
         getCommand("anvil").setExecutor(new CMD_Anvil());
         getCommand("sign").setExecutor(new CMD_Sign());
         getCommand("skin").setExecutor(new CMD_Skin());
+        getCommand("stats").setExecutor(new CMD_Stats());
+        getCommand("statsreset").setExecutor(new CMD_StatsReset());
         //getCommand("enchanter").setExecutor(new CMD_Enchanter());
 
         //Kit - Menu
