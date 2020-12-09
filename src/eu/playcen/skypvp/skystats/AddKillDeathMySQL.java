@@ -1,6 +1,8 @@
 package eu.playcen.skypvp.skystats;
 
+import eu.playcen.skypvp.methods.ScoreboardMethod;
 import eu.playcen.skypvp.mysql.MySQL;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,7 +15,11 @@ public class AddKillDeathMySQL implements Listener {
     public void onDeath(PlayerDeathEvent e){
         Player p = e.getEntity().getPlayer();
         if(MySQL.isConnected()){
-            SkyStatsMethod.updateDeats(p.getUniqueId(), 1, false, p.getName());
+            SkyStatsMethod.updateDeaths(p.getUniqueId(), 1, false, p.getName());
+
+            for(Player all : Bukkit.getOnlinePlayers()) {
+                ScoreboardMethod.setScoreBoard(all);
+            }
         }
     }
 
@@ -23,7 +29,10 @@ public class AddKillDeathMySQL implements Listener {
             Player p = e.getEntity().getKiller();
             p.sendMessage("test");
             SkyStatsMethod.updateKills(p.getUniqueId(), 1, false, p.getName());
-        }
 
+            for(Player all : Bukkit.getOnlinePlayers()) {
+                ScoreboardMethod.setScoreBoard(all);
+            }
+        }
     }
 }

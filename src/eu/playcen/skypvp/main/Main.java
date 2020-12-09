@@ -10,6 +10,7 @@ import eu.playcen.skypvp.skystats.AddDefaultValuesMySQL;
 import eu.playcen.skypvp.skystats.AddKillDeathMySQL;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -99,6 +100,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new CreatureSpawn(), this);
         pm.registerEvents(new AddDefaultValuesMySQL(), this);
         pm.registerEvents(new AddKillDeathMySQL(), this);
+        pm.registerEvents(new CommandBlockListener(), this);
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Events wurden aktiviert");
 
         plugin = this;
