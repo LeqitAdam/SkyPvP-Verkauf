@@ -6,6 +6,8 @@ import eu.playcen.skypvp.methods.PerksMethod;
 import eu.playcen.skypvp.mysql.MySQL;
 import eu.playcen.skypvp.mysql.MySQLFile;
 import eu.playcen.skypvp.skinchanger.CMD_Skin;
+import eu.playcen.skypvp.skystats.AddDefaultValuesMySQL;
+import eu.playcen.skypvp.skystats.AddKillDeathMySQL;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
@@ -95,6 +97,8 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new PerksMethod(), this);
         pm.registerEvents(new PerksOnJoin(), this);
         pm.registerEvents(new CreatureSpawn(), this);
+        pm.registerEvents(new AddDefaultValuesMySQL(), this);
+        pm.registerEvents(new AddKillDeathMySQL(), this);
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Events wurden aktiviert");
 
         plugin = this;

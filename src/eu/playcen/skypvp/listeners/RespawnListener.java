@@ -1,5 +1,6 @@
 package eu.playcen.skypvp.listeners;
 
+import eu.playcen.skypvp.main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -21,7 +22,13 @@ public class RespawnListener implements Listener {
         final YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
         Player p = e.getEntity().getPlayer();
 
-        p.spigot().respawn();
+        Bukkit.getScheduler().runTaskLater(Main.getPlugin(), new Runnable() {
+            @Override
+            public void run() {
+                p.spigot().respawn();
+            }
+        }, 20);
+
         try{
             World w = Bukkit.getWorld(conf.getString("Spawn.world"));
             Location loc = new Location(w, conf.getDouble("Spawn.x"), conf.getDouble("Spawn.y"), conf.getDouble("Spawn.z"));
