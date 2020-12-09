@@ -37,24 +37,7 @@ public class MySQL {
         return (con == null ? false : true);
     }
 
-    public static void update(String qry) {
-        PreparedStatement ps = null;
-        try {
-            ps = con.prepareStatement(qry);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public static ResultSet getResult(String qry) {
-        try {
-            PreparedStatement ps = con.prepareStatement(qry);
-            return ps.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static Connection getConnection() {
+        return con;
     }
 }

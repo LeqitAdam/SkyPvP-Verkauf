@@ -13,6 +13,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Main extends JavaPlugin {
@@ -89,9 +91,12 @@ public class Main extends JavaPlugin {
         file.readData();
 
         MySQL.connect();
-
-        MySQL.update("CREATE TABLE IF NOT EXISTS SkyStats (UUID VARCHAR(100),playername VARCHAR(100),Kills INT(100),Deaths INT(100))");
-
+        try {
+            PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS SkyStats (UUID VARCHAR(100),playername VARCHAR(100),Kills INT(100),Deaths INT(100))");
+            ps.executeLargeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Plugin wurde aktiviert");
