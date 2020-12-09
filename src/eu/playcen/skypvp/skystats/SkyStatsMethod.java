@@ -22,39 +22,62 @@ public class SkyStatsMethod {
         return false;
     }
 
-    public  static void update(UUID uuid, int amount1, int amount2, boolean remove, String playername) {
+    public  static void updateKills(UUID uuid, int amount, boolean remove, String playername) {
         int kills = getKills(uuid);
-        int deaths = getDeaths(uuid);
 
         if(remove) {
-            amount1-=kills;
-            amount2-=deaths;
+            amount-=kills;
         }else {
-            amount1+=kills;
-            amount2+=deaths;
+            amount+=kills;
         }
 
         if(isUserExists(uuid)) {
             try {
                 PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE SkyStats SET Kills = ? WHERE UUID = ?");
-                ps.setInt(1, amount1);
+                ps.setInt(1, amount);
                 ps.setString(2, uuid.toString());
                 ps.executeUpdate();
-
-                PreparedStatement ps2 = MySQL.getConnection().prepareStatement("UPDATE SkyStats SET Deaths = ? WHERE UUID = ?");
-                ps2.setInt(1, amount2);
-                ps2.setString(2, uuid.toString());
-                ps2.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }else {
             try {
-                PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO SkyStats (UUID,playername,Kills,Deaths) VALUES (?,?,?,?)");
+                PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO SkyStats (UUID,playername,Kills) VALUES (?,?,?)");
                 ps.setString(1, uuid.toString());
                 ps.setString(2, playername);
                 ps.setInt(3, kills);
-                ps.setInt(4, deaths);
+
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void updateDeats(UUID uuid, int amount, boolean remove, String playername) {
+        int deaths = getDeaths(uuid);
+
+        if(remove) {
+            amount-=deaths;
+        }else {
+            amount+=deaths;
+        }
+
+        if(isUserExists(uuid)) {
+            try {
+                PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE SkyStats SET Deaths = ? WHERE UUID = ?");
+                ps.setInt(1, amount);
+                ps.setString(2, uuid.toString());
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }else {
+            try {
+                PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO SkyStats (UUID,playername,Deaths) VALUES (?,?,?)");
+                ps.setString(1, uuid.toString());
+                ps.setString(2, playername);
+                ps.setInt(3, deaths);
 
                 ps.executeUpdate();
             } catch (SQLException e) {
