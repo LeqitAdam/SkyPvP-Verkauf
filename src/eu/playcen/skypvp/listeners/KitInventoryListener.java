@@ -1,5 +1,6 @@
 package eu.playcen.skypvp.listeners;
 
+import eu.playcen.skypvp.main.Main;
 import eu.playcen.skypvp.methods.KitInventoryMethod;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -15,13 +16,6 @@ public class KitInventoryListener implements Listener {
 
     @EventHandler
     public void onKitInvClick(InventoryClickEvent event) {
-
-        File file = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
-
-        String prefix = cfg.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         Player p = (Player) event.getWhoClicked();
 
         File config = new File("plugins/SkyPvP", "config.yml");
@@ -40,7 +34,7 @@ public class KitInventoryListener implements Listener {
                         KitInventoryMethod.getSpielerKit(p);
                         p.playSound(p.getLocation(), Sound.LEVEL_UP, 1f, 1f);
                     } catch (Exception e){
-                        p.sendMessage(prefix + " §cDas Kit wurde noch nicht gesetzt");
+                        p.sendMessage(Main.prefix + " §cDas Kit wurde noch nicht gesetzt");
                     }
 
                     p.closeInventory();

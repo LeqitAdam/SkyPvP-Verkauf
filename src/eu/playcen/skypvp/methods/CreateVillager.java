@@ -23,8 +23,6 @@ public class CreateVillager {
         Villager shop = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 
 
-
-
         shop.teleport(loc);
         shop.setCustomName(displayName);
         shop.setCanPickupItems(false);

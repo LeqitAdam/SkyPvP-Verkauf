@@ -1,5 +1,6 @@
 package eu.playcen.skypvp.skystats;
 
+import eu.playcen.skypvp.main.Main;
 import eu.playcen.skypvp.methods.ScoreboardMethod;
 import eu.playcen.skypvp.mysql.MySQL;
 import org.bukkit.Bukkit;
@@ -12,22 +13,25 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 public class AddKillDeathMySQL implements Listener {
 
     @EventHandler
-    public void onDeath(PlayerDeathEvent e){
-        Player p = e.getEntity().getPlayer();
+    public void onDeath(PlayerDeathEvent event){
+        Player p = event.getEntity().getPlayer();
+        Player killer = event.getEntity().getPlayer().getKiller();
         if(MySQL.isConnected()){
             SkyStatsMethod.updateDeaths(p.getUniqueId(), 1, false, p.getName());
-
             for(Player all : Bukkit.getOnlinePlayers()) {
                 ScoreboardMethod.setScoreBoard(all);
             }
         }
+        if(killer != null) {
+            event.setDeathMessage(Main.prefix + " §7Der Spieler §a" + p.getDisplayName() + " §7wurde von §a" + killer.getDisplayName() + " §cgetötet!");
+        }else
+            event.setDeathMessage(Main.prefix + " §7Der Spieler §a" + p.getDisplayName() + " §7ist §cgestorben!");
     }
 
     @EventHandler
-    public void onKill(EntityDeathEvent e){
-        if(e.getEntity().getKiller() != null){
-            Player p = e.getEntity().getKiller();
-            p.sendMessage("test");
+    public void onKill(EntityDeathEvent event){
+        if(event.getEntity().getKiller() != null){
+            Player p = event.getEntity().getKiller();
             SkyStatsMethod.updateKills(p.getUniqueId(), 1, false, p.getName());
 
             for(Player all : Bukkit.getOnlinePlayers()) {

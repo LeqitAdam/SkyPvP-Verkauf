@@ -1,30 +1,21 @@
 package eu.playcen.skypvp.skystats;
 
+import eu.playcen.skypvp.main.Main;
 import eu.playcen.skypvp.methods.ScoreboardMethod;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-
-import java.io.File;
 
 public class StatsMethod {
 
     public static void printStats(Player p, Double kills, Double deaths, Double kd, String name) {
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         kd = Math.floor(kd*100)/100.0;
             p.sendMessage("§a");
-            p.sendMessage(prefix + "      §9Sky§fStats §8- §7von §a" + name);
-            p.sendMessage(prefix + "§0");
-            p.sendMessage(prefix + "  §7Kills: §e" + Math.round(kills));
-            p.sendMessage(prefix + "  §7Deaths: §e" + Math.round(deaths));
-            p.sendMessage(prefix + "  §7KD: §e" + kd);
-            p.sendMessage(prefix + "§0");
+            p.sendMessage(Main.prefix + "      §9Sky§fStats §8- §7von §a" + name);
+            p.sendMessage(Main.prefix + "§0");
+            p.sendMessage(Main.prefix + "  §7Kills: §e" + Math.round(kills));
+            p.sendMessage(Main.prefix + "  §7Deaths: §e" + Math.round(deaths));
+            p.sendMessage(Main.prefix + "  §7KD: §e" + kd);
+            p.sendMessage(Main.prefix + "§0");
     }
 
     public static void statsReset(Player p) {

@@ -9,10 +9,10 @@ import eu.playcen.skypvp.skinchanger.CMD_Skin;
 import eu.playcen.skypvp.skystats.AddDefaultValuesMySQL;
 import eu.playcen.skypvp.skystats.AddKillDeathMySQL;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -22,8 +22,7 @@ public class Main extends JavaPlugin {
 
     public static String
     noperm = " §cDiesen Berfehl darfst du nicht benutzen!",
-    cmdnotfound = " §cDieser Befehl wurde nicht gefunden!",
-    cmdp = " §Diesen Befehl dürfen nur Spieler benutzen!";
+    prefix = "";
 
 
     public static Main plugin;
@@ -55,6 +54,8 @@ public class Main extends JavaPlugin {
         registerCommands();
         //Listener & Events
         registerEvents();
+
+        loadConfig();
 
 
 
@@ -88,6 +89,16 @@ public class Main extends JavaPlugin {
         }
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config wurde geladen");
 
+    }
+
+    public void loadConfig() {
+        File config = new File("plugins/SkyPvP", "config.yml");
+        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
+
+        String prefix = conf.getString("Prefix");
+        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
+
+        Main.prefix = prefix;
     }
 
     public void registerCommands() {

@@ -1,6 +1,6 @@
 package eu.playcen.skypvp.methods;
 
-import org.bukkit.ChatColor;
+import eu.playcen.skypvp.main.Main;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
@@ -15,12 +15,6 @@ import java.util.Map;
 public class KitInventoryMethod {
 
     public static void getSpielerKit(Player p) {
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
-
         File kit = new File("plugins/SkyPvP/Kits", "spieler.yml");
         YamlConfiguration kitconf = YamlConfiguration.loadConfiguration(kit);
 
@@ -32,10 +26,6 @@ public class KitInventoryMethod {
             itemStack.addEnchantments((Map<Enchantment, Integer>) ench);
             p.getInventory().setItem(Integer.parseInt(s), itemStack);
         }
-
-
-        p.sendMessage(prefix + " §7Du hast das §7Spieler §8- §eKit §aerhalten!");
-
+        p.sendMessage(Main.prefix + " §7Du hast das §7Spieler §8- §eKit §aerhalten!");
     }
-
 }

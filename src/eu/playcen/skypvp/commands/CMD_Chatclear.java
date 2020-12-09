@@ -2,26 +2,15 @@ package eu.playcen.skypvp.commands;
 
 import eu.playcen.skypvp.main.Main;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-
-import java.io.File;
 
 public class CMD_Chatclear implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         if (sender instanceof Player) {
             Player p = (Player) sender;
 
@@ -38,14 +27,14 @@ public class CMD_Chatclear implements CommandExecutor {
                             t.sendMessage("");
                         }
                     }
-                    Bukkit.broadcastMessage(prefix + " §7Der Chat wurde von §a" + p.getName() + " §7geleert!");
+                    Bukkit.broadcastMessage(Main.prefix + " §7Der Chat wurde von §a" + p.getName() + " §7geleert!");
                 }else
-                    p.sendMessage(prefix + " §cBitte benutze: §7/chatclear");
+                    p.sendMessage(Main.prefix + " §cBitte benutze: §7/chatclear");
             } else {
-                p.sendMessage(prefix + Main.noperm);
+                p.sendMessage(Main.prefix + Main.noperm);
             }
         } else {
-            System.out.println(prefix + " Nur Spieler können diesen Befehl nutzen!");
+            System.out.println(Main.prefix + " Nur Spieler können diesen Befehl nutzen!");
         }
         return true;
     }

@@ -1,9 +1,8 @@
 package eu.playcen.skypvp.listeners;
 
 import eu.playcen.skypvp.commands.CMD_Kit;
-import org.bukkit.ChatColor;
+import eu.playcen.skypvp.main.Main;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
@@ -11,8 +10,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.io.File;
 
 public class HandleVillager implements Listener {
 
@@ -52,13 +49,8 @@ public class HandleVillager implements Listener {
                 if (e.getPlayer().getInventory().getItemInHand().equals(new ItemStack(Material.LAVA_BUCKET))) {
                     if (p.hasPermission("skypvp.villager.remove")) {
                         v.remove();
-                        File config = new File("plugins/SkyPvP", "config.yml");
-                        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-                        String prefix = conf.getString("Prefix");
-                        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
-
-                        p.sendMessage(prefix + " §cVillager wurde entfernt");
+                        p.sendMessage(Main.prefix + " §cVillager wurde entfernt");
                     }
                 }
             }

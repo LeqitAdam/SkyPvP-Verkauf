@@ -2,7 +2,6 @@ package eu.playcen.skypvp.listeners;
 
 import eu.playcen.skypvp.main.Main;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -37,10 +36,8 @@ public class RespawnListener implements Listener {
 
             p.teleport(loc);
         } catch (Exception ex){
-            String prefix = conf.getString("Prefix");
-            prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-            p.sendMessage(prefix + " §cDer Spawn wurde noch nicht gesetzt!");
-            p.sendMessage(prefix + " §c/setspawn");
+            p.sendMessage(Main.prefix + " §cDer Spawn wurde noch nicht gesetzt!");
+            p.sendMessage(Main.prefix + " §c/setspawn");
         }
 
     }
@@ -59,10 +56,8 @@ public class RespawnListener implements Listener {
 
             p.teleport(loc);
         } catch (Exception ex){
-            String prefix = conf.getString("Prefix");
-            prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-            p.sendMessage(prefix + " §cDer Spawn wurde noch nicht gesetzt!");
-            p.sendMessage(prefix + " §c/setspawn");
+            p.sendMessage(Main.prefix + " §cDer Spawn wurde noch nicht gesetzt!");
+            p.sendMessage(Main.prefix + " §c/setspawn");
         }
 
     }

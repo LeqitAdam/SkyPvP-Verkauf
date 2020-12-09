@@ -9,7 +9,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -17,18 +16,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 public class CMD_Kit implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         if(sender instanceof Player) {
             Player p = (Player) sender;
             if(p.hasPermission("skypvp.kit") || p.hasPermission("skypvp.*")) {
@@ -52,23 +43,22 @@ public class CMD_Kit implements CommandExecutor {
                                 }
 
                             }
-
                             try {
                                 kitconf.save(kit);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             p.getInventory().clear();
-                            p.sendMessage(prefix + " §7Das §eKit §7wurde §agespeichert!");
+                            p.sendMessage(Main.prefix + " §7Das §eKit §7wurde §agespeichert!");
                         } else
-                            p.sendMessage(prefix + " §cBitte benutze: §7/kit setup [Spieler, Premium, Ultra, God]");
+                            p.sendMessage(Main.prefix + " §cBitte benutze: §7/kit setup [Spieler, Premium, Ultra, God]");
 
                     }else
-                        p.sendMessage(prefix + " §cBitte benutze: §7/kit setup [Spieler, Premium, Ultra, God]");
+                        p.sendMessage(Main.prefix + " §cBitte benutze: §7/kit setup [Spieler, Premium, Ultra, God]");
                 }else
-                    p.sendMessage(prefix + " §cBitte benutze: §7/kit");
+                    p.sendMessage(Main.prefix + " §cBitte benutze: §7/kit");
             }else
-                p.sendMessage(prefix + Main.noperm);
+                p.sendMessage(Main.prefix + Main.noperm);
         }
 
 

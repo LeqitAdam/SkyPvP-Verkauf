@@ -4,17 +4,13 @@ import com.mojang.authlib.properties.Property;
 import eu.playcen.skypvp.main.Main;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import java.io.File;
 
 public class CMD_Skin implements CommandExecutor {
 
@@ -29,19 +25,13 @@ public class CMD_Skin implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         if (!(sender instanceof Player)){
-            System.out.println(prefix + " Diesen Command dürfen nur Spieler benutzen!");
+            System.out.println(Main.prefix + " Diesen Command dürfen nur Spieler benutzen!");
             return false;
         }
         Player player = (Player) sender;
         if (args.length != 1){
-            player.sendMessage(prefix + " §cBitte benutze /skin <Spieler>");
+            player.sendMessage(Main.prefix + " §cBitte benutze /skin <Spieler>");
             return true;
         }
 
@@ -109,9 +99,9 @@ public class CMD_Skin implements CommandExecutor {
                 }
             }.run();
 
-            player.sendMessage(prefix + " §7Du hast jetzt den Skin von §a" + args[0]);
+            player.sendMessage(Main.prefix + " §7Du hast jetzt den Skin von §a" + args[0]);
         } catch (Exception ex){
-            player.sendMessage(prefix + " §cDiesen Spieler gibt es nicht!");
+            player.sendMessage(Main.prefix + " §cDiesen Spieler gibt es nicht!");
             ex.printStackTrace();
             return true;
         }

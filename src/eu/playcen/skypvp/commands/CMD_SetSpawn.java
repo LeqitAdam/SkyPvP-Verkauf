@@ -1,7 +1,6 @@
 package eu.playcen.skypvp.commands;
 
 import eu.playcen.skypvp.main.Main;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,9 +17,6 @@ public class CMD_SetSpawn implements CommandExecutor {
             File config = new File("plugins/SkyPvP", "config.yml");
             YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
 
-            String prefix = conf.getString("Prefix");
-            prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
             Player p = (Player) sender;
             if(p.hasPermission("skypvp.setspawn") || p.hasPermission("skypvp.*")){
                 if(args.length == 0){
@@ -36,11 +32,11 @@ public class CMD_SetSpawn implements CommandExecutor {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    p.sendMessage(prefix + " §7Der Spawn wurde §agesetzt!");
+                    p.sendMessage(Main.prefix + " §7Der Spawn wurde §agesetzt!");
                 } else {
-                    p.sendMessage(prefix + " §cBitte benutze: §7/setspawn");
+                    p.sendMessage(Main.prefix + " §cBitte benutze: §7/setspawn");
                 }
-            } else p.sendMessage(prefix + Main.noperm);
+            } else p.sendMessage(Main.prefix + Main.noperm);
         } else {
 
         }

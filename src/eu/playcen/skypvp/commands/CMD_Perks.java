@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import eu.playcen.skypvp.listeners.InventoryClickListener;
 import eu.playcen.skypvp.main.Main;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,12 +21,6 @@ import java.util.List;
 public class CMD_Perks implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         if(sender instanceof Player) {
             Player p = (Player) sender;
             if(p.hasPermission("skypvp.perks") || p.hasPermission("skypvp.*")) {
@@ -35,13 +28,13 @@ public class CMD_Perks implements CommandExecutor {
                     if(args.length == 0) {
                         openPerksInv(p);
                     }else
-                        p.sendMessage(prefix + "§cBitte benutze: §7/perks");
+                        p.sendMessage(Main.prefix + "§cBitte benutze: §7/perks");
                 }else
-                    p.sendMessage(prefix + "§cBitte benutze: §7/perks");
+                    p.sendMessage(Main.prefix + "§cBitte benutze: §7/perks");
             }else
-                p.sendMessage(prefix + Main.noperm);
+                p.sendMessage(Main.prefix + Main.noperm);
         }else
-            sender.sendMessage(prefix + " §cNur Spieler können diesen Befehl nutzen!");
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
 
         return false;
     }

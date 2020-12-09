@@ -2,14 +2,10 @@ package eu.playcen.skypvp.commands;
 
 import eu.playcen.skypvp.main.Main;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-
-import java.io.File;
 
 public class CMD_Vanish implements CommandExecutor {
 
@@ -21,13 +17,6 @@ public class CMD_Vanish implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         if(!(sender instanceof Player))
             return true;
 
@@ -37,7 +26,7 @@ public class CMD_Vanish implements CommandExecutor {
                 if (args.length == 0) {
                     if (Main.vanish.contains(p.getName())) {
                         Main.vanish.remove(p.getName());
-                        p.sendMessage(prefix + " §7Du bist nun für §aalle §7Spieler §asichtbar!");
+                        p.sendMessage(Main.prefix + " §7Du bist nun für §aalle §7Spieler §asichtbar!");
                         for (Player all : Bukkit.getOnlinePlayers()) {
                             all.showPlayer(p);
                         }
@@ -49,7 +38,7 @@ public class CMD_Vanish implements CommandExecutor {
                         }
 
                         Main.vanish.add(p.getName());
-                        p.sendMessage(prefix + " §7Du bist nun für §aalle normalen §7Spieler §cunsichtbar!");
+                        p.sendMessage(Main.prefix + " §7Du bist nun für §aalle normalen §7Spieler §cunsichtbar!");
 
                     }
                 } else if (args.length == 1) {
@@ -59,8 +48,8 @@ public class CMD_Vanish implements CommandExecutor {
                             if (!(target.hasPermission("skypvp.vanish.others.ignore") || target.hasPermission("skypvp.*"))) {
                                 if (Main.vanish.contains(target.getName())) {
                                     Main.vanish.remove(target.getName());
-                                    target.sendMessage(prefix + " §7Du bist nun für §aalle §7Spieler §asichtbar!");
-                                    p.sendMessage(prefix + " §7Du hast den Spieler §a" + target.getName()
+                                    target.sendMessage(Main.prefix + " §7Du bist nun für §aalle §7Spieler §asichtbar!");
+                                    p.sendMessage(Main.prefix + " §7Du hast den Spieler §a" + target.getName()
                                             + " §7aus dem §cVanish §7entfernt");
                                     for (Player all : Bukkit.getOnlinePlayers()) {
                                         all.showPlayer(target);
@@ -75,15 +64,15 @@ public class CMD_Vanish implements CommandExecutor {
                                     }
                                     Main.vanish.add(target.getName());
                                     target.sendMessage(
-                                            prefix + " §7Du bist nun für §aalle normalen §7Spieler §cunsichtbar!");
-                                    p.sendMessage(prefix + " §7Du hast den Spieler §a" + target.getName()
+                                            Main.prefix + " §7Du bist nun für §aalle normalen §7Spieler §cunsichtbar!");
+                                    p.sendMessage(Main.prefix + " §7Du hast den Spieler §a" + target.getName()
                                             + " §7in den §cVanish §7gesetzt");
                                 }
-                            } else if (p.hasPermission("prefix.owner") || p.hasPermission("skypvp.*")) {
+                            } else if (p.hasPermission("Main.prefix.owner") || p.hasPermission("skypvp.*")) {
                                 if (Main.vanish.contains(target.getName())) {
                                     Main.vanish.remove(target.getName());
-                                    target.sendMessage(prefix + "§7Du bist nun für §aalle §7Spieler §asichtbar!");
-                                    p.sendMessage(prefix + " §7Du hast den Spieler §a" + target.getName()
+                                    target.sendMessage(Main.prefix + "§7Du bist nun für §aalle §7Spieler §asichtbar!");
+                                    p.sendMessage(Main.prefix + " §7Du hast den Spieler §a" + target.getName()
                                             + " §7aus dem §cVanish §7entfernt");
                                     for (Player all : Bukkit.getOnlinePlayers()) {
                                         all.showPlayer(target);
@@ -98,22 +87,22 @@ public class CMD_Vanish implements CommandExecutor {
                                     }
                                     Main.vanish.add(target.getName());
                                     target.sendMessage(
-                                            prefix + " §7Du bist nun für §aalle normalen §7Spieler §cunsichtbar!");
+                                            Main.prefix + " §7Du bist nun für §aalle normalen §7Spieler §cunsichtbar!");
                                     p.sendMessage(
-                                            prefix + " §7Du hast §a" + target.getName() + " §7in den §cVanish §7gesetzt");
+                                            Main.prefix + " §7Du hast §a" + target.getName() + " §7in den §cVanish §7gesetzt");
                                 }
                             } else
-                                p.sendMessage(prefix + " §7Diesen Spieler darfst du §cnicht vanishen!");
+                                p.sendMessage(Main.prefix + " §7Diesen Spieler darfst du §cnicht vanishen!");
                         } else
-                            p.sendMessage(prefix + " §cBitte benutze: §7/vanish");
+                            p.sendMessage(Main.prefix + " §cBitte benutze: §7/vanish");
                     } else
-                        sender.sendMessage(prefix + " §7Der Spieler §a" + args[0] + " §7ist §cnicht online!");
+                        sender.sendMessage(Main.prefix + " §7Der Spieler §a" + args[0] + " §7ist §cnicht online!");
                 } else
-                    p.sendMessage(prefix + " §cBitte benutze: §7/vanish [Name]");
+                    p.sendMessage(Main.prefix + " §cBitte benutze: §7/vanish [Name]");
             }else
-                p.sendMessage(prefix + " §cBitte benutze: §7/vanish [Name]");
+                p.sendMessage(Main.prefix + " §cBitte benutze: §7/vanish [Name]");
         } else
-            p.sendMessage(prefix + Main.noperm);
+            p.sendMessage(Main.prefix + Main.noperm);
 
         return false;
     }

@@ -5,8 +5,6 @@ import eu.playcen.skypvp.methods.ImageChar;
 import eu.playcen.skypvp.methods.ImageMessage;
 import eu.playcen.skypvp.methods.ScoreboardMethod;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,7 +13,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.net.URL;
 
 public class JoinListener implements Listener {
@@ -25,18 +22,12 @@ public class JoinListener implements Listener {
 
         event.setJoinMessage(null);
 
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         Player p = event.getPlayer(); //Den Spieler vom Event Deklariert
         for(Player all : Bukkit.getOnlinePlayers()) {
             ScoreboardMethod.setScoreBoard(all);
         }
         //Join Message
-        //event.setJoinMessage(prefix + " §aWillkommen " + event.getPlayer().getName());
+        //event.setJoinMessage(Main.prefix + " §aWillkommen " + event.getPlayer().getName());
         try{
             BufferedImage imageToSend = ImageIO.read(new URL("https://crafatar.com/avatars/" + p.getUniqueId().toString()));
             new ImageMessage(
@@ -47,9 +38,9 @@ public class JoinListener implements Listener {
                     "",
                     "",
                     "",
-                    prefix + " §aWillkommen §r" + event.getPlayer().getDisplayName(),
+                    Main.prefix + " §aWillkommen §r" + event.getPlayer().getDisplayName(),
                     "",
-                    prefix + " §cVersion §nv" + Main.getPlugin().getDescription().getVersion()
+                    Main.prefix + " §cVersion §nv" + Main.getPlugin().getDescription().getVersion()
             ).sendToPlayer(p);
         } catch (Exception e) {
             System.out.println("[Player-Head] Kopf konnte nicht geladen werden.");

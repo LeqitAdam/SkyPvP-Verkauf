@@ -1,23 +1,17 @@
 package eu.playcen.skypvp.methods;
 
 import eu.playcen.skypvp.commands.CMD_Perks;
-import eu.playcen.skypvp.commands.CMD_Vanish;
 import eu.playcen.skypvp.main.Main;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
-import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.potion.PotionType;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,18 +24,12 @@ public class PerksMethod implements Listener {
 
 
     public static void flyperk(Player p) {
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         File perks = new File("plugins/SkyPvP/Perks", p.getUniqueId() + ".yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(perks);
 
         if(cfg.getBoolean("Fly") == false) {
             p.setAllowFlight(true);
-            p.sendMessage(prefix + " §ePerk §7wurde §aaktiviert!");
+            p.sendMessage(Main.prefix + " §ePerk §7wurde §aaktiviert!");
             cfg.set("Fly", true);
 
             try {
@@ -54,7 +42,7 @@ public class PerksMethod implements Listener {
             CMD_Perks.openPerksInv(p);
         }else {
             p.setAllowFlight(false);
-            p.sendMessage(prefix + " §ePerk §7wurde §cdeaktiviert!");
+            p.sendMessage(Main.prefix + " §ePerk §7wurde §cdeaktiviert!");
             cfg.set("Fly", false);
 
             CMD_Perks.openPerksInv(p);
@@ -70,18 +58,12 @@ public class PerksMethod implements Listener {
     }
 
     public static void jumpboostPerk(Player p) {
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         File perks = new File("plugins/SkyPvP/Perks", p.getUniqueId() + ".yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(perks);
 
         if(cfg.getBoolean("JumpBoost") == false) {
             p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 999999, 1));
-            p.sendMessage(prefix + " §ePerk §7wurde §aaktiviert!");
+            p.sendMessage(Main.prefix + " §ePerk §7wurde §aaktiviert!");
             cfg.set("JumpBoost", true);
 
             try {
@@ -94,7 +76,7 @@ public class PerksMethod implements Listener {
             CMD_Perks.openPerksInv(p);
         }else {
             p.removePotionEffect(PotionEffectType.JUMP);
-            p.sendMessage(prefix + " §ePerk §7wurde §cdeaktiviert!");
+            p.sendMessage(Main.prefix + " §ePerk §7wurde §cdeaktiviert!");
             cfg.set("JumpBoost", false);
 
             CMD_Perks.openPerksInv(p);
@@ -110,18 +92,12 @@ public class PerksMethod implements Listener {
     }
 
     public static void speedIPerk(Player p) {
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         File perks = new File("plugins/SkyPvP/Perks", p.getUniqueId() + ".yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(perks);
 
         if(cfg.getBoolean("Speed") == false) {
             p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 0));
-            p.sendMessage(prefix + " §ePerk §7wurde §aaktiviert!");
+            p.sendMessage(Main.prefix + " §ePerk §7wurde §aaktiviert!");
             cfg.set("Speed", true);
 
             try {
@@ -134,7 +110,7 @@ public class PerksMethod implements Listener {
             CMD_Perks.openPerksInv(p);
         }else {
             p.removePotionEffect(PotionEffectType.SPEED);
-            p.sendMessage(prefix + " §ePerk §7wurde §cdeaktiviert!");
+            p.sendMessage(Main.prefix + " §ePerk §7wurde §cdeaktiviert!");
             cfg.set("Speed", false);
 
             CMD_Perks.openPerksInv(p);
@@ -151,19 +127,13 @@ public class PerksMethod implements Listener {
 
 
     public static void keinHunger(Player p) {
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         File perks = new File("plugins/SkyPvP/Perks", p.getUniqueId() + ".yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(perks);
 
 
         if(cfg.getBoolean("KeinHunger") == false) {
             keinhunger.add(p.getName());
-            p.sendMessage(prefix + " §ePerk §7wurde §aaktiviert!");
+            p.sendMessage(Main.prefix + " §ePerk §7wurde §aaktiviert!");
             cfg.set("KeinHunger", true);
 
             try {
@@ -176,7 +146,7 @@ public class PerksMethod implements Listener {
             CMD_Perks.openPerksInv(p);
         }else {
             keinhunger.remove(p.getName());
-            p.sendMessage(prefix + " §ePerk §7wurde §cdeaktiviert!");
+            p.sendMessage(Main.prefix + " §ePerk §7wurde §cdeaktiviert!");
             cfg.set("KeinHunger", false);
 
             CMD_Perks.openPerksInv(p);
@@ -192,19 +162,13 @@ public class PerksMethod implements Listener {
     }
 
     public static void keinFallschaden(Player p) {
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         File perks = new File("plugins/SkyPvP/Perks", p.getUniqueId() + ".yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(perks);
 
 
         if(cfg.getBoolean("KeinFallschaden") == false) {
            keinfallschaden.add(p.getName());
-            p.sendMessage(prefix + " §ePerk §7wurde §aaktiviert!");
+            p.sendMessage(Main.prefix + " §ePerk §7wurde §aaktiviert!");
             cfg.set("KeinFallschaden", true);
 
             try {
@@ -217,7 +181,7 @@ public class PerksMethod implements Listener {
             CMD_Perks.openPerksInv(p);
         }else {
             keinfallschaden.remove(p.getName());
-            p.sendMessage(prefix + " §ePerk §7wurde §cdeaktiviert!");
+            p.sendMessage(Main.prefix + " §ePerk §7wurde §cdeaktiviert!");
             cfg.set("KeinFallschaden", false);
 
             CMD_Perks.openPerksInv(p);

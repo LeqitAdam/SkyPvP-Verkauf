@@ -18,12 +18,6 @@ import java.math.BigDecimal;
 public class CMD_Stats implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        File config = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-
-        String prefix = conf.getString("Prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
-
         if(sender instanceof Player) {
             Player p = (Player) sender;
             if(p.hasPermission("skypvp.stats") ||p.hasPermission("skypvp.*")) {
@@ -51,7 +45,7 @@ public class CMD_Stats implements CommandExecutor {
 
                             if(deaths == 0) {
                                 Double deaths2 = 1.0;
-                                Double kd = kills / deaths;
+                                Double kd = kills / deaths2;
 
                                 StatsMethod.printStats(p,kills,deaths, kd, target.getName());
                             }else {
@@ -65,7 +59,7 @@ public class CMD_Stats implements CommandExecutor {
 
                             if(deaths == 0) {
                                 Double deaths2 = 1.0;
-                                Double kd = kills / deaths;
+                                Double kd = kills / deaths2;
 
                                 StatsMethod.printStats(p,kills,deaths, kd, args[0]);
                             }else {
@@ -74,15 +68,15 @@ public class CMD_Stats implements CommandExecutor {
                                 StatsMethod.printStats(p,kills,deaths, kd, args[0]);
                             }
                         }else
-                            p.sendMessage(prefix + " §cDieser Spieler hat nie das Netzwerk betreten!");
+                            p.sendMessage(Main.prefix + " §cDieser Spieler hat nie das Netzwerk betreten!");
                     }else
-                        p.sendMessage(prefix + " §cBitte benutze: §7/stats <Name>");
+                        p.sendMessage(Main.prefix + " §cBitte benutze: §7/stats <Name>");
                 }else
-                    p.sendMessage(prefix + " §cBitte benutze: §7/stats <Name>");
+                    p.sendMessage(Main.prefix + " §cBitte benutze: §7/stats <Name>");
             }else
-                p.sendMessage(prefix + Main.noperm);
+                p.sendMessage(Main.prefix + Main.noperm);
         }else
-            sender.sendMessage(prefix + " §cNur Spieler können diesen Befehl benutzen!");
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl benutzen!");
         return false;
     }
 }

@@ -1,6 +1,6 @@
 package eu.playcen.skypvp.commands;
 
-import org.bukkit.ChatColor;
+import eu.playcen.skypvp.main.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,11 +15,9 @@ public class CMD_Discord implements CommandExecutor {
         if(sender instanceof Player){
             File file = new File("plugins/SkyPvP", "config.yml");
             YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
-
-            String prefix = cfg.getString("Prefix");
-            prefix = ChatColor.translateAlternateColorCodes('&', prefix);
+            
             Player p = (Player) sender;
-            p.sendMessage(prefix + " §7Discord: §e" + cfg.get("Discord"));
+            p.sendMessage(Main.prefix + " §7Discord: §e" + cfg.get("Discord"));
         }
         return false;
     }
