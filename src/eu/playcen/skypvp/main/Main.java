@@ -3,6 +3,8 @@ package eu.playcen.skypvp.main;
 import eu.playcen.skypvp.commands.*;
 import eu.playcen.skypvp.listeners.*;
 import eu.playcen.skypvp.methods.PerksMethod;
+import eu.playcen.skypvp.mysql.MySQL;
+import eu.playcen.skypvp.mysql.MySQLFile;
 import eu.playcen.skypvp.skinchanger.CMD_Skin;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -81,6 +83,17 @@ public class Main extends JavaPlugin {
 
         plugin = this;
 
+        //MySQL
+        MySQLFile file = new MySQLFile();
+        file.setStandard();
+        file.readData();
+
+        MySQL.connect();
+
+        MySQL.update("CREATE TABLE IF NOT EXISTS SkyStats (UUID VARCHAR(100),playername VARCHAR(100),Kills INT(100),Deaths INT(100))");
+
+
+
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Plugin wurde aktiviert");
     }
 
@@ -121,4 +134,11 @@ public class Main extends JavaPlugin {
         Main.FlyPerkPS = false;
         Main.use = 0;
     }
+
+    @Override
+    public void onDisable() {
+        MySQL.disconnect();
+        System.out.println("[SkyPvP] deaktiviert!");
+    }
+
 }
