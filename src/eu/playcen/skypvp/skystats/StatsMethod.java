@@ -18,7 +18,7 @@ public class StatsMethod {
         prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 
         kd = Math.floor(kd*100)/100.0;
-
+            p.sendMessage("§a");
             p.sendMessage(prefix + "      §9Sky§fStats §8- §7von §a" + name);
             p.sendMessage(prefix + "§0");
             p.sendMessage(prefix + "  §7Kills: §e" + Math.round(kills));

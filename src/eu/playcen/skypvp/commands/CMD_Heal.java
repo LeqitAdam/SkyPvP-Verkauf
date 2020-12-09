@@ -39,7 +39,8 @@ public class CMD_Heal implements CommandExecutor {
                         target.sendMessage(prefix + " §aDu wurdest von §e" + p.getName() + " §ageheilt!");
                         p.sendMessage(prefix + " §aDu hast §e" + target.getName() + " §ageheilt!");
                         return true;
-                    }
+                    } else
+                        p.sendMessage(prefix + " §cDieser Spieler ist nicht online");
                 }
             }
             if(args.length > 1){
