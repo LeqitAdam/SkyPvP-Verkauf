@@ -46,8 +46,8 @@ public class SkyStatsMethod {
                 PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO SkyStats (UUID,playername,Kills,Deaths) VALUES (?,?,?,?)");
                 ps.setString(1, uuid.toString());
                 ps.setString(2, playername);
-                ps.setInt(3, kills);
-                ps.setInt(4, deaths);
+                ps.setInt(3, 0);
+                ps.setInt(4, 0);
 
                 ps.executeUpdate();
             } catch (SQLException e) {
@@ -80,8 +80,8 @@ public class SkyStatsMethod {
                 PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO SkyStats (UUID,playername,Kills,Deaths) VALUES (?,?,?,?)");
                 ps.setString(1, uuid.toString());
                 ps.setString(2, playername);
-                ps.setInt(3, kills);
-                ps.setInt(4, deaths);
+                ps.setInt(3, 0);
+                ps.setInt(4, 0);
 
                 ps.executeUpdate();
             } catch (SQLException e) {
