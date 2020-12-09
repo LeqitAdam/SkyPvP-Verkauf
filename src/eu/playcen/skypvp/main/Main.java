@@ -40,8 +40,9 @@ public class Main extends JavaPlugin {
         try {
             PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS SkyStats (UUID VARCHAR(100),playername VARCHAR(100),Kills INT(100),Deaths INT(100))");
             ps.executeUpdate();
+            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §aMySQL wurde verbunden!");
         } catch (SQLException e) {
-            e.printStackTrace();
+            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §cMySQL konnte keine Verbindung herstellen");
         }
         createConfig();
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config wurde geladen");
