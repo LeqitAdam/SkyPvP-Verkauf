@@ -9,6 +9,9 @@ import java.io.IOException;
 public class MySQLFile {
 
     public void setStandard() {
+
+        if(getFile().exists())
+            return;
         FileConfiguration cfg = getFileConfiguration();
 
         cfg.options().copyDefaults(true);
