@@ -152,7 +152,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         MySQL.disconnect();
-        System.out.println("[SkyPvP] deaktiviert!");
+        Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Plugin wurde deaktiviert");
     }
 
 }
