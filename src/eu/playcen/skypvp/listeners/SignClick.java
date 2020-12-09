@@ -67,7 +67,7 @@ public class SignClick implements Listener {
     }
 
     public void openSignInv(Player p, ItemStack i){
-        final Inventory inv = Bukkit.createInventory(null, 3*9, "§bSign");
+        final Inventory inv = Bukkit.createInventory(null, 9, "§aFree-Sign");
         for(int j = 0; j < inv.getSize(); j++){
             inv.setItem(j, i);
         }
