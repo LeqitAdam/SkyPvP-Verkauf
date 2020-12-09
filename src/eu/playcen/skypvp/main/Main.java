@@ -62,7 +62,7 @@ public class Main extends JavaPlugin {
         getCommand("sun").setExecutor(new CMD_Sun());
         getCommand("globalmute").setExecutor(new CMD_Globalmute());
         getCommand("setspawn").setExecutor(new CMD_SetSpawn());
-        getCommand("Itemlist").setExecutor(new CMD_ItemList());
+        //getCommand("Itemlist").setExecutor(new CMD_ItemList());
         getCommand("teamspeak").setExecutor(new CMD_Teamspeak());
         getCommand("discord").setExecutor(new CMD_Discord());
         getCommand("cvillager").setExecutor(new CMD_SetVillagerKit());

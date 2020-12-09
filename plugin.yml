@@ -24,7 +24,6 @@ commands:
    globalmute:
       aliases: gmute
    setspawn:
-   itemlist:
    teamspeak:
       aliases: ts
    discord:
