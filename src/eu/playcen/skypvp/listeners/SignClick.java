@@ -32,13 +32,13 @@ public class SignClick implements Listener {
             if(e.getClickedBlock().getType() == Material.SIGN || e.getClickedBlock().getType() == Material.SIGN_POST || e.getClickedBlock().getType() == Material.WALL_SIGN){
                 if(e.getAction() == Action.RIGHT_CLICK_BLOCK){
                     Sign sign = (Sign) e.getClickedBlock().getState();
-                    if(sign.getLine(3).equalsIgnoreCase("[FREE]")){
+                    if(sign.getLine(0).equals("§aSkyPvP")){
                         try{
-                            ItemStack i = new ItemStack(Material.valueOf(sign.getLine(1).toUpperCase()));
+                            ItemStack i = new ItemStack(Integer.parseInt(sign.getLine(1)), Integer.parseInt(sign.getLine(2)));
                             openSignInv(p, i);
                         } catch (Exception exception){
                             e.getClickedBlock().setType(Material.AIR);
-                            p.sendMessage(prefix + "§cFalsches Item Angegeben");
+                            p.sendMessage(prefix + " §cFalsche Angabe");
                         }
                     }
                 }
@@ -58,13 +58,16 @@ public class SignClick implements Listener {
             if(!e.getPlayer().hasPermission("skypvp.sign.place")){
                 e.getBlock().setType(Material.AIR);
                 e.getPlayer().sendMessage(prefix + Main.noperm);
+            } else{
+                e.setLine(0, "§aSkyPvP");
+                e.setLine(1, e.getLine(1).toUpperCase());
+                e.setLine(3, "§2[FREE]");
             }
         }
     }
 
     public void openSignInv(Player p, ItemStack i){
         final Inventory inv = Bukkit.createInventory(null, 3*9, "§bSign");
-        i.setAmount(i.getMaxStackSize());
         for(int j = 0; j < inv.getSize(); j++){
             inv.setItem(j, i);
         }
