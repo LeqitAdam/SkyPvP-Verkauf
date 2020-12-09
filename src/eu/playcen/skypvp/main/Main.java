@@ -10,14 +10,12 @@ import eu.playcen.skypvp.skystats.AddDefaultValuesMySQL;
 import eu.playcen.skypvp.skystats.AddKillDeathMySQL;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Main extends JavaPlugin {
@@ -45,7 +43,7 @@ public class Main extends JavaPlugin {
             PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS SkyStats (UUID VARCHAR(100),playername VARCHAR(100),Kills INT(100),Deaths INT(100))");
             ps.executeUpdate();
             Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §aMySQL wurde verbunden!");
-        } catch (SQLException e) {
+        } catch (Exception e) {
             Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §cMySQL konnte keine Verbindung herstellen");
         }
         createConfig();

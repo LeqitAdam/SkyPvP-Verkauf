@@ -26,34 +26,50 @@ public class CMD_Gamemode implements CommandExecutor {
             if (p.hasPermission("skypvp.gamemode") || p.hasPermission("skypvp.*")) {
                 if (cmd.getName().equalsIgnoreCase("gamemode") || cmd.getName().equalsIgnoreCase("gm")) {
                     if (args.length == 1) {
-                        if (sender instanceof Player) {
-                            String arg = args[0];
+                        String arg = args[0];
+                        try{
                             int i = Integer.parseInt(arg);
-                            switch (i) {
-                                case 3:
-                                    p.setGameMode(GameMode.SPECTATOR);
-                                    p.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSPECTATOR§7]");
-                                    return false;
-                                case 2:
-                                    p.setGameMode(GameMode.ADVENTURE);
-                                    p.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aADVENTURE§7]");
-                                    return false;
-                                case 1:
-                                    p.setGameMode(GameMode.CREATIVE);
-                                    p.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aCREATIVE§7]");
-                                    return false;
-                                case 0:
-                                    p.setGameMode(GameMode.SURVIVAL);
-                                    p.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSURVIVAL§7]");
-                                    return false;
-                            }
-                        } else sender.sendMessage(prefix + " " + Main.cmdp);
+                        } catch (Exception e){
+                            p.sendMessage(prefix + " §cUnbekannter Spielmodus");
+                            return false;
+                        }
+
+                        int i = Integer.parseInt(arg);
+
+                        switch (i) {
+                            case 3:
+                                p.setGameMode(GameMode.SPECTATOR);
+                                p.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSPECTATOR§7]");
+                                return false;
+                            case 2:
+                                p.setGameMode(GameMode.ADVENTURE);
+                                p.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aADVENTURE§7]");
+                                return false;
+                            case 1:
+                                p.setGameMode(GameMode.CREATIVE);
+                                p.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aCREATIVE§7]");
+                                return false;
+                            case 0:
+                                p.setGameMode(GameMode.SURVIVAL);
+                                p.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSURVIVAL§7]");
+                                return false;
+                            default:
+                                p.sendMessage(prefix + " §cUnbekannter Spielmodus");
+                                return false;
+                        }
                     } else if (args.length == 2) {
                         Player target = Bukkit.getPlayer(args[1]);
                         if (target != null) {
                             if (!target.hasPermission("skypvp.gamemode.others.bypass")) {
                                 if (sender.hasPermission("skypvp.gamemode.others") || sender.hasPermission("skypvp.*")) {
                                     String arg = args[0];
+                                    try{
+                                        int i = Integer.parseInt(arg);
+                                    } catch (Exception e){
+                                        p.sendMessage(prefix + " §cUnbekannter Spielmodus");
+                                        return false;
+                                    }
+
                                     int i = Integer.parseInt(arg);
                                     switch (i) {
                                         case 3:
@@ -75,12 +91,22 @@ public class CMD_Gamemode implements CommandExecutor {
                                             target.setGameMode(GameMode.SURVIVAL);
                                             target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSURVIVAL§7]");
                                             sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cSurvival §7Modus!");
+                                            return false;
+                                        default:
+                                            p.sendMessage(prefix + " §cUnbekannter Spielmodus");
                                             return false;
                                     }
                                 } else p.sendMessage(prefix + Main.noperm);
                             } else if (!target.hasPermission("skypvp.gamemode.others.bypass.ignore")) {
                                 if (sender.hasPermission("skypvp.gamemode.others") || sender.hasPermission("skypvp.*")) {
                                     String arg = args[0];
+                                    try{
+                                        int i = Integer.parseInt(arg);
+                                    } catch (Exception e){
+                                        p.sendMessage(prefix + " §cUnbekannter Spielmodus");
+                                        return false;
+                                    }
+
                                     int i = Integer.parseInt(arg);
                                     switch (i) {
                                         case 3:
@@ -102,12 +128,22 @@ public class CMD_Gamemode implements CommandExecutor {
                                             target.setGameMode(GameMode.SURVIVAL);
                                             target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSURVIVAL§7]");
                                             sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cSurvival §7Modus!");
+                                            return false;
+                                        default:
+                                            p.sendMessage(prefix + " §cUnbekannter Spielmodus");
                                             return false;
                                     }
                                 } else p.sendMessage(prefix + Main.noperm);
                             } else if (!(target.getName().equals("LeqitSweden") || target.getName().equals("NeraxHD"))) {
                                 if (sender.hasPermission("skypvp.gamemode.others") || sender.hasPermission("skypvp.*")) {
                                     String arg = args[0];
+                                    try{
+                                        int i = Integer.parseInt(arg);
+                                    } catch (Exception e){
+                                        p.sendMessage(prefix + " §cUnbekannter Spielmodus");
+                                        return false;
+                                    }
+
                                     int i = Integer.parseInt(arg);
                                     switch (i) {
                                         case 3:
@@ -130,10 +166,20 @@ public class CMD_Gamemode implements CommandExecutor {
                                             target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSURVIVAL§7]");
                                             sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cSurvival §7Modus!");
                                             return false;
+                                        default:
+                                            p.sendMessage(prefix + " §cUnbekannter Spielmodus");
+                                            return false;
                                     }
                                 } else p.sendMessage(prefix + Main.noperm);
                             } else if (sender.getName().equals("LeqitSweden")) {
                                 String arg = args[0];
+                                try{
+                                    int i = Integer.parseInt(arg);
+                                } catch (Exception e){
+                                    p.sendMessage(prefix + " §cUnbekannter Spielmodus");
+                                    return false;
+                                }
+
                                 int i = Integer.parseInt(arg);
                                 switch (i) {
                                     case 3:
@@ -155,6 +201,9 @@ public class CMD_Gamemode implements CommandExecutor {
                                         target.setGameMode(GameMode.SURVIVAL);
                                         target.sendMessage(prefix + " §7Dein Spielmodus ist nun §7[§aSURVIVAL§7]");
                                         sender.sendMessage(prefix + " §7Der Spieler §a" + target.getName() + " §7ist nun im §cSurvival §7Modus!");
+                                        return false;
+                                    default:
+                                        p.sendMessage(prefix + " §cUnbekannter Spielmodus");
                                         return false;
                                 }
                             } else
