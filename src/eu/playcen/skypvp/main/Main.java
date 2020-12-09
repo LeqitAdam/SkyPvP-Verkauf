@@ -37,8 +37,8 @@ public class Main extends JavaPlugin {
             file.setStandard();
         file.readData();
 
-        MySQL.connect();
         try {
+            MySQL.connect();
             PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS SkyStats (UUID VARCHAR(100),playername VARCHAR(100),Kills INT(100),Deaths INT(100))");
             ps.executeUpdate();
             Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §aMySQL wurde verbunden!");
