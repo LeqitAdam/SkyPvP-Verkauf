@@ -11,7 +11,7 @@ public class SkyStatsMethod {
 
     public static boolean isUserExists(UUID uuid) {
         try {
-            PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT Kills FROM SkyStats WHERE UUID = ?");
+            PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT UUID FROM SkyStats WHERE UUID = ?");
             ps.setString(1, uuid.toString());
             ResultSet rs = ps.executeQuery();
 
@@ -56,6 +56,7 @@ public class SkyStatsMethod {
 
     public static void updateDeats(UUID uuid, int amount, boolean remove, String playername) {
         int deaths = getDeaths(uuid);
+        //int kills = getKills(uuid);
 
         if(remove) {
             amount-=deaths;
@@ -74,10 +75,11 @@ public class SkyStatsMethod {
             }
         }else {
             try {
-                PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO SkyStats (UUID,playername,Deaths) VALUES (?,?,?)");
+                PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO SkyStats (UUID,playername,Deaths) VALUES (?,?,?,?)");
                 ps.setString(1, uuid.toString());
                 ps.setString(2, playername);
-                ps.setInt(3, deaths);
+                //ps.setInt(3, kills);
+                ps.setInt(4, deaths);
 
                 ps.executeUpdate();
             } catch (SQLException e) {
