@@ -16,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Main extends JavaPlugin {
@@ -44,7 +45,7 @@ public class Main extends JavaPlugin {
             PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS SkyStats (UUID VARCHAR(100),playername VARCHAR(100),Kills INT(100),Deaths INT(100))");
             ps.executeUpdate();
             Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §aMySQL wurde verbunden!");
-        } catch (Exception e) {
+        } catch (SQLException e) {
             Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §cMySQL konnte keine Verbindung herstellen");
         }
 
@@ -78,7 +79,7 @@ public class Main extends JavaPlugin {
         cfg.set("menutitle", "&9SkyPvP &8- &eKits");
         cfg.set("Teamspeak", "deinserver.net");
         cfg.set("Discord", "discord.gg/deinserver");
-        cfg.set("ScoreBoard", "§9SkyPvP");
+        cfg.set("ScoreBoard", "&9SkyPvP");
 
         try {
             cfg.save(file);

@@ -23,6 +23,7 @@ public class ScoreboardMethod {
         YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
 
         String name = conf.getString("ScoreBoard");
+        name = org.bukkit.ChatColor.translateAlternateColorCodes('&', name);
         String ts = conf.getString("Teamspeak");
 
         Integer kills = SkyStatsMethod.getKills(p.getUniqueId());
