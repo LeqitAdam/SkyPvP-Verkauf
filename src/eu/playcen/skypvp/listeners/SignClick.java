@@ -24,7 +24,17 @@ public class SignClick implements Listener {
                     Sign sign = (Sign) e.getClickedBlock().getState();
                     if(sign.getLine(0).equals("§aSkyPvP")){
                         try{
-                            ItemStack i = new ItemStack(Integer.parseInt(sign.getLine(1)), Integer.parseInt(sign.getLine(2)));
+                            String line1 = sign.getLine(1);
+                            int id = 0;
+                            int subid = 0;
+                            if (line1.contains(":")) {
+                                String[] parts = line1.split(":");
+                                id = Integer.parseInt(parts[0]);
+                                subid = Integer.parseInt(parts[1]);
+                            } else {
+                                id = Integer.parseInt(line1);
+                            }
+                            ItemStack i = new ItemStack(id, Integer.parseInt(sign.getLine(2)), (short) subid);
                             openSignInv(p, i);
                         } catch (Exception exception){
                             e.getClickedBlock().setType(Material.AIR);
