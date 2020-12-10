@@ -28,7 +28,7 @@ public class CMD_Clearlag implements CommandExecutor {
         return false;
     }
 
-    private void clearlag(){
+    public void clearlag(){
         int itemcount = 0;
         for(World w : Bukkit.getWorlds()){
             for(Entity e : w.getEntities()){
