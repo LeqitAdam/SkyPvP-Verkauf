@@ -179,23 +179,17 @@ public class Main extends JavaPlugin {
     }
 
     private void startClearLag(){
-        Bukkit.getScheduler().runTaskTimerAsynchronously(this, new Runnable() {
-            @Override
-            public void run() {
-                CMD_Clearlag cl = new CMD_Clearlag();
-                cl.clearlag();
-                anounceClearLag();
-            }
+        Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> {
+            CMD_Clearlag cl = new CMD_Clearlag();
+            cl.clearlag();
+            anounceClearLag();
         }, 20*60*4, 20*60*4);
     }
 
     private void anounceClearLag(){
-        Bukkit.getScheduler().runTaskLater(this, new Runnable() {
-            @Override
-            public void run() {
-                for(Player all : Bukkit.getOnlinePlayers()){
-                    all.sendMessage(Main.prefix + " §aIn 2 Minuten werden allen am Boden liegenden Items gelöscht.");
-                }
+        Bukkit.getScheduler().runTaskLater(this, () -> {
+            for(Player all : Bukkit.getOnlinePlayers()){
+                all.sendMessage(Main.prefix + " §aIn 2 Minuten werden allen am Boden liegenden Items gelöscht.");
             }
         }, 20*60*2);
 
