@@ -136,6 +136,7 @@ public class Main extends JavaPlugin {
         getCommand("skin").setExecutor(new CMD_Skin());
         getCommand("stats").setExecutor(new CMD_Stats());
         getCommand("statsreset").setExecutor(new CMD_StatsReset());
+        getCommand("build").setExecutor(new CMD_Build());
         //getCommand("enchanter").setExecutor(new CMD_Enchanter());
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Commands wurden aktiviert");
     }
@@ -158,6 +159,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new AddKillDeathMySQL(), this);
         pm.registerEvents(new CommandBlockListener(), this);
         pm.registerEvents(new SkyPvPListener(), this);
+        pm.registerEvents(new Environment(), this);
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Events wurden aktiviert");
     }
 
