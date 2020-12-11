@@ -9,6 +9,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerAchievementAwardedEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.weather.WeatherChangeEvent;
 
 public class Environment implements Listener {
 
@@ -40,4 +41,10 @@ public class Environment implements Listener {
         if(e.getEntity().getType() != EntityType.PLAYER)
             e.getDrops().clear();
     }
+
+    @EventHandler
+    public void onWeatherChange(WeatherChangeEvent e){
+        e.setCancelled(true);
+    }
+
 }
