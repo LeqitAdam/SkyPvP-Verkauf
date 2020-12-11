@@ -15,7 +15,6 @@ public class MySQL {
         if(!isConnected()) {
             try {
                 con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
-                System.out.println("[SkyPvP] [MySQL] Verbindung hergestellt!");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
