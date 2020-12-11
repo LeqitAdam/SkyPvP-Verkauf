@@ -38,30 +38,12 @@ public class CMD_Clearlag implements CommandExecutor {
                 }
             }
         }
-        int mobcount = 0;
-
-        for(World world : Bukkit.getWorlds()){
-            for(Entity entity : world.getEntities()){
-                if(entity.getType() != EntityType.PLAYER){
-                    if(entity.getCustomName() == null){
-                        entity.remove();
-                        mobcount++;
-                    }
-                }
-            }
-        }
         for(Player all : Bukkit.getOnlinePlayers()){
-            if(itemcount == 1 && mobcount == 1){
-                all.sendMessage(Main.prefix + " §7Es wurden §c" + itemcount + " §7Item und §c" + mobcount + "§7 Mob entfernt");
+            if(itemcount == 1){
+                all.sendMessage(Main.prefix + " §7Es wurden §c" + itemcount + " §7Item entfernt");
             }
-            if(itemcount == 1 && mobcount != 1) {
-                all.sendMessage(Main.prefix + " §7Es wurden §c" + itemcount + " §7Item und §c" + mobcount + "§7 Mobs entfernt");
-            }
-            if(itemcount != 1 && mobcount == 1) {
-                all.sendMessage(Main.prefix + " §7Es wurden §c" + itemcount + " §7Items und §c" + mobcount + "§7 Mob entfernt");
-            }
-            if(itemcount != 1 && mobcount != 1) {
-                all.sendMessage(Main.prefix + " §7Es wurden §c" + itemcount + " §7Items und §c" + mobcount + "§7 Mobs entfernt");
+            if(itemcount != 1) {
+                all.sendMessage(Main.prefix + " §7Es wurde §c" + itemcount + " §7Items entfernt");
             }
         }
     }

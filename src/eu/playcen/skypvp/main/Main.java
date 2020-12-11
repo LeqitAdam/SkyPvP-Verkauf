@@ -137,6 +137,7 @@ public class Main extends JavaPlugin {
         getCommand("stats").setExecutor(new CMD_Stats());
         getCommand("statsreset").setExecutor(new CMD_StatsReset());
         getCommand("build").setExecutor(new CMD_Build());
+        getCommand("broadcast").setExecutor(new CMD_Broadcast());
         //getCommand("enchanter").setExecutor(new CMD_Enchanter());
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Commands wurden aktiviert");
     }
@@ -154,7 +155,6 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new PerksInvListener(), this);
         pm.registerEvents(new PerksMethod(), this);
         pm.registerEvents(new PerksOnJoin(), this);
-        pm.registerEvents(new CreatureSpawn(), this);
         pm.registerEvents(new AddDefaultValuesMySQL(), this);
         pm.registerEvents(new AddKillDeathMySQL(), this);
         pm.registerEvents(new CommandBlockListener(), this);
@@ -178,6 +178,10 @@ public class Main extends JavaPlugin {
     public void onDisable() {
         MySQL.disconnect();
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Plugin wurde deaktiviert");
+        for(Player all : Bukkit.getOnlinePlayers()){
+            if(CMD_Build.builders.contains(all))
+                all.sendMessage(Main.prefix + " §6Du bist nun nicht mehr im Build-Modus");
+        }
     }
 
     private void startClearLag(){

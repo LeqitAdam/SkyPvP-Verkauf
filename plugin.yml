@@ -45,3 +45,5 @@ commands:
    stats:
    statsreset:
    build:
+   broadcast:
+      aliases: bc
