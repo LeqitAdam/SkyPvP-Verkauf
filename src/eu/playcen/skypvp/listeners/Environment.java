@@ -47,4 +47,27 @@ public class Environment implements Listener {
         e.setCancelled(true);
     }
 
+    /*@EventHandler
+    public void onGenerate(ChunkLoadEvent event) {
+
+        Chunk chunk = event.getChunk();
+        if(LocalDate.now().getMonth() == Month.DECEMBER || LocalDate.now().getMonth() == Month.JANUARY){
+
+            for(int x = 0 ; x < 16; x++) {
+                for(int z = 0 ; z < 16; z++) {
+                    final Block block = chunk.getBlock(x, 0, z);
+                    block.setBiome(Biome.COLD_TAIGA);
+                }
+            }
+        } else {
+            for(int x = 0 ; x < 16; x++) {
+                for(int z = 0 ; z < 16; z++) {
+                    final Block block = chunk.getBlock(x, 0, z);
+                    block.setBiome(Biome.PLAINS);
+                }
+            }
+        }
+
+    }*/
+
 }
