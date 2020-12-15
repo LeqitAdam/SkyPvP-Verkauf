@@ -4,7 +4,6 @@ import eu.playcen.skypvp.mysql.MySQL;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.UUID;
 
 public class SkyStatsMethod {
@@ -16,7 +15,7 @@ public class SkyStatsMethod {
             ResultSet rs = ps.executeQuery();
 
             return rs.next();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -37,7 +36,7 @@ public class SkyStatsMethod {
                 ps.setInt(1, amount);
                 ps.setString(2, uuid.toString());
                 ps.executeUpdate();
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }else {
@@ -49,7 +48,7 @@ public class SkyStatsMethod {
                 ps.setInt(4, 0);
 
                 ps.executeUpdate();
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -70,7 +69,7 @@ public class SkyStatsMethod {
                 ps.setInt(1, amount);
                 ps.setString(2, uuid.toString());
                 ps.executeUpdate();
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }else {
@@ -82,7 +81,7 @@ public class SkyStatsMethod {
                 ps.setInt(4, 0);
 
                 ps.executeUpdate();
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -94,7 +93,7 @@ public class SkyStatsMethod {
                 PreparedStatement ps = MySQL.getConnection().prepareStatement("DELETE * FROM SkyStats WHERE UUID = ?");
                 ps.setString(1, uuid.toString());
                 ps.executeUpdate();
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -112,7 +111,7 @@ public class SkyStatsMethod {
             while(rs.next()) {
                 return rs.getInt("Kills");
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return -1;
@@ -127,7 +126,7 @@ public class SkyStatsMethod {
             while(rs.next()) {
                 return rs.getInt("Deaths");
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return -1;

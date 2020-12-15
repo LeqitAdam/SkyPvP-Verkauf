@@ -18,7 +18,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Main extends JavaPlugin {
@@ -26,6 +25,7 @@ public class Main extends JavaPlugin {
     public static String
     noperm = " §cDiesen Berfehl darfst du nicht benutzen!",
     prefix = "";
+
 
 
     public static Main plugin;
@@ -42,14 +42,6 @@ public class Main extends JavaPlugin {
             file.setStandard();
         file.readData();
 
-        try {
-            MySQL.connect();
-            PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS SkyStats (UUID VARCHAR(100),playername VARCHAR(100),Kills INT(100),Deaths INT(100))");
-            ps.executeUpdate();
-            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §aMySQL wurde verbunden!");
-        } catch (SQLException e) {
-            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §cMySQL konnte keine Verbindung herstellen");
-        }
 
         //Config
         createConfig();
@@ -63,6 +55,15 @@ public class Main extends JavaPlugin {
         startClearLag();
         anounceClearLag();
 
+        try {
+            MySQL.connect();
+            PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS SkyStats (UUID VARCHAR(100),playername VARCHAR(100),Kills INT(100),Deaths INT(100))");
+            ps.executeUpdate();
+            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §aMySQL wurde verbunden!");
+        } catch (Exception e) {
+            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §cMySQL konnte nicht aktiviert werden");
+        }
+
 
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Plugin wurde aktiviert");
     }
@@ -73,7 +74,7 @@ public class Main extends JavaPlugin {
         File file = new File("plugins/SkyPvP", "config.yml");
 
         if(file.exists()) {
-            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config ist bereits erstellt");
+            Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config wurde geladen");
             return;
         }
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config existiert noch nicht");

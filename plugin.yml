@@ -1,5 +1,5 @@
 name: SkyPvP
-version: 0.6
+version: 0.8
 main: eu.playcen.skypvp.main.Main
 
 commands:

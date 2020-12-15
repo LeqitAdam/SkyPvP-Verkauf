@@ -1,6 +1,8 @@
 package eu.playcen.skypvp.mysql;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class MySQL {
 
@@ -11,13 +13,11 @@ public class MySQL {
     public static String password;
     public static Connection con;
 
-    public static void connect() {
+    public static void connect() throws Exception{
         if(!isConnected()) {
             try {
                 con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            } catch (Exception ignored) { }
         }
     }
 
@@ -36,7 +36,7 @@ public class MySQL {
         return (con == null ? false : true);
     }
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws Exception{
         return con;
     }
 }
