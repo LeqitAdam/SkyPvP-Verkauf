@@ -13,7 +13,7 @@ public class MySQL {
     public static String password;
     public static Connection con;
 
-    public static void connect() throws Exception{
+    public static void connect() {
         if(!isConnected()) {
             try {
                 con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
@@ -36,7 +36,7 @@ public class MySQL {
         return (con == null ? false : true);
     }
 
-    public static Connection getConnection() throws Exception{
+    public static Connection getConnection() {
         return con;
     }
 }
