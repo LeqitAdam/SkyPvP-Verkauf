@@ -11,8 +11,10 @@ import org.bukkit.entity.Player;
 public class CMD_Tppos implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!(sender instanceof Player))
+        if(!(sender instanceof Player)) {
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
             return true;
+        }
         Player p = (Player) sender;
 
         if(p.hasPermission("skypvp.tppos") || p.hasPermission("skypvp.*")) {

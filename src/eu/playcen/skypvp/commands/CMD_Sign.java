@@ -12,7 +12,7 @@ public class CMD_Sign implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl benutzen!");
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
             return false;
         }
         final Player p = (Player) sender;

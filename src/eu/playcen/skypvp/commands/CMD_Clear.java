@@ -33,8 +33,6 @@ public class CMD_Clear implements CommandExecutor {
             }
         }else
             sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl benutzen!");
-
-
         return false;
     }
 }

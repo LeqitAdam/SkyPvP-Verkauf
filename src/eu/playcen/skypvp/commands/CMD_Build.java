@@ -64,7 +64,8 @@ public class CMD_Build implements CommandExecutor {
                 p.sendMessage(Main.prefix + " §7Bitte benutze §c/build <Player>");
             }
 
-        }
+        }else
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
     }
 }

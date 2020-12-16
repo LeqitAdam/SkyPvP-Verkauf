@@ -24,6 +24,7 @@ public class CMD_Clearlag implements CommandExecutor {
             } else
                 p.sendMessage(Main.prefix + Main.noperm);
         } else
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
             clearlag();
         return false;
     }

@@ -14,7 +14,7 @@ public class CMD_Giveall implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(Main.prefix + " §7Du musst ein Spieler sein, um den Befehl zu nutzen!");
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
             return true;
         }
         Player p = (Player) sender;

@@ -44,7 +44,8 @@ public class CMD_Invsee implements CommandExecutor {
                     p.sendMessage(Main.prefix + Main.noperm);
             } else
                 p.sendMessage(Main.prefix + " §7Bitte benutze /invsee <Spieler>");
-        }
+        }else
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
     }
 }

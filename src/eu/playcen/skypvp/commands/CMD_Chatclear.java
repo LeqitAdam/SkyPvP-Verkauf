@@ -33,9 +33,8 @@ public class CMD_Chatclear implements CommandExecutor {
             } else {
                 p.sendMessage(Main.prefix + Main.noperm);
             }
-        } else {
-            System.out.println(Main.prefix + " Nur Spieler können diesen Befehl nutzen!");
-        }
+        } else
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return true;
     }
 }

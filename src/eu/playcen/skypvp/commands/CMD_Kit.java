@@ -59,9 +59,8 @@ public class CMD_Kit implements CommandExecutor {
                     p.sendMessage(Main.prefix + " §cBitte benutze: §7/kit");
             }else
                 p.sendMessage(Main.prefix + Main.noperm);
-        }
-
-
+        }else
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
     }
 

@@ -38,7 +38,7 @@ public class CMD_StatsReset implements CommandExecutor {
             }else
                 p.sendMessage(Main.prefix + Main.noperm);
         }else
-            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl benutzen!");
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
     }
 }

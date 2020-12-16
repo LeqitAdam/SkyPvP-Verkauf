@@ -38,7 +38,8 @@ public class CMD_Rename implements CommandExecutor {
                     p.sendMessage(Main.prefix + " §7Bitte benutze /rename <Name>");
             } else
                 p.sendMessage(Main.prefix + Main.noperm);
-        }
+        }else
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
     }
 }

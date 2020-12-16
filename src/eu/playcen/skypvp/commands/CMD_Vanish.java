@@ -17,9 +17,10 @@ public class CMD_Vanish implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!(sender instanceof Player))
+        if(!(sender instanceof Player)) {
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
             return true;
-
+        }
         Player p = (Player) sender;
         if (p.hasPermission("skypvp.vanish") || p.hasPermission("skypvp.*")) {
             if(cmd.getName().equalsIgnoreCase("vanish") || cmd.getName().equalsIgnoreCase("v")) {

@@ -5,6 +5,7 @@ import eu.playcen.skypvp.methods.ImageChar;
 import eu.playcen.skypvp.methods.ImageMessage;
 import eu.playcen.skypvp.methods.ScoreboardMethod;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +14,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 public class JoinListener implements Listener {
@@ -44,6 +47,19 @@ public class JoinListener implements Listener {
             ).sendToPlayer(p);
         } catch (Exception e) {
             System.out.println("[Player-Head] Kopf konnte nicht geladen werden.");
+        }
+
+        File player = new File("plugins/SkyPvP/Spieler", p.getUniqueId() + ".yml");
+        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(player);
+
+        if(!player.exists()) {
+            cfg.set("MSG", false);
+
+            try {
+                cfg.save(player);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

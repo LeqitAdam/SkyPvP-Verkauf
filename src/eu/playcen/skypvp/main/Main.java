@@ -2,6 +2,7 @@ package eu.playcen.skypvp.main;
 
 import eu.playcen.skypvp.commands.*;
 import eu.playcen.skypvp.listeners.*;
+import eu.playcen.skypvp.methods.MSGToggleMethod;
 import eu.playcen.skypvp.methods.PerksMethod;
 import eu.playcen.skypvp.mysql.MySQL;
 import eu.playcen.skypvp.mysql.MySQLFile;
@@ -142,6 +143,7 @@ public class Main extends JavaPlugin {
         getCommand("broadcast").setExecutor(new CMD_Broadcast());
         getCommand("msg").setExecutor(new CMD_Msg());
         getCommand("respond").setExecutor(new CMD_RespondMsg());
+        getCommand("msgtoggle").setExecutor(new CMD_Msgtoggle());
         //getCommand("enchanter").setExecutor(new CMD_Enchanter());
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Commands wurden aktiviert");
     }
@@ -164,6 +166,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new CommandBlockListener(), this);
         pm.registerEvents(new SkyPvPListener(), this);
         pm.registerEvents(new Environment(), this);
+        pm.registerEvents(new MSGToggleMethod(), this);
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Events wurden aktiviert");
     }
 

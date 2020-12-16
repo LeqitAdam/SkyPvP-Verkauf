@@ -43,7 +43,8 @@ public class CMD_Fly implements CommandExecutor {
                     p.sendMessage(Main.prefix + Main.noperm);
             } else
                 p.sendMessage(Main.prefix + " §cBitte benutze: §7/fly <Spieler>");
-        }
+        }else
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
     }
 }

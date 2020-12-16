@@ -6,8 +6,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import java.io.File;
 import java.util.HashMap;
 
 public class CMD_Msg implements CommandExecutor {
@@ -44,12 +46,14 @@ public class CMD_Msg implements CommandExecutor {
     }
 
     public static void sendMSG(Player p, Player target, String msg) {
-        if(!target.hasPermission("skypvp.msg.ignore") || !target.hasPermission("skypvp.*")) {
+        File player = new File("plugins/SkyPvP/Spieler", target.getUniqueId() + ".yml");
+        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(player);
+        if(!(cfg.getBoolean("MSG") == false)) {
             target.sendMessage(Main.prefix + " §8[§a" + p.getDisplayName() + "§8] >> [§cmir§8] » §7" + msg);
             p.sendMessage(Main.prefix + " §8[§cDu§8] >> [§a" + target.getDisplayName() + "§8] » §7" + msg);
             respond.put(target, p);
             respond.put(p, target);
-        }else if(!p.hasPermission("skypvp.msg.ignore") || !p.hasPermission("skypvp.*")) {
+        }else if(p.hasPermission("skypvp.*")) {
             target.sendMessage(Main.prefix + " §8[§a" + p.getDisplayName() + "§8] >> [§cmir§8] » §7" + msg);
             p.sendMessage(Main.prefix + " §8[§cDu§8] >> [§a" + target.getDisplayName() + "§8] » §7" + msg);
             respond.put(target, p);

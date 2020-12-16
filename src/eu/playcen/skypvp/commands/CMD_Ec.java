@@ -47,7 +47,8 @@ public class CMD_Ec implements CommandExecutor {
                     p.sendMessage(Main.prefix + Main.noperm);
             } else
                 p.sendMessage(Main.prefix + " §cBitte benutze: §7/ec <Spieler>");
-        }
+        }else
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
     }
 }

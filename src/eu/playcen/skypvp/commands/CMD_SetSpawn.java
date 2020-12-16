@@ -37,9 +37,8 @@ public class CMD_SetSpawn implements CommandExecutor {
                     p.sendMessage(Main.prefix + " §cBitte benutze: §7/setspawn");
                 }
             } else p.sendMessage(Main.prefix + Main.noperm);
-        } else {
-
-        }
+        } else
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
     }
 }

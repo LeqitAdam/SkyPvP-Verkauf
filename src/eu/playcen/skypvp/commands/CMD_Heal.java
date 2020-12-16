@@ -36,7 +36,8 @@ public class CMD_Heal implements CommandExecutor {
             if(args.length > 1){
                 p.sendMessage(Main.prefix + "§cBitte benutze: §7/heal <Spieler>");
             }
-        }
+        }else
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
     }
 }

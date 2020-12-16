@@ -20,7 +20,7 @@ public class CMD_Stats implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(sender instanceof Player) {
             Player p = (Player) sender;
-            if(p.hasPermission("skypvp.stats") ||p.hasPermission("skypvp.*")) {
+            if(p.hasPermission("skypvp.stats") || p.hasPermission("skypvp.*")) {
                 if(cmd.getName().equalsIgnoreCase("stats")) {
                     if(args.length == 0) {
                         Double kills = Double.valueOf(SkyStatsMethod.getKills(p.getUniqueId()));
@@ -76,7 +76,7 @@ public class CMD_Stats implements CommandExecutor {
             }else
                 p.sendMessage(Main.prefix + Main.noperm);
         }else
-            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl benutzen!");
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
     }
 }

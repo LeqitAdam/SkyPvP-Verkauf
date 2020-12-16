@@ -23,7 +23,8 @@ public class CMD_SetVillagerKit implements CommandExecutor {
                     p.sendMessage(Main.prefix + " §cBitte benutze: §7/cvillager <kits>");
             } else
                 p.sendMessage(Main.prefix + Main.noperm);
-        }
+        }else
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
     }
 }

@@ -31,11 +31,10 @@ public class CMD_Broadcast implements CommandExecutor {
                     return true;
                 }
             }
-        }
+        }else
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
     }
-
-
     private void BroadcastMessage(Player p, String message){
         for(Player all : Bukkit.getOnlinePlayers()){
             all.sendMessage("§7»");

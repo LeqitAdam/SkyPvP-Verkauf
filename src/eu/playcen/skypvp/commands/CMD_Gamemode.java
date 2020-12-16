@@ -202,7 +202,8 @@ public class CMD_Gamemode implements CommandExecutor {
                     } else p.sendMessage(Main.prefix + " §cBitte benutze: §7/gm <0, 1, 2, 3>");
                 } else p.sendMessage(Main.prefix + " §cBitte benutze: §7/gm <0, 1, 2, 3>");
             } else p.sendMessage(Main.prefix + Main.noperm);
-        }
+        }else
+            sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
     }
 }
