@@ -1,14 +1,11 @@
 package eu.playcen.skypvp.commands;
 
 import eu.playcen.skypvp.main.Main;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.HashMap;
 
 public class CMD_RespondMsg implements CommandExecutor {
     private String use = " §cBitte benutze: §7/r <Spieler> <Nachricht>";
