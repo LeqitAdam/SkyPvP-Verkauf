@@ -140,6 +140,8 @@ public class Main extends JavaPlugin {
         getCommand("statsreset").setExecutor(new CMD_StatsReset());
         getCommand("build").setExecutor(new CMD_Build());
         getCommand("broadcast").setExecutor(new CMD_Broadcast());
+        getCommand("msg").setExecutor(new CMD_Msg());
+        getCommand("respond").setExecutor(new CMD_RespondMsg());
         //getCommand("enchanter").setExecutor(new CMD_Enchanter());
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Commands wurden aktiviert");
     }

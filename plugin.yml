@@ -47,3 +47,6 @@ commands:
    build:
    broadcast:
       aliases: bc
+   msg:
+   respond:
+      aliases: r
