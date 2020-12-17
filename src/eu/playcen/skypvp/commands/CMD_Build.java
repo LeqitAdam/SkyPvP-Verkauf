@@ -42,6 +42,7 @@ public class CMD_Build implements CommandExecutor {
                         }
                     } else
                         p.sendMessage(Main.prefix + Main.noperm);
+                    return true;
                 }
                 if(args.length == 1){
                     if(p.hasPermission("skypvp.build.other") || p.hasPermission("skypvp.*")){
