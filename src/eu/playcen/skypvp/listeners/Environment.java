@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerAchievementAwardedEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
@@ -23,6 +24,12 @@ public class Environment implements Listener {
     @EventHandler
     public void onPlace(BlockPlaceEvent e){
         if(!CMD_Build.builders.contains(e.getPlayer()))
+            e.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onBlockExplode(EntityExplodeEvent e){
+        if(e.getEntityType().equals(EntityType.CREEPER))
             e.setCancelled(true);
     }
 

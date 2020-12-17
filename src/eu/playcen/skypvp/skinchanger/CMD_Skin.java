@@ -30,6 +30,10 @@ public class CMD_Skin implements CommandExecutor {
             return false;
         }
         Player player = (Player) sender;
+        if(!player.hasPermission("skypvp.skin")){
+            player.sendMessage(Main.prefix + Main.noperm);
+            return true;
+        }
         if (args.length != 1){
             player.sendMessage(Main.prefix + " §cBitte benutze /skin <Spieler>");
             return true;

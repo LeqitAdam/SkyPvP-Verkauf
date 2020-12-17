@@ -6,6 +6,7 @@ import eu.playcen.skypvp.methods.ImageChar;
 import eu.playcen.skypvp.methods.ImageMessage;
 import eu.playcen.skypvp.methods.ScoreboardMethod;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -27,6 +28,7 @@ public class JoinListener implements Listener {
         event.setJoinMessage(null);
 
         Player p = event.getPlayer(); //Den Spieler vom Event Deklariert
+        p.setGameMode(GameMode.SURVIVAL);
         for(Player all : Bukkit.getOnlinePlayers()) {
             ScoreboardMethod.setScoreBoard(all);
         }

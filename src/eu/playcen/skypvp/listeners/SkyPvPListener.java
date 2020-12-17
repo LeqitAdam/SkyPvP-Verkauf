@@ -32,14 +32,16 @@ public class SkyPvPListener implements Listener {
             YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
             int height = cfg.getInt("PvPHoehe");
             Player p = (Player) e.getEntity();
-            Player target = (Player) e.getDamager();
-            if(!(CMD_Build.builders.contains(target) || target.hasPermission("skypvp.*"))) {
-                if(p.getLocation().getBlockY() >= (height)) {
-                    e.setCancelled(true);
-                    target.sendMessage(Main.prefix + " §7Du kannst hier §cnicht Kämpfen!");
-                }
-            }else
-                e.setCancelled(false);
+            if(e.getDamager() instanceof Player) {
+                Player target = (Player) e.getDamager();
+                if (!(CMD_Build.builders.contains(target) || target.hasPermission("skypvp.*"))) {
+                    if (p.getLocation().getBlockY() >= (height)) {
+                        e.setCancelled(true);
+                        target.sendMessage(Main.prefix + " §7Du kannst hier §cnicht Kämpfen!");
+                    }
+                } else
+                    e.setCancelled(false);
+            }
         }
 
     }

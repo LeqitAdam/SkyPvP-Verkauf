@@ -30,7 +30,8 @@ public class CMD_Broadcast implements CommandExecutor {
                     p.sendMessage(Main.prefix + " §7Bitte benutze §c/broadcast <Message>");
                     return true;
                 }
-            }
+            } else
+                p.sendMessage(Main.prefix + Main.noperm);
         }else
             sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
