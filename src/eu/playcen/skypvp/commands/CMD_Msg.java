@@ -49,13 +49,13 @@ public class CMD_Msg implements CommandExecutor {
         File player = new File("plugins/SkyPvP/Spieler", target.getUniqueId() + ".yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(player);
         if(!(cfg.getBoolean("MSG") == false)) {
-            target.sendMessage(Main.prefix + " §8[§a" + p.getDisplayName() + "§8] >> [§cmir§8] » §7" + msg);
-            p.sendMessage(Main.prefix + " §8[§cDu§8] >> [§a" + target.getDisplayName() + "§8] » §7" + msg);
+            target.sendMessage("§6MSG §7» §8[§a" + p.getDisplayName() + "§8] §7>> §8[§cmir§8] §7» " + msg);
+            p.sendMessage("§6MSG §7» §8[§cDu§8] §7>> §8[§a" + target.getDisplayName() + "§8] §7» " + msg);
             respond.put(target, p);
             respond.put(p, target);
         }else if(p.hasPermission("skypvp.*")) {
-            target.sendMessage(Main.prefix + " §8[§a" + p.getDisplayName() + "§8] >> [§cmir§8] » §7" + msg);
-            p.sendMessage(Main.prefix + " §8[§cDu§8] >> [§a" + target.getDisplayName() + "§8] » §7" + msg);
+            target.sendMessage("§6MSG §7» §8[§a" + p.getDisplayName() + "§8] §7>> §8[§cmir§8] §7» " + msg);
+            p.sendMessage("§6MSG §7» §8[§cDu§8] §7>> §8[§a" + target.getDisplayName() + "§8] §7» " + msg);
             respond.put(target, p);
             respond.put(p, target);
         }else

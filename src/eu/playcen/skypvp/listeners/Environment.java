@@ -1,6 +1,7 @@
 package eu.playcen.skypvp.listeners;
 
 import eu.playcen.skypvp.commands.CMD_Build;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,8 +28,12 @@ public class Environment implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e){
-        if(!CMD_Build.builders.contains(e.getPlayer()))
-            e.setCancelled(true);
+        if(!CMD_Build.builders.contains(e.getPlayer())) {
+            if (!e.getClickedBlock().getType().equals(Material.ENDER_CHEST)) {
+                e.setCancelled(true);
+            } else
+                e.setCancelled(false);
+        }
     }
 
     @EventHandler

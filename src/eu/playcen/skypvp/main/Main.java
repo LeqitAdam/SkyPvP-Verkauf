@@ -65,6 +65,15 @@ public class Main extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §cMySQL konnte nicht aktiviert werden");
         }
 
+        Player p = (Player) Bukkit.getOnlinePlayers();
+        File config = new File("plugins/SkyPvP", "config.yml");
+        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
+        if(config.exists()) {
+            if(conf.getBoolean("Build Befehl nutzen") == false) {
+                CMD_Build.builders.remove(p);
+            }
+        }
+
 
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Plugin wurde aktiviert");
     }
@@ -86,6 +95,7 @@ public class Main extends JavaPlugin {
         cfg.set("Teamspeak", "deinserver.net");
         cfg.set("Discord", "discord.gg/deinserver");
         cfg.set("ScoreBoard", "&9SkyPvP");
+        cfg.set("Build Befehl nutzen", true);
 
         try {
             cfg.save(file);
@@ -139,11 +149,12 @@ public class Main extends JavaPlugin {
         getCommand("skin").setExecutor(new CMD_Skin());
         getCommand("stats").setExecutor(new CMD_Stats());
         getCommand("statsreset").setExecutor(new CMD_StatsReset());
-        getCommand("build").setExecutor(new CMD_Build());
         getCommand("broadcast").setExecutor(new CMD_Broadcast());
         getCommand("msg").setExecutor(new CMD_Msg());
         getCommand("respond").setExecutor(new CMD_RespondMsg());
         getCommand("msgtoggle").setExecutor(new CMD_Msgtoggle());
+        getCommand("setpvphöhe").setExecutor(new CMD_PvPZone());
+        getCommand("build").setExecutor(new CMD_Build());
         //getCommand("enchanter").setExecutor(new CMD_Enchanter());
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Commands wurden aktiviert");
     }

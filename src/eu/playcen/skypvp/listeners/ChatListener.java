@@ -1,14 +1,18 @@
 package eu.playcen.skypvp.listeners;
 
+import eu.playcen.skypvp.commands.CMD_Build;
 import eu.playcen.skypvp.commands.CMD_Globalmute;
 import eu.playcen.skypvp.main.Main;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.help.HelpTopic;
+
+import java.io.File;
 
 public class ChatListener implements Listener {
 
@@ -20,6 +24,11 @@ public class ChatListener implements Listener {
             }
             event.getPlayer().sendMessage(Main.prefix + " §7Der §c§lGlobalmute §7ist derzeit §aaktiviert!");
             event.setCancelled(true);
+        }
+        File config = new File("plugins/SkyPvP", "config.yml");
+        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
+        if(conf.getBoolean("Build Befehl nutzen") == false) {
+            event.getPlayer().sendMessage(Main.prefix + " §7Dieser Befehl ist derzeit §cdeaktiviert!");
         }
     }
 

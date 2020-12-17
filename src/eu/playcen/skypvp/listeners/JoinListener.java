@@ -1,5 +1,6 @@
 package eu.playcen.skypvp.listeners;
 
+import eu.playcen.skypvp.commands.CMD_Build;
 import eu.playcen.skypvp.main.Main;
 import eu.playcen.skypvp.methods.ImageChar;
 import eu.playcen.skypvp.methods.ImageMessage;
@@ -61,7 +62,13 @@ public class JoinListener implements Listener {
                 e.printStackTrace();
             }
         }
-
+        File config = new File("plugins/SkyPvP", "config.yml");
+        YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
+        if(config.exists()) {
+            if(conf.getBoolean("Build Befehl nutzen") == false) {
+                CMD_Build.builders.add(p);
+            }
+        }
     }
 
     @EventHandler

@@ -31,7 +31,7 @@ public class CMD_Msgtoggle implements CommandExecutor {
                 }else
                     p.sendMessage(Main.prefix + use);
             }else
-                p.hasPermission(Main.prefix + Main.noperm);
+                p.sendMessage(Main.prefix + Main.noperm);
         }else
             sender.sendMessage(Main.prefix + " §cNur Spieler können diesen Befehl nutzen!");
         return false;
