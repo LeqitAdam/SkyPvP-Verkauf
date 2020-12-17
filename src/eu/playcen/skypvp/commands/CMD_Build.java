@@ -23,7 +23,7 @@ public class CMD_Build implements CommandExecutor {
         if(sender instanceof Player){
             File config = new File("plugins/SkyPvP", "config.yml");
             YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-            if(conf.getBoolean("Build Befehl nutzen") == true) {
+            if(conf.getBoolean("Build Befehl nutzen")) {
                 Player p = (Player) sender;
                 if(args.length == 0){
                     if(p.hasPermission("skypvp.build") || p.hasPermission("skypvp.*")){
@@ -32,13 +32,14 @@ public class CMD_Build implements CommandExecutor {
                             p.sendMessage(Main.prefix + " §aDu bist nun im Build-Modus");
                             p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1, 1);
                             p.setGameMode(GameMode.CREATIVE);
+                            return true;
                         } else{
                             CMD_Build.builders.remove(p);
                             p.sendMessage(Main.prefix + " §6Du bist nun nicht mehr im Build-Modus");
                             p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 1, 1);
                             p.setGameMode(GameMode.SURVIVAL);
+                            return true;
                         }
-                        return true;
                     } else
                         p.sendMessage(Main.prefix + Main.noperm);
                 }
@@ -52,15 +53,18 @@ public class CMD_Build implements CommandExecutor {
                                 target.sendMessage(Main.prefix + " §aDu bist nun im Build-Modus");
                                 target.playSound(target.getLocation(), Sound.ANVIL_LAND, 1, 1);
                                 target.setGameMode(GameMode.CREATIVE);
+                                return true;
                             } else {
                                 CMD_Build.builders.remove(target);
                                 p.sendMessage(Main.prefix + " §6Der Spieler §r" + target.getDisplayName() + " §6ist nun nicht mehr im Build-Modus");
                                 p.sendMessage(Main.prefix + " §6Du bist nun nicht mehr im Build-Modus");
                                 target.playSound(target.getLocation(), Sound.ANVIL_BREAK, 1, 1);
                                 target.setGameMode(GameMode.SURVIVAL);
+                                return true;
                             }
                         } else {
                             p.sendMessage(Main.prefix + " §cDieser Spieler ist nicht online");
+                            return true;
                         }
                     } else
                         p.sendMessage(Main.prefix + Main.noperm);

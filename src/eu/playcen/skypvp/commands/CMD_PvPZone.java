@@ -24,7 +24,7 @@ public class CMD_PvPZone implements CommandExecutor {
                     if(args.length == 0) {
                         int loc = p.getLocation().getBlockY();
 
-                        cfg.set("PvPHöhe", loc);
+                        cfg.set("PvPHoehe", loc);
 
                         try {
                             cfg.save(file);

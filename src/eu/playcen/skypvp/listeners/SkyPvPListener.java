@@ -26,11 +26,11 @@ public class SkyPvPListener implements Listener {
 
     @EventHandler
     public void onPvP(EntityDamageByEntityEvent e) {
-        File file = new File("plugins/SkyPvP", "config.yml");
-        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
-        Integer height = cfg.getInt("PvPHöhe");
 
         if(e.getEntity() instanceof Player) {
+            File file = new File("plugins/SkyPvP", "config.yml");
+            YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+            int height = cfg.getInt("PvPHoehe");
             Player p = (Player) e.getEntity();
             Player target = (Player) e.getDamager();
             if(!(CMD_Build.builders.contains(target) || target.hasPermission("skypvp.*"))) {

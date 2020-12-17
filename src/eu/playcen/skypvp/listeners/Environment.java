@@ -29,10 +29,12 @@ public class Environment implements Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent e){
         if(!CMD_Build.builders.contains(e.getPlayer())) {
-            if (!e.getClickedBlock().getType().equals(Material.ENDER_CHEST)) {
-                e.setCancelled(true);
-            } else
-                e.setCancelled(false);
+            if(e.getClickedBlock() != null){
+                if (!e.getClickedBlock().getType().equals(Material.ENDER_CHEST)) {
+                    e.setCancelled(true);
+                }
+            }
+
         }
     }
 
