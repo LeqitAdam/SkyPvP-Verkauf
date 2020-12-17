@@ -12,8 +12,8 @@ public class CreateVillager {
 
     public void setVillager(Player p, String displayName){
         Location loc = new Location(p.getWorld(), p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ());
-        Float yaw = p.getLocation().getYaw();
-        Float pitch = p.getLocation().getPitch();
+        float yaw = p.getLocation().getYaw();
+        float pitch = p.getLocation().getPitch();
 
         loc.setYaw(yaw);
         loc.setPitch(pitch);

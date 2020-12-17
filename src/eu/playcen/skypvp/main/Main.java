@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class Main extends JavaPlugin {
 
     public static String
-    noperm = " §cDiesen Berfehl darfst du nicht benutzen!",
+    noperm = " §cDiesen Befehl darfst du nicht benutzen!",
     prefix = "";
 
 
@@ -65,14 +65,16 @@ public class Main extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §cMySQL konnte nicht aktiviert werden");
         }
 
-        Player p = (Player) Bukkit.getOnlinePlayers();
         File config = new File("plugins/SkyPvP", "config.yml");
         YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
-        if(config.exists()) {
-            if(conf.getBoolean("Build Befehl nutzen") == false) {
-                CMD_Build.builders.remove(p);
+        for(Player all : Bukkit.getOnlinePlayers()){
+            if(config.exists()) {
+                if(!conf.getBoolean("Build Befehl nutzen")) {
+                    CMD_Build.builders.remove(all);
+                }
             }
         }
+
 
 
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Plugin wurde aktiviert");

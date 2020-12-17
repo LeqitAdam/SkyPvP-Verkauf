@@ -26,14 +26,14 @@ public class MySQL {
             try {
                 con.close();
                 System.out.println("[SkyPvP] [MySQL] Verbindung getrennt!");
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException ignored) {
+
             }
         }
     }
 
     public static boolean isConnected() {
-        return (con == null ? false : true);
+        return (con != null);
     }
 
     public static Connection getConnection() {

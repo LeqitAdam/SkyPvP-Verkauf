@@ -33,7 +33,7 @@ public class ScoreboardMethod {
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
         Objective objective = board.registerNewObjective("aaa", "bbb");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        objective.setDisplayName(String.valueOf(name));
+        objective.setDisplayName(name);
         objective.getScore("  ").setScore(12);
         objective.getScore("§fKills:").setScore(11);
 

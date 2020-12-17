@@ -65,7 +65,7 @@ public class JoinListener implements Listener {
         File config = new File("plugins/SkyPvP", "config.yml");
         YamlConfiguration conf = YamlConfiguration.loadConfiguration(config);
         if(config.exists()) {
-            if(conf.getBoolean("Build Befehl nutzen") == false) {
+            if(!conf.getBoolean("Build Befehl nutzen")) {
                 CMD_Build.builders.add(p);
             }
         }
