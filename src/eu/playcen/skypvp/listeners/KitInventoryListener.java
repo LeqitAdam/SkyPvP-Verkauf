@@ -29,21 +29,44 @@ public class KitInventoryListener implements Listener {
         if(event.getClickedInventory().getTitle().equals(menutitle)) {
             event.setCancelled(true);
             if(event.getCurrentItem().getItemMeta() != null){
-                if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§7Spieler §8- §eKit")) {
-                    try{
-                        KitInventoryMethod.getSpielerKit(p);
-                        p.playSound(p.getLocation(), Sound.LEVEL_UP, 1f, 1f);
-                    } catch (Exception e){
-                        p.sendMessage(Main.prefix + " §cDas Kit wurde noch nicht gesetzt");
-                    }
+                switch (event.getCurrentItem().getItemMeta().getDisplayName()) {
+                    case "§7Spieler §8- §eKit":
+                        try {
+                            KitInventoryMethod.getSpielerKit(p);
+                            p.playSound(p.getLocation(), Sound.LEVEL_UP, 1f, 1f);
+                        } catch (Exception e) {
+                            p.sendMessage(Main.prefix + " §cDas Kit konnte nicht geladen werden");
+                        }
 
-                    p.closeInventory();
-                }else if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§6Premium §8- §eKit")) {
-
-                }else if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§bUltra §8- §eKit")) {
-
-                }else if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§4God §8- §eKit")) {
-
+                        p.closeInventory();
+                        break;
+                    case "§6Premium §8- §eKit":
+                        try {
+                            KitInventoryMethod.getPremiumKit(p);
+                            p.playSound(p.getLocation(), Sound.LEVEL_UP, 1f, 1f);
+                        } catch (Exception e) {
+                            p.sendMessage(Main.prefix + " §cDas Kit konnte nicht geladen werden");
+                        }
+                        p.closeInventory();
+                        break;
+                    case "§bUltra §8- §eKit":
+                        try {
+                            KitInventoryMethod.getUltraKit(p);
+                            p.playSound(p.getLocation(), Sound.LEVEL_UP, 1f, 1f);
+                        } catch (Exception e) {
+                            p.sendMessage(Main.prefix + " §cDas Kit konnte nicht geladen werden");
+                        }
+                        p.closeInventory();
+                        break;
+                    case "§4God §8- §eKit":
+                        try {
+                            KitInventoryMethod.getGodKit(p);
+                            p.playSound(p.getLocation(), Sound.LEVEL_UP, 1f, 1f);
+                        } catch (Exception e) {
+                            p.sendMessage(Main.prefix + " §cDas Kit konnte nicht geladen werden");
+                        }
+                        p.closeInventory();
+                        break;
                 }
             }
 

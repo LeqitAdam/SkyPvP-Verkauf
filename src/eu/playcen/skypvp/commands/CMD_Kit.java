@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -16,6 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 public class CMD_Kit implements CommandExecutor {
     @Override
@@ -38,8 +40,19 @@ public class CMD_Kit implements CommandExecutor {
                                 if(itemStack != null){
                                     kitconf.set("kit." + i + ".type", itemStack.getType().toString());
                                     kitconf.set("kit." + i + ".amount", itemStack.getAmount());
+                                    kitconf.set("kit." + i + ".displayname", itemStack.getItemMeta().getDisplayName());
                                     kitconf.set("kit." + i + ".meta", itemStack.getDurability());
-                                    kitconf.set("kit." + i + ".enchantments", itemStack.getEnchantments().toString());
+                                    String[] ench = new String[itemStack.getEnchantments().size()];
+                                    int f = 0;
+                                    if(itemStack.getEnchantments() !=null){
+                                        for(Map.Entry<Enchantment, Integer> en : itemStack.getEnchantments().entrySet()){
+                                            int level = en.getValue();
+                                            Enchantment enc = en.getKey();
+                                            ench[f] = enc.getName() + ":" + level;
+                                            f++;
+                                        }
+                                    }
+                                    kitconf.set("kit." + i + ".enchantments", ench);
                                 }
 
                             }
