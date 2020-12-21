@@ -12,9 +12,7 @@ import java.io.File;
 
 public class KitInventoryMethod {
 
-    public static void getSpielerKit(Player p) {
-        setInv(p, "Spieler");
-    }
+    public static void getSpielerKit(Player p) { setInv(p, "Spieler"); }
 
     public static void getPremiumKit(Player p){
         setInv(p, "Premium");
@@ -43,7 +41,8 @@ public class KitInventoryMethod {
                 itemMeta.addEnchant(Enchantment.getByName(ench.split(":")[0]), Integer.parseInt(ench.split(":")[1]), true);
             itemMeta.setDisplayName(kitconf.getString("kit." + s + ".displayname"));
             itemStack.setItemMeta(itemMeta);
-            p.getInventory().setItem(Integer.parseInt(s), itemStack);
+            //p.getInventory().setItem(Integer.parseInt(s), itemStack);
+            p.getInventory().addItem(itemStack);
         }
         p.sendMessage(Main.prefix + " §7Du hast das §7Spieler §8- §e"+ type +" §aerhalten!");
     }

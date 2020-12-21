@@ -19,6 +19,7 @@ public class CMD_Clearlag implements CommandExecutor {
             if(p.hasPermission("skypvp.clearlag") || p.hasPermission("skypvp.*")){
                 if(args.length == 0){
                     clearlag();
+                    return true;
                 } else
                     p.sendMessage(Main.prefix + " §cBitte benutze: §7/clearlag");
             } else
@@ -41,10 +42,10 @@ public class CMD_Clearlag implements CommandExecutor {
         }
         for(Player all : Bukkit.getOnlinePlayers()){
             if(itemcount == 1){
-                all.sendMessage(Main.prefix + " §7Es wurden §c" + itemcount + " §7Item entfernt");
+                all.sendMessage(Main.prefix + " §7Es wurde §c" + itemcount + " §7Item entfernt");
             }
             if(itemcount != 1) {
-                all.sendMessage(Main.prefix + " §7Es wurde §c" + itemcount + " §7Items entfernt");
+                all.sendMessage(Main.prefix + " §7Es wurden §c" + itemcount + " §7Items entfernt");
             }
         }
     }
