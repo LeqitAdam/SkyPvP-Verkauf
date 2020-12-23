@@ -1,5 +1,6 @@
 package eu.playcen.skypvp.methods;
 
+import eu.playcen.coins.api.CoinsAPI;
 import eu.playcen.skypvp.skystats.SkyStatsMethod;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -28,7 +29,7 @@ public class ScoreboardMethod {
 
         Integer kills = SkyStatsMethod.getKills(p.getUniqueId());
         Integer tode = SkyStatsMethod.getDeaths(p.getUniqueId());
-        String coins = "test2";
+        double coins = CoinsAPI.getBalance(p.getUniqueId());
 
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
         Objective objective = board.registerNewObjective("aaa", "bbb");
@@ -59,7 +60,7 @@ public class ScoreboardMethod {
 
         Team coinsteam = board.registerNewTeam("coins");
         coinsteam.setPrefix("§7» ");
-        coinsteam.setSuffix(coins);
+        coinsteam.setSuffix(String.valueOf(coins));
         coinsteam.addEntry(ChatColor.GOLD.toString());
 
         objective.getScore(ChatColor.GOLD.toString()).setScore(4);
