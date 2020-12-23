@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Skypvp">
+    <output-path>$USER_HOME$/Desktop/Dev Server/plugins</output-path>
+    <root id="archive" name="Skypvp.jar">
+      <element id="module-output" name="Playcen - SkyPvP" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+    </root>
+  </artifact>
+</component>
