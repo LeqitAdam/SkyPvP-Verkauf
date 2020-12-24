@@ -15,9 +15,9 @@ public class MySQLFile {
         cfg.options().copyDefaults(true);
         cfg.addDefault("host", "localhost");
         cfg.addDefault("port", "3306");
-        cfg.addDefault("database", "SkyPvP-Test");
-        cfg.addDefault("username", "mysql");
-        cfg.addDefault("password", "AdamMySQL1234!mysql");
+        cfg.addDefault("database", "datenbank");
+        cfg.addDefault("username", "benutzer");
+        cfg.addDefault("password", "passwort");
 
         try {
             cfg.save(getFile());
