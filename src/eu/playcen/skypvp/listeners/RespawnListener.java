@@ -25,20 +25,19 @@ public class RespawnListener implements Listener {
             @Override
             public void run() {
                 p.spigot().respawn();
+                try{
+                    World w = Bukkit.getWorld(conf.getString("Spawn.world"));
+                    Location loc = new Location(w, conf.getDouble("Spawn.x"), conf.getDouble("Spawn.y"), conf.getDouble("Spawn.z"));
+                    loc.setYaw((float) conf.getDouble("Spawn.yaw"));
+                    loc.setPitch((float) conf.getDouble("Spawn.pitch"));
+
+                    p.teleport(loc);
+                } catch (Exception ex){
+                    p.sendMessage(Main.prefix + " §cDer Spawn wurde noch nicht gesetzt!");
+                    p.sendMessage(Main.prefix + " §c/setspawn");
+                }
             }
         }, 20);
-
-        try{
-            World w = Bukkit.getWorld(conf.getString("Spawn.world"));
-            Location loc = new Location(w, conf.getDouble("Spawn.x"), conf.getDouble("Spawn.y"), conf.getDouble("Spawn.z"));
-            loc.setYaw((float) conf.getDouble("Spawn.yaw"));
-            loc.setPitch((float) conf.getDouble("Spawn.pitch"));
-
-            p.teleport(loc);
-        } catch (Exception ex){
-            p.sendMessage(Main.prefix + " §cDer Spawn wurde noch nicht gesetzt!");
-            p.sendMessage(Main.prefix + " §c/setspawn");
-        }
 
     }
 
