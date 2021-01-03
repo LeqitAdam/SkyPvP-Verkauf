@@ -4,6 +4,7 @@ import eu.playcen.skypvp.commands.*;
 import eu.playcen.skypvp.listeners.*;
 import eu.playcen.skypvp.methods.MSGToggleMethod;
 import eu.playcen.skypvp.methods.PerksMethod;
+import eu.playcen.skypvp.methods.ScoreboardMethod;
 import eu.playcen.skypvp.mysql.MySQL;
 import eu.playcen.skypvp.mysql.MySQLFile;
 import eu.playcen.skypvp.skinchanger.CMD_Skin;
@@ -75,7 +76,7 @@ public class Main extends JavaPlugin {
             }
         }
 
-
+        startUpdatingScoreBoard();
 
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Plugin wurde aktiviert");
     }
@@ -218,6 +219,15 @@ public class Main extends JavaPlugin {
                 all.sendMessage(Main.prefix + " §aIn 2 Minuten werden allen am Boden liegenden Items gelöscht.");
             }
         }, 20*60*2);
+
+    }
+
+    private void startUpdatingScoreBoard(){
+        Bukkit.getScheduler().runTaskTimer(this, () -> {
+            for(Player all : Bukkit.getOnlinePlayers()){
+                ScoreboardMethod.setScoreBoard(all);
+            }
+        }, 20, 20);
 
     }
 
