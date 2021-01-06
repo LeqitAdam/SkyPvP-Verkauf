@@ -132,6 +132,6 @@ public class SkyStatsMethod {
         return -1;
     }
 
-    public static void updateDeats(UUID uniqueId, int i, boolean b, String name) {
-    }
+    //public static void updateDeats(UUID uniqueId, int i, boolean b, String name) {
+    //}
 }
