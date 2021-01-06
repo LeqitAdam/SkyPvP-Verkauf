@@ -227,7 +227,7 @@ public class Main extends JavaPlugin {
             for(Player all : Bukkit.getOnlinePlayers()){
                 ScoreboardMethod.setScoreBoard(all);
             }
-        }, 20, 20);
+        }, 20, 20*10);
 
     }
 
