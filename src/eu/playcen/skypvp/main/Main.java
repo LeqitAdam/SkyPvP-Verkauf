@@ -156,7 +156,7 @@ public class Main extends JavaPlugin {
         getCommand("msg").setExecutor(new CMD_Msg());
         getCommand("respond").setExecutor(new CMD_RespondMsg());
         getCommand("msgtoggle").setExecutor(new CMD_Msgtoggle());
-        getCommand("setpvphöhe").setExecutor(new CMD_PvPZone());
+        getCommand("setpvpzone").setExecutor(new CMD_PvPZone());
         getCommand("build").setExecutor(new CMD_Build());
         //getCommand("enchanter").setExecutor(new CMD_Enchanter());
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Commands wurden aktiviert");

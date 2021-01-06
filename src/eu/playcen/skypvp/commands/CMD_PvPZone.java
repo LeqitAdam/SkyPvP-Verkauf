@@ -18,7 +18,7 @@ public class CMD_PvPZone implements CommandExecutor {
         if(sender instanceof Player) {
             Player p = (Player) sender;
             if(p.hasPermission("skypvp.setpvpzone")) {
-                if(cmd.getName().equalsIgnoreCase("setpvphöhe")) {
+                if(cmd.getName().equalsIgnoreCase("setpvpzone")) {
                     File file = new File("plugins/SkyPvP", "config.yml");
                     YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
                     if(args.length == 0) {

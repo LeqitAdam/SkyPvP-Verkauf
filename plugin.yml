@@ -52,4 +52,4 @@ commands:
    respond:
       aliases: r
    msgtoggle:
-   setpvphöhe:
+   setpvpzone:
