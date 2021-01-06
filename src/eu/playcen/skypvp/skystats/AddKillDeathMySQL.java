@@ -19,10 +19,18 @@ public class AddKillDeathMySQL implements Listener {
         Player p = event.getEntity().getPlayer();
         Player killer = event.getEntity().getPlayer().getKiller();
         if(MySQL.isConnected()){
-            SkyStatsMethod.updateDeaths(p.getUniqueId(), 1, false, p.getName());
-            CoinsAPI.addCoins(p.getUniqueId(), -5);
-            for(Player all : Bukkit.getOnlinePlayers()) {
-                ScoreboardMethod.setScoreBoard(all);
+            if(CoinsAPI.getBalance(p.getUniqueId()) >=5) {
+                SkyStatsMethod.updateDeaths(p.getUniqueId(), 1, false, p.getName());
+                CoinsAPI.addCoins(p.getUniqueId(), -5);
+                for(Player all : Bukkit.getOnlinePlayers()) {
+                    ScoreboardMethod.setScoreBoard(all);
+                }
+            }else if(CoinsAPI.getBalance(p.getUniqueId()) <5) {
+                SkyStatsMethod.updateDeaths(p.getUniqueId(), 1, false, p.getName());
+                CoinsAPI.setBalance(p.getUniqueId(), 0);
+                for(Player all : Bukkit.getOnlinePlayers()) {
+                    ScoreboardMethod.setScoreBoard(all);
+                }
             }
         }
         p.playSound(p.getLocation(), Sound.CAT_HISS, 1, 1);
