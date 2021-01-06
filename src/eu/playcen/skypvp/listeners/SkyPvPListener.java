@@ -2,6 +2,7 @@ package eu.playcen.skypvp.listeners;
 
 import eu.playcen.skypvp.commands.CMD_Build;
 import eu.playcen.skypvp.main.Main;
+import org.bukkit.GameMode;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -9,6 +10,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerToggleFlightEvent;
 
 import java.io.File;
 
@@ -41,6 +44,22 @@ public class SkyPvPListener implements Listener {
                     }
                 } else
                     e.setCancelled(false);
+            }
+        }
+
+    }
+
+    @EventHandler
+    public void onFly(PlayerMoveEvent event) {
+        File file = new File("plugins/SkyPvP", "config.yml");
+        YamlConfiguration cfg2 = YamlConfiguration.loadConfiguration(file);
+        int height = cfg2.getInt("PvPHoehe");
+
+        if(event.getPlayer().getLocation().getBlockY() <= (height)) {
+            if(!(event.getPlayer().hasPermission("skypvp.*") || event.getPlayer().hasPermission("skypvp.fly.bypass") || event.getPlayer().getGameMode() == GameMode.CREATIVE)) {
+                if(event.getPlayer().isFlying()) {
+                    event.getPlayer().setAllowFlight(false);
+                }
             }
         }
 

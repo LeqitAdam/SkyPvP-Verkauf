@@ -27,34 +27,34 @@ public class PerksMethod implements Listener {
         File perks = new File("plugins/SkyPvP/Perks", p.getUniqueId() + ".yml");
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(perks);
 
-        if(cfg.getBoolean("Fly") == false) {
-            p.setAllowFlight(true);
-            p.sendMessage(Main.prefix + " §ePerk §7wurde §aaktiviert!");
-            cfg.set("Fly", true);
+            if(cfg.getBoolean("Fly") == false) {
+                p.setAllowFlight(true);
+                p.sendMessage(Main.prefix + " §ePerk §7wurde §aaktiviert!");
+                cfg.set("Fly", true);
 
-            try {
-                cfg.save(perks);
-                Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config wurde ohne Fehler erstellt");
-            } catch (IOException e) {
-                Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §4Config konnte nicht erstellt werden");
-                e.printStackTrace();
-            }
-            CMD_Perks.openPerksInv(p);
-        }else {
-            p.setAllowFlight(false);
-            p.sendMessage(Main.prefix + " §ePerk §7wurde §cdeaktiviert!");
-            cfg.set("Fly", false);
+                try {
+                    cfg.save(perks);
+                    Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config wurde ohne Fehler erstellt");
+                } catch (IOException e) {
+                    Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §4Config konnte nicht erstellt werden");
+                    e.printStackTrace();
+                }
+                CMD_Perks.openPerksInv(p);
+            }else {
+                p.setAllowFlight(false);
+                p.sendMessage(Main.prefix + " §ePerk §7wurde §cdeaktiviert!");
+                cfg.set("Fly", false);
 
-            CMD_Perks.openPerksInv(p);
-            try {
-                cfg.save(perks);
-                Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config wurde ohne Fehler erstellt");
-            } catch (IOException e) {
-                Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §4Config konnte nicht erstellt werden");
-                e.printStackTrace();
+                CMD_Perks.openPerksInv(p);
+                try {
+                    cfg.save(perks);
+                    Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Config wurde ohne Fehler erstellt");
+                } catch (IOException e) {
+                    Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §4Config konnte nicht erstellt werden");
+                    e.printStackTrace();
+                }
+                CMD_Perks.openPerksInv(p);
             }
-            CMD_Perks.openPerksInv(p);
-        }
     }
 
     public static void jumpboostPerk(Player p) {
