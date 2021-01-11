@@ -1,5 +1,6 @@
 package eu.playcen.skypvp.listeners;
 
+import eu.playcen.coins.api.CoinsAPI;
 import eu.playcen.skypvp.commands.CMD_Build;
 import eu.playcen.skypvp.main.Main;
 import eu.playcen.skypvp.methods.CombatLog;
@@ -82,6 +83,7 @@ public class JoinListener implements Listener {
         if(CombatLog.combatlog.containsKey(p.getUniqueId())) {
             p.setHealth(0);
             CombatLog.combatlog.remove(p.getUniqueId());
+            CoinsAPI.addCoins(p.getUniqueId(), -5);
         }
     }
 }
