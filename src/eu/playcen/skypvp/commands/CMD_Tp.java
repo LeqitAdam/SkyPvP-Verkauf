@@ -9,10 +9,8 @@ import org.bukkit.entity.Player;
 
 public class CMD_Tp implements CommandExecutor {
 
-    private Main plugin;
-
     public CMD_Tp(Main plugin) {
-        this.plugin = plugin;
+        Main.plugin = plugin;
     }
 
     @Override
@@ -64,7 +62,7 @@ public class CMD_Tp implements CommandExecutor {
                         p.sendMessage(Main.prefix + " §7Der Spieler §a" + args[0] + " §7konnte §cnicht §7zu dem Spieler §a"
                                 + args[1] + " §7teleportiert werden!");
                         p.sendMessage(Main.prefix + " §7Der Spieler §a" + args[1] + " §7ist §cnicht online!");
-                    }else if (target == null && player != null) {
+                    }else if (player != null) {
                         p.sendMessage(Main.prefix + " §7Der Spieler §a" + args[0] + " §7konnte §cnicht §7zu dem Spieler §a"
                                 + args[1] + " §7teleportiert werden!");
                         p.sendMessage(Main.prefix + " §7Der Spieler §a" + args[0] + " §7ist §cnicht online!");
