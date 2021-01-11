@@ -23,16 +23,16 @@ public class CMD_Tp implements CommandExecutor {
                 if (args.length == 1) {
                     Player target = Bukkit.getPlayer(args[0]);
                     if (target != null) {
-                        if (!(plugin.vanish.contains(target.getName()))) {
+                        if (!(Main.vanish.contains(target.getName()))) {
                             p.teleport(target);
                             p.sendMessage(Main.prefix + " §7Du wurdest zu §a" + target.getName() + " §7teleportiert!");
-                        } else if ((p.isOp() || p.hasPermission("system.tp.bypass"))) {
+                        } else if ((p.isOp() || p.hasPermission("skypvp.tp.bypass"))) {
                             p.teleport(target);
                             p.sendMessage(Main.prefix + " §7Du wurdest zu §a" + target.getName() + " §7teleportiert!");
                         } else {
                             p.sendMessage(Main.prefix + " §7Der Spieler §a" + args[0] + " §7ist §cnicht online!");
                         }
-                    } else if(!p.hasPermission("system.tp.offline")){
+                    } else if(!p.hasPermission("skypvp.tp.offline")){
                         p.sendMessage(Main.prefix + " §7Der Spieler §a" + args[0] + " §7ist §cnicht online!");
                     }else {
                         p.teleport(target);
@@ -56,7 +56,7 @@ public class CMD_Tp implements CommandExecutor {
                             p.sendMessage(Main.prefix + " §7Der Spieler §a" + target.getName() + " §7wurde zu §a" + player.getName()
                                     + " §7teleportiert!");
                             return true;
-                        } else if (!(plugin.vanish.contains(target.getName()))) {
+                        } else if (!(Main.vanish.contains(target.getName()))) {
                             target.teleport(player);
                             p.sendMessage(Main.prefix + " §7Der Spieler §a" + target.getName() + " §7wurde zu §a" + player.getName()
                                     + " §7teleportiert!");
