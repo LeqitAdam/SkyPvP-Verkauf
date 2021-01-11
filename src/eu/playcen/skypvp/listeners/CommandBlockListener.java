@@ -1,10 +1,13 @@
 package eu.playcen.skypvp.listeners;
 
 import eu.playcen.skypvp.main.Main;
+import eu.playcen.skypvp.methods.CombatLog;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+
+import java.util.Locale;
 
 public class CommandBlockListener implements Listener{
 
@@ -19,5 +22,19 @@ public class CommandBlockListener implements Listener{
                 }
             }else
                 event.setCancelled(false);
+
+            String msg = event.getMessage();
+            msg = msg.toLowerCase();
+
+            if(CombatLog.combatlog.containsKey(p.getUniqueId())) {
+                if(msg.startsWith("/")) {
+                    if (!(p.hasPermission("skypvp.*")
+                            || p.hasPermission("skypvp.combatlog.bypass"))) {
+                        p.sendMessage(Main.prefix + " §7Im §cKampf §7darfst du keine Befehle verwenden!");
+                        event.setCancelled(true);
+                    }else
+                        event.setCancelled(false);
+                }
+            }
     }
 }

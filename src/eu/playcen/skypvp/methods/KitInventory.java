@@ -10,7 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.io.File;
 
-public class KitInventoryMethod {
+public class KitInventory {
 
     public static void getSpielerKit(Player p) { setInv(p, "Spieler"); }
 

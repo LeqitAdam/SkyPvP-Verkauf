@@ -2,6 +2,7 @@ package eu.playcen.skypvp.listeners;
 
 import eu.playcen.skypvp.commands.CMD_Build;
 import eu.playcen.skypvp.main.Main;
+import eu.playcen.skypvp.methods.CombatLog;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
@@ -44,6 +45,9 @@ public class SkyPvPListener implements Listener {
                     }
                 } else
                     e.setCancelled(false);
+
+                CombatLog.combatlog.put(e.getEntity().getUniqueId(), 11);
+                CombatLog.combatlog.put(e.getDamager().getUniqueId(), 11);
             }
         }
 
@@ -56,7 +60,17 @@ public class SkyPvPListener implements Listener {
         int height = cfg2.getInt("PvPHoehe");
 
         if(event.getPlayer().getLocation().getBlockY() <= (height)) {
-            if(!(event.getPlayer().hasPermission("skypvp.*") || event.getPlayer().hasPermission("skypvp.fly.bypass") || event.getPlayer().getGameMode() == GameMode.CREATIVE)) {
+            if(!(event.getPlayer().hasPermission("skypvp.*")
+                    || event.getPlayer().hasPermission("skypvp.fly.bypass")
+                    || event.getPlayer().getGameMode() == GameMode.CREATIVE)) {
+                if(event.getPlayer().isFlying()) {
+                    event.getPlayer().setAllowFlight(false);
+                }
+            }
+        }
+        if(CombatLog.combatlog.containsKey(event.getPlayer().getUniqueId())) {
+            if(!(event.getPlayer().hasPermission("skypvp.combatlog.bypass")
+                    || event.getPlayer().hasPermission("skypvp.*"))) {
                 if(event.getPlayer().isFlying()) {
                     event.getPlayer().setAllowFlight(false);
                 }

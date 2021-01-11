@@ -17,7 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class PerksMethod implements Listener {
+public class Perks implements Listener {
 
     private static ArrayList<String> keinhunger = new ArrayList<>();
     private static ArrayList<String> keinfallschaden = new ArrayList<>();

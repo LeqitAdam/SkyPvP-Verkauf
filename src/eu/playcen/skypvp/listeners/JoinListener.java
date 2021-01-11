@@ -2,9 +2,10 @@ package eu.playcen.skypvp.listeners;
 
 import eu.playcen.skypvp.commands.CMD_Build;
 import eu.playcen.skypvp.main.Main;
+import eu.playcen.skypvp.methods.CombatLog;
 import eu.playcen.skypvp.methods.ImageChar;
 import eu.playcen.skypvp.methods.ImageMessage;
-import eu.playcen.skypvp.methods.ScoreboardMethod;
+import eu.playcen.skypvp.methods.Scoreboard;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -30,7 +31,7 @@ public class JoinListener implements Listener {
         Player p = event.getPlayer(); //Den Spieler vom Event Deklariert
         p.setGameMode(GameMode.SURVIVAL);
         for(Player all : Bukkit.getOnlinePlayers()) {
-            ScoreboardMethod.setScoreBoard(all);
+            Scoreboard.setScoreBoard(all);
         }
         //Join Message
         //event.setJoinMessage(Main.prefix + " §aWillkommen " + event.getPlayer().getName());
@@ -74,7 +75,13 @@ public class JoinListener implements Listener {
     }
 
     @EventHandler
-    public void onLeave(PlayerQuitEvent e){
-        e.setQuitMessage(null);
+    public void onLeave(PlayerQuitEvent event){
+        event.setQuitMessage(null);
+
+        Player p = event.getPlayer();
+        if(CombatLog.combatlog.containsKey(p.getUniqueId())) {
+            p.setHealth(0);
+            CombatLog.combatlog.remove(p.getUniqueId());
+        }
     }
 }

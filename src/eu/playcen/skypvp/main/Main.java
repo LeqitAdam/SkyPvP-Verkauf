@@ -2,9 +2,10 @@ package eu.playcen.skypvp.main;
 
 import eu.playcen.skypvp.commands.*;
 import eu.playcen.skypvp.listeners.*;
-import eu.playcen.skypvp.methods.MSGToggleMethod;
-import eu.playcen.skypvp.methods.PerksMethod;
-import eu.playcen.skypvp.methods.ScoreboardMethod;
+import eu.playcen.skypvp.methods.CombatLog;
+import eu.playcen.skypvp.methods.MSGToggle;
+import eu.playcen.skypvp.methods.Perks;
+import eu.playcen.skypvp.methods.Scoreboard;
 import eu.playcen.skypvp.mysql.MySQL;
 import eu.playcen.skypvp.mysql.MySQLFile;
 import eu.playcen.skypvp.skinchanger.CMD_Skin;
@@ -21,6 +22,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class Main extends JavaPlugin {
 
@@ -56,6 +59,8 @@ public class Main extends JavaPlugin {
 
         startClearLag();
         anounceClearLag();
+
+        load();
 
         try {
             MySQL.connect();
@@ -173,14 +178,14 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new ColorSigns(), this);
         pm.registerEvents(new HandleVillager(), this);
         pm.registerEvents(new PerksInvListener(), this);
-        pm.registerEvents(new PerksMethod(), this);
+        pm.registerEvents(new Perks(), this);
         pm.registerEvents(new PerksOnJoin(), this);
         pm.registerEvents(new AddDefaultValuesMySQL(), this);
         pm.registerEvents(new AddKillDeathMySQL(), this);
         pm.registerEvents(new CommandBlockListener(), this);
         pm.registerEvents(new SkyPvPListener(), this);
         pm.registerEvents(new Environment(), this);
-        pm.registerEvents(new MSGToggleMethod(), this);
+        pm.registerEvents(new MSGToggle(), this);
         Bukkit.getConsoleSender().sendMessage("§c[Skypvp] §7Events wurden aktiviert");
     }
 
@@ -225,10 +230,42 @@ public class Main extends JavaPlugin {
     private void startUpdatingScoreBoard(){
         Bukkit.getScheduler().runTaskTimer(this, () -> {
             for(Player all : Bukkit.getOnlinePlayers()){
-                ScoreboardMethod.setScoreBoard(all);
+                Scoreboard.setScoreBoard(all);
             }
         }, 20, 20*10);
 
     }
 
+    public void load() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+            @Override
+            public void run() {
+                List<UUID> removeUUID = new ArrayList<UUID>();
+
+                for(UUID u : CombatLog.combatlog.keySet()) {
+                    int i = CombatLog.combatlog.get(u);
+                    Player p = Bukkit.getPlayer(u);
+
+                    i--;
+                    if(i < 1) {
+                        removeUUID.add(u);
+
+                        if(p != null) {
+                            CombatLog.sendActionbar(p, "§7Du bist nun §cnicht mehr §7im Kampf!");
+                        }
+                    }else {
+                        CombatLog.combatlog.put(u, i);
+
+                        if(p != null) {
+                            CombatLog.sendActionbar(p, "§7Du bist noch §e" + i + " §7Sekunden §cim Kampf!");
+                        }
+                    }
+                }
+
+                for (UUID u : removeUUID) {
+                    CombatLog.combatlog.remove(u);
+                }
+            }
+        }, 20, 20);
+    }
 }

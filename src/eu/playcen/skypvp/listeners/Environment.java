@@ -37,7 +37,9 @@ public class Environment implements Listener {
     public void onInteract(PlayerInteractEvent e){
         if(!CMD_Build.builders.contains(e.getPlayer())) {
             if(e.getClickedBlock() != null){
-                if (!e.getClickedBlock().getType().equals(Material.ENDER_CHEST)) {
+                if (!(e.getClickedBlock().getType().equals(Material.ENDER_CHEST)
+                        || e.getClickedBlock().getType().equals(Material.ENCHANTMENT_TABLE)
+                        || e.getClickedBlock().getType().equals(Material.ANVIL))) {
                     e.setCancelled(true);
                 }
             }

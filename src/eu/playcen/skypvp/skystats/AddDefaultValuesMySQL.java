@@ -1,6 +1,6 @@
 package eu.playcen.skypvp.skystats;
 
-import eu.playcen.skypvp.methods.ScoreboardMethod;
+import eu.playcen.skypvp.methods.Scoreboard;
 import eu.playcen.skypvp.mysql.MySQL;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,7 +17,7 @@ public class AddDefaultValuesMySQL implements Listener {
             if(!SkyStatsMethod.isUserExists(p.getUniqueId())){
                 SkyStatsMethod.updateKills(p.getUniqueId(), 0, false, p.getName());
                 SkyStatsMethod.updateDeaths(p.getUniqueId(), 0, false, p.getName());
-                ScoreboardMethod.setScoreBoard(p);
+                Scoreboard.setScoreBoard(p);
             }
         }
     }

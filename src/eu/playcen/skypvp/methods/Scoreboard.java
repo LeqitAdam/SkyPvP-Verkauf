@@ -8,16 +8,15 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 import java.io.File;
 import java.util.HashMap;
 
-public class ScoreboardMethod {
+public class Scoreboard {
 
 
-    private static HashMap<Scoreboard, Player> boards = new HashMap<>();
+    private static HashMap<org.bukkit.scoreboard.Scoreboard, Player> boards = new HashMap<>();
 
     public static void setScoreBoard(Player p) {
         File config = new File("plugins/SkyPvP", "config.yml");
@@ -31,7 +30,7 @@ public class ScoreboardMethod {
         Integer tode = SkyStatsMethod.getDeaths(p.getUniqueId());
         String coins = String.valueOf(CoinsAPI.getBalance(p.getUniqueId()));
 
-        Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
+        org.bukkit.scoreboard.Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
         Objective objective = board.registerNewObjective("aaa", "bbb");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName(name);

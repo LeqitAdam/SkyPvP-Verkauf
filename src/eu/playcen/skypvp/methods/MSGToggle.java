@@ -12,7 +12,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import java.io.File;
 import java.io.IOException;
 
-public class MSGToggleMethod implements Listener {
+public class MSGToggle implements Listener {
 
     public static void MSGToggle(Player p) {
         File player = new File("plugins/SkyPvP/Spieler", p.getUniqueId() + ".yml");

@@ -2,7 +2,8 @@ package eu.playcen.skypvp.skystats;
 
 import eu.playcen.coins.api.CoinsAPI;
 import eu.playcen.skypvp.main.Main;
-import eu.playcen.skypvp.methods.ScoreboardMethod;
+import eu.playcen.skypvp.methods.CombatLog;
+import eu.playcen.skypvp.methods.Scoreboard;
 import eu.playcen.skypvp.mysql.MySQL;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -23,21 +24,27 @@ public class AddKillDeathMySQL implements Listener {
                 SkyStatsMethod.updateDeaths(p.getUniqueId(), 1, false, p.getName());
                 CoinsAPI.addCoins(p.getUniqueId(), -5);
                 for(Player all : Bukkit.getOnlinePlayers()) {
-                    ScoreboardMethod.setScoreBoard(all);
+                    Scoreboard.setScoreBoard(all);
                 }
             }else if(CoinsAPI.getBalance(p.getUniqueId()) <5) {
                 SkyStatsMethod.updateDeaths(p.getUniqueId(), 1, false, p.getName());
                 CoinsAPI.setBalance(p.getUniqueId(), 0);
                 for(Player all : Bukkit.getOnlinePlayers()) {
-                    ScoreboardMethod.setScoreBoard(all);
+                    Scoreboard.setScoreBoard(all);
                 }
             }
         }
         p.playSound(p.getLocation(), Sound.CAT_HISS, 1, 1);
         if(killer != null) {
             event.setDeathMessage(Main.prefix + " §7Der Spieler §a" + p.getDisplayName() + " §7wurde von §a" + killer.getDisplayName() + " §cgetötet!");
+            if(CombatLog.combatlog.containsKey(p.getUniqueId())) {
+                CombatLog.combatlog.remove(p.getUniqueId());
+            }
         }else
             event.setDeathMessage(Main.prefix + " §7Der Spieler §a" + p.getDisplayName() + " §7ist §cgestorben!");
+            if(CombatLog.combatlog.containsKey(p.getUniqueId())) {
+                CombatLog.combatlog.remove(p.getUniqueId());
+            }
     }
 
     @EventHandler
@@ -47,7 +54,7 @@ public class AddKillDeathMySQL implements Listener {
             SkyStatsMethod.updateKills(p.getUniqueId(), 1, false, p.getName());
             CoinsAPI.addCoins(p.getUniqueId(), 10);
             for(Player all : Bukkit.getOnlinePlayers()) {
-                ScoreboardMethod.setScoreBoard(all);
+                Scoreboard.setScoreBoard(all);
             }
             p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
         }

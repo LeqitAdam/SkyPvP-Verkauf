@@ -1,7 +1,7 @@
 package eu.playcen.skypvp.listeners;
 
 import eu.playcen.skypvp.main.Main;
-import eu.playcen.skypvp.methods.KitInventoryMethod;
+import eu.playcen.skypvp.methods.KitInventory;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -32,7 +32,7 @@ public class KitInventoryListener implements Listener {
                 switch (event.getCurrentItem().getItemMeta().getDisplayName()) {
                     case "§7Spieler §8- §eKit":
                         try {
-                            KitInventoryMethod.getSpielerKit(p);
+                            KitInventory.getSpielerKit(p);
                             p.playSound(p.getLocation(), Sound.LEVEL_UP, 1f, 1f);
                         } catch (Exception e) {
                             p.sendMessage(Main.prefix + " §cDas Kit konnte nicht geladen werden");
@@ -42,7 +42,7 @@ public class KitInventoryListener implements Listener {
                         break;
                     case "§6Premium §8- §eKit":
                         try {
-                            KitInventoryMethod.getPremiumKit(p);
+                            KitInventory.getPremiumKit(p);
                             p.playSound(p.getLocation(), Sound.LEVEL_UP, 1f, 1f);
                         } catch (Exception e) {
                             p.sendMessage(Main.prefix + " §cDas Kit konnte nicht geladen werden");
@@ -51,7 +51,7 @@ public class KitInventoryListener implements Listener {
                         break;
                     case "§bUltra §8- §eKit":
                         try {
-                            KitInventoryMethod.getUltraKit(p);
+                            KitInventory.getUltraKit(p);
                             p.playSound(p.getLocation(), Sound.LEVEL_UP, 1f, 1f);
                         } catch (Exception e) {
                             p.sendMessage(Main.prefix + " §cDas Kit konnte nicht geladen werden");
@@ -60,7 +60,7 @@ public class KitInventoryListener implements Listener {
                         break;
                     case "§4God §8- §eKit":
                         try {
-                            KitInventoryMethod.getGodKit(p);
+                            KitInventory.getGodKit(p);
                             p.playSound(p.getLocation(), Sound.LEVEL_UP, 1f, 1f);
                         } catch (Exception e) {
                             p.sendMessage(Main.prefix + " §cDas Kit konnte nicht geladen werden");

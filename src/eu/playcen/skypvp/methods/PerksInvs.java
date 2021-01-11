@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.io.File;
 
-public class PerksInvsMethod {
+public class PerksInvs {
 
     public static void openInv(Player p) {
         File perks = new File("plugins/SkyPvP/Perks", p.getUniqueId() + ".yml");

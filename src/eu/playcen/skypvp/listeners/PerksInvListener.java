@@ -1,8 +1,7 @@
 package eu.playcen.skypvp.listeners;
 
 import eu.playcen.skypvp.main.Main;
-import eu.playcen.skypvp.methods.PerksMethod;
-import org.bukkit.GameMode;
+import eu.playcen.skypvp.methods.Perks;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,24 +28,24 @@ public class PerksInvListener implements Listener {
                     if(p.hasPermission("skypvp.perks.fly")) {
                         if(!p.hasPermission("skypvp.*") || !p.hasPermission("skypvp.perks.bypass") || !p.hasPermission("skypvp.fly.bypass")) {
                             if(p.getLocation().getBlockY() >= (height)) {
-                                PerksMethod.flyperk(p);
+                                Perks.flyperk(p);
                             }else
                                 p.sendMessage(Main.prefix + " §cDu darfst dieses §ePerk §chier nicht benutzen!");
                             if(p.isFlying()) {
                                 p.setAllowFlight(false);
                             }
                         }else
-                            PerksMethod.flyperk(p);
+                            Perks.flyperk(p);
                     }else
                         p.sendMessage(Main.prefix + " §7Dieses §ePerk §7hast du §cnicht §afreigeschaltet!");
                 }else if(event.getCurrentItem().getItemMeta().getLore().contains("§9JumpBoost §aaktiv!") || event.getCurrentItem().getItemMeta().getLore().contains("§9JumpBoost §cinaktiv!")) {
-                    PerksMethod.jumpboostPerk(p);
+                    Perks.jumpboostPerk(p);
                 }else if(event.getCurrentItem().getItemMeta().getLore().contains("§9Speed §aaktiv!") || event.getCurrentItem().getItemMeta().getLore().contains("§9Speed §cinaktiv!")) {
-                    PerksMethod.speedIPerk(p);
+                    Perks.speedIPerk(p);
                 }else if(event.getCurrentItem().getItemMeta().getLore().contains("§9Kein Hunger §aaktiv!") || event.getCurrentItem().getItemMeta().getLore().contains("§9Kein Hunger §cinaktiv!")) {
-                    PerksMethod.keinHunger(p);
+                    Perks.keinHunger(p);
                 }else if(event.getCurrentItem().getItemMeta().getLore().contains("§9Kein Fallschaden §aaktiv!") || event.getCurrentItem().getItemMeta().getLore().contains("§9Kein Fallschaden §cinaktiv!")) {
-                    PerksMethod.keinFallschaden(p);
+                    Perks.keinFallschaden(p);
                 }else {
 
                 }

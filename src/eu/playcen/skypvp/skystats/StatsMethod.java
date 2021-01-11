@@ -1,7 +1,7 @@
 package eu.playcen.skypvp.skystats;
 
 import eu.playcen.skypvp.main.Main;
-import eu.playcen.skypvp.methods.ScoreboardMethod;
+import eu.playcen.skypvp.methods.Scoreboard;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -24,7 +24,7 @@ public class StatsMethod {
 
         SkyStatsMethod.updateKills(p.getUniqueId(), kills, true, p.getName());
         SkyStatsMethod.updateDeaths(p.getUniqueId(), deaths, true, p.getName());
-        ScoreboardMethod.setScoreBoard(p);
+        Scoreboard.setScoreBoard(p);
     }
 
     public static  void statsResetOff(OfflinePlayer offp) {
