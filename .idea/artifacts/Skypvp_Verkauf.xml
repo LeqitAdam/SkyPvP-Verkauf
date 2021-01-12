@@ -2,7 +2,7 @@
   <artifact type="jar" name="Skypvp-Verkauf">
     <output-path>$PROJECT_DIR$/../../..</output-path>
     <root id="archive" name="Skypvp-Verkauf.jar">
-      <element id="module-output" name="Playcen - SkyPvP" />
+      <element id="module-output" name="Playcen - Verkauf" />
       <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
     </root>
   </artifact>
