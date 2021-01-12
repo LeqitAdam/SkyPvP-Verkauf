@@ -1,6 +1,6 @@
 name: SkyPvP
 version: 0.8
-main: eu.playcen.skypvp.main.Main
+main: Main
 depend: [CoinsAPI]
 
 commands:

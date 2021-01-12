@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="CoinsAPI">
+  <library name="Vault">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../CoinsAPI.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Dev/Vault.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
