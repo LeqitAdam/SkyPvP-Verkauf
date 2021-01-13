@@ -1,6 +1,6 @@
 name: SkyPvP
 version: 0.8
-main: Main
+main: eu.admar.skypvp.main.Main
 depend: [CoinsAPI]
 
 commands:
